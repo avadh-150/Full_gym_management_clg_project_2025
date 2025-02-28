@@ -1,0 +1,164 @@
+<?php session_start(); ?>
+<header role="banner">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #000;">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-light" href="index.php" style="font-size: 1.5rem;">
+        GYM<span style="color: #ff0066;">FITNESS</span>
+      </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample05">
+        <ul class="navbar-nav mr-auto pl-lg-5 pl-0">
+
+          <!-- 
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/gymphp/profile.php">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/gymphp/chatbot.php">Ask Query</a>
+            </li>
+
+
+            <li class="nav-item">
+            <a class="nav-link" href=""></a>
+          </li>
+           -->
+          <li class="nav-item">
+            <a class="nav-link active" href="http://localhost/gymphp/index.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/about.php">About
+              <?php //echo $_SESSION['user_id']; 
+              ?>
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/blog.php">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="http://localhost/gymphp/services.php">Services</a> -->
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/gallery.php">Productsgallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/plan.php">Plan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/contact.php">Contact</a>
+          </li>
+
+
+          <?php
+          // error_reporting(0);
+          if (isset($_SESSION['auth_user'])) {
+          ?>
+<li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/schedules.php">Schedule</a>
+          </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo substr($_SESSION['auth_user']['email'], 0, 5), '..' ?><i class="fa-solid fa-user"></i></a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="../gymphp/users/profile.php">Profile</a>
+                <a class="dropdown-item" href="http://localhost/gymphp/my_orders.php">My Order</a>
+                <a class="dropdown-item" href="http://localhost/gymphp/my_membership.php">My Membership</a>
+                <a class="dropdown-item" href="http://localhost/gymphp/personal.php">Payments</a>
+                <a class="dropdown-item" href="http://localhost/gymphp/zumba.php">Announcements</a>
+
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/gymphp/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/gymphp/cart.php">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="badge badge-pill badge-danger">
+                  <?php
+
+                  include 'admin/dbcon.php';
+                  if (isset($_SESSION['auth_user'])) {
+                    $user_id = $_SESSION['auth_user']['user_id'];
+                    $query = "SELECT SUM(product_qty) AS total_items FROM carts WHERE user_id = '$user_id'";
+                    $result = mysqli_query($con, $query);
+                    $data = mysqli_fetch_assoc($result);
+                    $cart_count = $data['total_items'] ?? '0';
+                    echo $cart_count;
+                    // Update cart count via AJAX
+                  ?>
+                    <script src="js/jquery-3.2.1.min.js"></script>
+                    <script>
+                      function updateCartCount() {
+                        $.ajax({
+                          url: 'include/cart_counting.php',
+                          method: 'POST',
+                          data: { scope: 'cart_count' },
+                          dataType: 'json',
+                          success: function(response) {
+                            $('.badge-danger').text(response.cart_count);
+                          },
+                          error: function(xhr, status, error) {
+                            console.error("Error fetching cart count:", error);
+                          }
+                        });
+                      }
+
+                      // Initial count on page load
+                      $(document).ready(function() {
+                        updateCartCount();
+                      });
+
+                      // Update count every 5 seconds
+                      setInterval(updateCartCount, 2000);
+                    </script>
+                  <?php }
+                  ?>
+                </span>
+              </a>
+            </li>
+
+          <?php
+          } else {
+          ?>
+           <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/schedule.php">Schedule</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/gymphp/cart.php">
+                <i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item cta-btn">
+            <a class="nav-link" href="login.php">Login<i class="fa-solid fa-lock"></i></a>
+          </li>
+        </ul>
+
+
+      <?php
+          }
+      ?>
+
+      <!-- </li> -->
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </nav>
+
+</header>
+<!-- END header -->

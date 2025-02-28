@@ -1,0 +1,227 @@
+<?php 
+include "dbcon.php"; // Make sure dbcon.php has your database connection
+
+// Fetch categories to display in the dropdown
+$categories = [];
+$result = $con->query("SELECT id, name FROM product_categories WHERE status = 1");
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+}
+
+// Handle form submission for adding a product
+if (isset($_POST['submit-btn'])) {
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $category_id = $_POST['category_id'];
+    // $quality = $_POST['quality'];
+    $quantity = $_POST['quantity'];  // New field for quantity
+    $status = isset($_POST['status']) ? 1 : 0;
+
+    // Image upload logic
+    $image = null;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+        $image_name = $_FILES['image']['name'];
+        $image_tmp_name = $_FILES['image']['tmp_name'];
+        $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        $image_new_name = uniqid('', true) . '.' . $image_extension;
+        $image_path = 'uploads/' . $image_new_name;
+        
+        // Move the uploaded file to the "uploads" folder
+        if (move_uploaded_file($image_tmp_name, $image_path)) {
+            $image = $image_path;
+        }
+    }
+
+    if (!empty($name) && !empty($price) && !empty($category_id)) {
+        // Insert the product into the database, including quantity
+        $query = "INSERT INTO products (name, image,description, price, category_id,  quantity, status) 
+                  VALUES ('$name', '$image','$description', '$price', '$category_id', '$quantity', '$status')";
+        
+        if (mysqli_query($con, $query)) {
+            $message = "Product added successfully!";
+        } else {
+            $message = "Error adding product: " . mysqli_error($con);
+        }
+    } else {
+        $message = "Please fill in all required fields.";
+    }
+}
+
+// Fetch products from the database
+$products = [];
+$result = $con->query("SELECT p.id, p.name AS product_name, p.price, c.name AS category_name, p.status, p.quantity, p.image
+                       FROM products p
+                       JOIN product_categories c ON p.category_id = c.id
+                       WHERE p.status = 1");
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
+?>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .form-container, .product-list {
+            margin-top: 20px;
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+        .product-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .product-list table, .product-list th, .product-list td {
+            border: 1px solid #ddd;
+        }
+        .product-list th, .product-list td {
+            padding: 10px;
+            text-align: left;
+        }
+        .product-list th {
+            background-color: #f4f4f4;
+        }
+        .message {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: green;
+        }
+        .product-list img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1 style="text-align: center;">Manage Gym Products</h1>
+
+    <!-- Message Display -->
+    <?php if (isset($message)): ?>
+        <div class="message"><?= htmlspecialchars($message) ?></div>
+    <?php endif; ?>
+
+    <!-- Add Product Form -->
+    <div class="form-container">
+        <h3>Add a New Product</h3>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter product name" required>
+
+            <label for="description">Product Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Enter product description"></textarea>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" placeholder="Enter product price" required>
+
+            <label for="category_id">Category:</label>
+            <select id="category_id" name="category_id" required>
+                <option value="">Select Category</option>
+                <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category['id'] ?>"><?= htmlspecialchars($category['name']) ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <!-- <label for="quality">Quality:</label>
+            <select id="quality" name="quality" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select> -->
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Enter product quantity" required>
+
+            <label for="image">Product Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <label for="status">Display Status:</label>
+            <input type="checkbox" id="status" name="status" checked>
+            <label for="status">Check to Display</label>
+
+            <button type="submit" name="submit-btn">Add Product</button>
+        </form>
+    </div>
+
+    <!-- Product List -->
+    <div class="product-list">
+        <h3>List of Products</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Quality</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($product['product_name']) ?></td>
+                        <td><?= htmlspecialchars($product['price']) ?></td>
+                        <td><?= htmlspecialchars($product['category_name']) ?></td>
+                        <!-- <td><?= htmlspecialchars($product['quality']) ?></td> -->
+                        <td><?= htmlspecialchars($product['quantity']) ?></td>
+                        <td>
+                            <?php if ($product['image']): ?>
+                                <img src="<?= htmlspecialchars($product['image']) ?>" alt="Product Image">
+                            <?php else: ?>
+                                No Image
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $product['status'] == 1 ? 'Displayed' : 'Not Displayed' ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
