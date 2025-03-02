@@ -23,30 +23,22 @@ header('location:../index.php');
 <!-- Visit codeastro.com for more projects -->
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
-<!--close-top-Header-menu-->
-<!--start-top-serch-->
-<!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-<!--close-top-serch-->
 
-<!--sidebar-menu-->
 <?php $page='staff-management'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 
 <?php
 include 'dbcon.php';
 $id=$_GET['id'];
-$qry= "select * from staffs where user_id='$id'";
+$qry= "select * from trainers where id='$id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
 ?> 
 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="tip-bottom">Staffs</a> <a href="edit-staff-form.php" class="current">Edit Staff Records</a> </div>
-  <h1 class="text-center">Update Staff's Detail <i class="fas fa-briefcase"></i></h1>
+  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="tip-bottom"> Trainers</a> <a href="edit-staff-form.php" class="current">Edit Trainer Records</a> </div>
+  <h1 class="text-center">Update Trainer's Detail <i class="fas fa-users"></i></h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -54,37 +46,58 @@ while($row=mysqli_fetch_array($result)){
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Staff-Details</h5>
+          <h5>Trainer-Details</h5>
         </div>
         <div class="widget-content nopadding">
 
-          <form action="edit-staff-req.php" method="POST" class="form-horizontal">
-            <div class="control-group">
+          <form action="edit-staff-req.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+          <div class="control-group">
               <label class="control-label">Full Name :</label>
               <div class="controls">
-                <input type="text" class="span11" name="fullname" value='<?php echo $row['fullname']; ?>' />
+                <input type="text" class="span11" name="fullname"  value="<?php echo $row['name']; ?>" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Username :</label>
+              <label class="control-label">Qualification Certificate:</label>
               <div class="controls">
-                <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
+                <input type="file" class="span11" name="qualification" placeholder="Qualification" value="<?php echo $row['qualification']; ?>" />
+                <?php if($row['qualification'] != ''): ?>
+                <img src="uploads/trainers/qualifications/<?php echo $row['qualification']; ?>" width="100" height="100" />
+                <?php endif; ?>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label">Specialization :</label>
+              <div class="controls">
+                <input type="text"  class="span11" name="specialization" placeholder="Specialization" value="<?php echo $row['specialization']; ?>" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Password :</label>
+              <label class="control-label">Experience :</label>
               <div class="controls">
-                <input type="password"  class="span11" name="password" disabled="" placeholder="**********"  />
-                <span class="help-block">Note: Only the members are allowed to change their password until and unless it's an emergency.</span>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Gender :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="gender" value='<?php echo $row['gender']; ?>' />
+                <input type="text"  class="span11" name="experience" placeholder="e.g 2 for 2 years" value="<?php echo $row['experience']; ?>" />
+                <span class="help-block">Note: Experience in years </span>
+
               </div>
             </div>
            
+            <div class="control-group">
+              <label class="control-label">Gender :</label>
+              <div class="controls">
+              <select name="gender" required="required" id="select">
+                  <option value="Male" selected="selected">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">D.O.R :</label>
+              <div class="controls">
+                <input type="date" name="dor" value="<?php echo $row['joining_date']; ?>" class="span11" />
+                <span class="help-block">Date of registration</span> </div>
+            </div>
             
           
         </div>
@@ -92,63 +105,102 @@ while($row=mysqli_fetch_array($result)){
         
         <div class="widget-content nopadding">
           <div class="form-horizontal">
-         
+          
         </div>
         <div class="widget-content nopadding">
-          
+          <div class="form-horizontal">
+            <div class="control-group">
+              <label for="normal" class="control-label">Working Hours: </label>
+              <div class="controls">
+                <input type="text" class="span11" name="working_hours" placeholder="Working Hours" value="<?php echo $row['working_hours']; ?>"/>
+              </div>
+              
+
+            </div>
+            <div class="control-group">
+              
+              
+            </div>
           </div>
+
+          </div>
+
 
 
         </div>
       </div>
+	  
 	
     </div>
 
+    
+    
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Staff-Details</h5>
+          <h5>Contact Details</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             <div class="control-group">
               <label for="normal" class="control-label">Contact Number</label>
               <div class="controls">
-                <input type="number" id="mask-phone" name="contact" value='<?php echo $row['contact']; ?>' class="span8 mask text">
+                <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text" value="<?php echo $row['phone']; ?>">
                 <span class="help-block blue span8">(999) 999-9999</span> 
                 </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Address :</label>
+              <label class="control-label">Email :</label>
               <div class="controls">
-                <input type="text" class="span11" name="address" value='<?php echo $row['address']; ?>' />
+                <input type="text" class="span11" name="email" placeholder="Email" value="<?php echo $row['email']; ?>" />
               </div>
             </div>
-			
             <div class="control-group">
-                  <label class="control-label">Designation</label>
-                  <div class="controls">
-                  <select name="designation" id="designation">
-                    <option value="Cashier">Cashier</option>
-                    <option value="Trainer">Trainer</option>
-                    <option value="GYM Assistant">GYM Assistant</option>
-                    <option value="Front Desk Staff">Front Desk Staff</option>
-                    <option value="Manager">Manager</option>
-                    </select>
-                  </div>
-                </div>
-			
-			
+              <label class="control-label">Image :</label>
+              <div class="controls">
+                <?php if($row['image'] != ''): ?>
+                  <input type="file" class="span11" name="image" placeholder="Image" value="<?php echo $row['image']; ?>" />
+                <img src="uploads/trainers/<?php echo $row['image']; ?>" width="50" height="50" />
+                <?php endif;?>
+              </div>
+            </div>
           </div>
 
-           
-<!-- Visit codeastro.com for more projects -->
-            <div class="form-actions text-center">
-             <!-- user's ID is hidden here --><!-- Visit codeastro.com for more projects -->
-             <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
-              <button type="submit" class="btn btn-success">Update Staff Details</button>
-            </div>
+              <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
+          <h5>Service Details</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <div class="form-horizontal">
+            
+            
+            
 
+            <div class="control-group">
+              <label class="control-label">Salary</label>
+              <div class="controls">
+                <div class="input-append">
+                  <span class="add-on">₹</span> 
+                  <input type="number" placeholder="e.g Salary in per month 10000" name="amount" class="span11" value="<?php echo $row['salary']; ?>">
+
+                  </div>
+              </div>
+            </div>
+            <div class="control-group">
+
+              <label class="control-label">Status</label>
+              <div class="controls">
+                <select name="status" required="required" id="select">
+                  <option value="1" selected="selected">Active</option>
+                  <option value="0">Inactive</option>
+
+                </select>
+              </div>
+          
+            
+            <div class="form-actions text-center">
+              <input type="hidden" name="tid" value="<?php echo $row['id']; ?>">
+              <button type="submit" name="submit" class="btn btn-success">Submit Trainer Details</button>
+            </div>
             </form>
 
           </div>

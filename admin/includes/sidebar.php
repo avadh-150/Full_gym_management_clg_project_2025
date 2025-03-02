@@ -172,6 +172,19 @@ echo "$query->num_rows";
       </ul>
     </li>
 
+    <!-- Staffs -->
+    <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span>Trainer Management</span> <span class="label label-important"><?php include 'dashboard-equipcount.php'; ?> </span></a>
+  <ul>
+    <li class="<?php if ($page == 'staffs') {
+                  echo 'active';
+                } ?>"><a href="staffs.php"><i class="fas fa-arrow-right"></i> Trainers</a></li>
+    
+  </ul>
+</li>
+
+
+
+
     <li class="<?php if ($page == 'announcement') {
                   echo 'active';
                 } ?>"><a href="announcement.php"><i class="fa-solid fa-bell"></i> <span>Announcement</span></a></li>

@@ -48,7 +48,7 @@
       </div>
     </div>
   </section>
-  <section class="section element-animate">
+  <!-- <section class="section element-animate">
 
     <div class="clearfix mb-5 pb-5">
       <div class="container-fluid">
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-  </section>
+  </section> -->
 
   <?php include "include/footer.php"; ?>
 </body>

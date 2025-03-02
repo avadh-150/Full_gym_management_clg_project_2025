@@ -53,6 +53,9 @@ $is_expired = $current_date > $end_date;
     <link rel="stylesheet" href="../css/style.css">
 
     <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
         .membership-card-container {
             max-width: 800px;
             margin: 4rem auto;
@@ -235,7 +238,8 @@ $is_expired = $current_date > $end_date;
         <?php if(isset($membership) && $membership): ?>
         <div class="membership-card">
             <div class="card-header">
-                <p alt="Gym Logo" class="gym-logo"> Fitness Club.org</p>
+                <!-- <p alt="Gym Logo" class="gym-logo"> Fitness Club.org</p> -->
+                 <img src="../img/Gym-Logo.png" alt="Gym Logo" class="gym-logo">
                 <div class="card-title">MEMBERSHIP CARD</div>
             </div>
 

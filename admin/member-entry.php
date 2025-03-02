@@ -183,7 +183,7 @@ header('location:../index.php');
           
             
             <div class="form-actions text-center">
-              <button type="submit" class="btn btn-success">Submit Member Details</button>
+              <button type="submit" name="submit" class="btn btn-success">Submit Member Details</button>
             </div>
             </form>
 

@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                 <div class="main-mockup">
                     <!-- -->
                     <div class="w3l_form align-self">
-                    <img src="img/logo.png" alt="">
+                    <img src="img/Gym-Logo.png" alt="">
                     </div>
                     <div class="content-wthree">
                         <h2>Login Now</h2>

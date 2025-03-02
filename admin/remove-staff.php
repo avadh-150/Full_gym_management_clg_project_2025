@@ -12,14 +12,17 @@ $id=$_GET['id'];
 include 'dbcon.php';
 
 
-$qry="delete from staffs where user_id=$id";
+$qry="delete from trainers where id=$id";
 $result=mysqli_query($con,$qry);
 
 if($result){
-    echo"DELETED";
-    header('Location:staffs.php');
+    echo "<script>alert('Trainer deleted successfully!');
+        window.location.href='staffs.php';
+    </script>";
 }else{
-    echo"ERROR!!";
+    echo "<script>alert('Trainer not deleted!');
+        window.location.href='staffs.php';
+    </script>";
 }
 }
 ?>

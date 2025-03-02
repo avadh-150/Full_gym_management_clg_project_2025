@@ -9,18 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="../css/uniform.css" />
-<link rel="stylesheet" href="../css/select2.css" />
-<link rel="stylesheet" href="../css/matrix-style.css" />
-<link rel="stylesheet" href="../css/matrix-media.css" />
-<link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
-<link href="../font-awesome/css/all.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<?php include "includes/header.php"; ?>
 </head>
 <body>
 
@@ -41,26 +30,26 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Staff Members</a> </div>
-    <h1 class="text-center">GYM's Staff List <i class="fas fa-briefcase"></i></h1>
+    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Trainers</a> </div>
+    <h1 class="text-center">GYM's Trainers List <i class="fas fa-briefcase"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
       <div class="span12">
-        <a href="staffs-entry.php"><button class="btn btn-primary">Add Staff Members</button></a>
+        <a href="staffs-entry.php"><button class="btn btn-primary">Add Trainers</button></a>
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Staff table</h5>
+            <h5>Trainers table</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
 	  <?php
 
       include "dbcon.php";
-      $qry="select * from staffs";
+      $qry="select * from trainers";
       $cnt=1;
-        $result=mysqli_query($conn,$qry);
+        $result=mysqli_query($con,$qry);
 
         
           echo"<table class='table table-bordered table-hover'>
@@ -68,12 +57,17 @@ header('location:../index.php');
                 <tr>
                   <th>#</th>
                   <th>Fullname</th>
-                  <th>Username</th>
-                  <th>Gender</th>
-                  <th>Designation</th>
                   <th>Email</th>
-                  <th>Address</th>
-                  <th>Contact</th>
+                  <th>Phone</th>
+                  <th>Specialization</th>
+                  <th>Experience</th>
+                  <th>Gender</th>
+                  <th>Joining Date</th>
+                  <th>Working Hours</th>
+                  <th>Qualification</th>
+                  <th>Image</th>
+                  <th>Salary</th>
+                  <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>";
@@ -83,14 +77,20 @@ header('location:../index.php');
             echo"<tbody> 
                 <tr class=''>
                 <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['fullname']."</div></td>
-                <td><div class='text-center'>@".$row['username']."</div></td>
-                <td><div class='text-center'>".$row['gender']."</div></td>
-                <td><div class='text-center'>".$row['designation']."</div></td>
+                <td><div class='text-center'>".$row['name']."</div></td>
                 <td><div class='text-center'>".$row['email']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>".$row['contact']."</div></td>
-                <td><div class='text-center'><a href='edit-staff-form.php?id=".$row['user_id']."'><i class='fas fa-edit' style='color:#28b779'></i> Edit |</a> <a href='remove-staff.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div></td>
+                <td><div class='text-center'>".$row['phone']."</div></td>
+                <td><div class='text-center'>".$row['specialization']."</div></td>
+                <td><div class='text-center'>".$row['experience']." Years</div></td>
+                <td><div class='text-center'>".$row['gender']."</div></td>
+                <td><div class='text-center'>".$row['joining_date']."</div></td>
+                <td><div class='text-center'>".$row['working_hours']." Hr</div></td>
+                <td><img src='uploads/trainers/qualifications/".$row['qualification']."' width='70' height='70' class='text-center'/></td>
+                <td><img src='uploads/trainers/".$row['image']."' width='50' height='50' class='text-center'/></td>
+                <td><div class='text-center'>".$row['salary']."</div></td>
+                <td><div class='badge badge-success text-center'>".$row['status']."</div></td>
+             
+                <td><div class='text-center'><a href='edit-staff-form.php?id=".$row['id']."'><i class='fas fa-edit' style='color:#28b779'></i>  <br></a> <a href='r-staff.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i> </a></div></td>
                 </tr>
                 
               </tbody>";
