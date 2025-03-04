@@ -13,12 +13,12 @@ if (isset($_GET['id'])) {
 
 
 
-    $qry = "delete from members where user_id=$id";
+    $qry = "delete from users where user_id=$id";
     $result = mysqli_query($con, $qry);
 
     if ($result) {
         echo "DELETED";
-        header('Location:../remove-member.php');
+        header('Location:../member.php');
     } else {
         echo "ERROR!!";
     }

@@ -1,8 +1,76 @@
 
  <?php include "include/header.php"; ?>
 
- <link rel="stylesheet" href="css/plan.css">
+ <!-- <link rel="stylesheet" href="css/plan.css"> -->
+<style>
+  
+/* product css */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
 
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  /* width: 100%; */
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.product-card h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #218838;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-lg-4, .col-md-6, .col-sm-12 {
+  display: flex;
+  justify-content: center;
+}
+</style>
 </head>
 
 <body>
@@ -39,7 +107,7 @@
         $category = $_GET['category'] ?? '';
         $sql = "SELECT * FROM products WHERE category_id = ?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param("s", $category);
+        $stmt->bind_param("i", $category);
         $stmt->execute();
         $result = $stmt->get_result();
 

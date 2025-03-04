@@ -53,15 +53,16 @@
           <li class="nav-item">
             <a class="nav-link" href="http://localhost/gymphp/contact.php">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/schedules.php">Schedule</a>
+          </li>
 
 
           <?php
           // error_reporting(0);
           if (isset($_SESSION['auth_user'])) {
           ?>
-<li class="nav-item">
-            <a class="nav-link" href="http://localhost/gymphp/schedules.php">Schedule</a>
-          </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo substr($_SESSION['auth_user']['email'], 0, 5), '..' ?><i class="fa-solid fa-user"></i></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -141,9 +142,7 @@
           <?php
           } else {
           ?>
-           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/gymphp/schedule.php">Schedule</a>
-          </li>
+          
             <li class="nav-item">
               <a class="nav-link" href="http://localhost/gymphp/cart.php">
                 <i class="fa-solid fa-cart-shopping"></i></a>

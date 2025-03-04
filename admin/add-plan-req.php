@@ -43,12 +43,13 @@ if (!isset($_SESSION['user_id'])) {
         $duration = $_POST['duration'];
         $price = $_POST['price'];
         $feature = $_POST['feature'];
+        $type = $_POST['type'];
 
         // File upload directory
        
                 // Insert query
-                $qry = "INSERT INTO membership_plans (plan_name, duration, price, features) 
-                        VALUES ('$pname', '$duration', '$price','$feature')";
+                $qry = "INSERT INTO membership_plans (plan_name,type, duration, price, features) 
+                        VALUES ('$pname','$type','$duration', '$price','$feature')";
                 $result = mysqli_query($con, $qry);
 
                 if (!$result) {

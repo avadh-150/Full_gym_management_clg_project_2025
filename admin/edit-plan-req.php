@@ -44,9 +44,10 @@ if (!isset($_SESSION['user_id'])) {
         $id = $_POST["id"];
         $feature = $_POST['feature'];
                 // Insert query
+                $type = $_POST['type'];
 
 
-                $qry = "UPDATE membership_plans SET plan_name='$pname', duration= '$duration', price='$price', features='$feature' 
+                $qry = "UPDATE membership_plans SET plan_name='$pname',type='$type', duration= '$duration', price='$price', features='$feature' 
                         WHERE id='$id'";
                 $result = mysqli_query($con, $qry);
 

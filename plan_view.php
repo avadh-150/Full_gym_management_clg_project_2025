@@ -27,6 +27,8 @@ $sql1 = "SELECT * FROM users WHERE email = '$fullname'";
 $result1 = mysqli_query($con, $sql1);
 $user = mysqli_fetch_assoc($result1);
 
+$sql_trainers = "SELECT * FROM trainers WHERE status='active'";
+$result_trainers = mysqli_query($con, $sql_trainers);
 ?>
 
 <link rel="stylesheet" href="css/plan.css">
@@ -168,13 +170,13 @@ $user = mysqli_fetch_assoc($result1);
                                 <input type="text" name="full_name" value="<?php echo $user['full_name']; ?>" id="full_name" required>
                             </div>
                             <div class="form-group">
-    <label for="phone">Phone Number</label>
-    <input type="tel" name="phone" id="phone" required
-           pattern="[0-9]{10}" 
-           maxlength="10" minlength="10"
-           placeholder="Enter 10-digit phone number"
-           title="Phone number must be exactly 10 digits (numbers only)">
-</div>
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" name="phone" id="phone" required
+                                    pattern="[0-9]{10}"
+                                    maxlength="10" minlength="10"
+                                    placeholder="Enter 10-digit phone number"
+                                    title="Phone number must be exactly 10 digits (numbers only)">
+                            </div>
 
                         </div>
                         <div class="form-row">
@@ -213,7 +215,19 @@ $user = mysqli_fetch_assoc($result1);
                                 <label for="occupation">Occupation</label>
                                 <input type="text" name="occupation" id="occupation" required>
                             </div>
-
+                            <?php if ($plan['type'] === 'personal') { ?>
+                                <div class="form-group">
+                                    <label for="trainer">Select Personal Trainer</label>
+                                    <select name="trainer_id" id="trainer" required>
+                                        <option value="">-- Choose a Trainer --</option>
+                                        <?php while ($trainer = mysqli_fetch_assoc($result_trainers)) : ?>
+                                            <option value="<?php echo $trainer['id']; ?>">
+                                                <?php echo htmlspecialchars($trainer['name']) . " (" . $trainer['specialization'] . ")"; ?>
+                                            </option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
                         </div>
 
                         <div class="form-row">
@@ -225,6 +239,7 @@ $user = mysqli_fetch_assoc($result1);
                                     <option value="other">Other</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="image">Upload Image</label>
                                 <input type="file" name="image" id="image" accept="image/*" required>

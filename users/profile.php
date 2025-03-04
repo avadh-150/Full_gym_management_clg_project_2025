@@ -400,6 +400,19 @@ if($user['Height'] == '0' || $user['Weight'] == '0' || $user['Age'] == '0')
                     <input type="number" id="age" name="age" value="<?= htmlspecialchars($user['Age']) ?>">
                 </div>
                 <?php 
+                if($user['trainer_id']){
+                    $tid = mysqli_real_escape_string($con, $user['trainer_id']); 
+                    $sql = "SELECT * FROM trainers WHERE id = '$tid'"; // Ensure correct column name
+    $sql_query = mysqli_query($con, $sql);
+
+    $trainers = mysqli_fetch_assoc($sql_query);
+    ?>
+                <div class="form-group">
+                    <strong><label for="trainer"><i class="fa-solid fa-input-numeric"></i>Your Trainer</label></strong>
+                    <input type="text" value="<?= htmlspecialchars($trainers['name']) ?>" readonly>
+                </div>
+                <?php } ?>
+                <?php 
                 }
                 ?>
                 <div class="button-group">
@@ -411,7 +424,8 @@ if($user['Height'] == '0' || $user['Weight'] == '0' || $user['Age'] == '0')
 
             <div class="profile-actions">
                 <a href="reser_password.php" class="btn"><i class="fas fa-lock"></i> Password</a>
-                <a href="membershipcard.php" class="btn"><i class="fas fa-id-card"></i> Membership Card</a>
+                
+                <a href="membershipcard.php?id=<?php echo $user['member_id'];?>" target="_blank" class="btn"><i class="fas fa-id-card"></i> Membership Card</a>
                 <a href="logout.php" class="btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>

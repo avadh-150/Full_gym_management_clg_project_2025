@@ -20,13 +20,13 @@ header('location:../index.php');
 </div>
 <?php include 'includes/topheader.php'?>
 
-<?php $page="members"; include 'includes/sidebar.php'?>
+<?php $page="expire-members"; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Registered Members</a> </div>
-    <h1 class="text-center"> Members List <i class="fa-solid fa-user-group"></i></h1>
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="members.php" class="current">Members</a><a href="#" class="current">Expire Memberships</a> </div>
+    <h1 class="text-center">Active Members List <i class="fa-solid fa-user-group"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -46,7 +46,7 @@ include "dbcon.php";
 $qry = "SELECT s.*, m.* 
         FROM users s 
         JOIN member_plans m ON s.member_id = m.member_id 
-        WHERE s.role = 'member_user' 
+        WHERE s.role = 'member_user' AND m.status = '0'
         GROUP BY s.member_id 
         ORDER BY m.start_date DESC";
 
@@ -69,7 +69,7 @@ echo "<table class='table table-bordered table-hover'>
                 <th>Action</th>
             </tr>
         </thead>";
-
+if($result->num_rows > 0){
 while ($row = mysqli_fetch_array($result)) {
     echo "<tbody> 
             <td><div class='text-center'>" . $row['member_id'] . "</div></td>
@@ -86,6 +86,7 @@ while ($row = mysqli_fetch_array($result)) {
 
           </tbody>";
     $cnt++;
+}
 }
 ?>
 

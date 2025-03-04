@@ -1,12 +1,12 @@
 <?php
 session_start();
 // Check if the user is logged in
-// if (!isset($_SESSION['user_id'])) {
-//     header('location:../index.php');
-//     exit();
-// }
+if (!isset($_SESSION['user_id'])) {
+    header('location:../index.php');
+    exit();
+}
 
-include "../admin/dbcon.php";
+include "dbcon.php";
 
 if (isset($_GET['id'])) {
     $memberId = mysqli_real_escape_string($con, $_GET['id']); // Prevent SQL injection
@@ -43,7 +43,6 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,14 +59,14 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             margin: 0;
             padding: 20px;
         }
-
+        
         .card-container {
             width: 600px;
             height: 350px;
             perspective: 1000px;
             position: relative;
         }
-
+        
         .membership-card {
             width: 100%;
             height: 100%;
@@ -77,26 +76,26 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
-
+        
         .card-header {
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             width: 100px;
             height: auto;
         }
-
+        
         .card-title {
             color: #666;
             font-size: 18px;
             font-weight: 500;
             text-align: right;
         }
-
+        
         .membership-title {
             padding: 0 20px;
             font-weight: bold;
@@ -104,7 +103,7 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             color: #333;
             font-size: 18px;
         }
-
+        
         .member-id {
             padding: 10px 20px;
             font-family: monospace;
@@ -112,29 +111,29 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             font-weight: bold;
             color: #333;
         }
-
+        
         .member-info {
             display: flex;
             padding: 0 20px;
         }
-
+        
         .member-details {
             flex: 7;
         }
-
+        
         .member-name {
             font-size: 20px;
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
         }
-
+        
         .member-address {
             font-size: 16px;
             color: #555;
             margin-bottom: 5px;
         }
-
+        
         .membership-type {
             font-size: 16px;
             font-weight: bold;
@@ -144,17 +143,17 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             margin-top: -4px;
             gap: 10px;
         }
-
+        
         .membership-type span.plan-name {
             color: #000;
             font-weight: bold;
         }
-
+        
         .member-photo {
             flex: 3;
             text-align: right;
         }
-
+        
         .photo {
             width: 120px;
             height: 120px;
@@ -164,7 +163,7 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             object-fit: cover;
         }
-
+        
         .card-footer {
             position: absolute;
             bottom: 0;
@@ -180,7 +179,7 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             gap: 10px;
             height: 30px;
         }
-
+        
         .print-button {
             position: absolute;
             top: 10px;
@@ -195,11 +194,11 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
+        
         .print-button:hover {
             background-color: #0056b3;
         }
-
+        
         .status-badge {
             display: inline-block;
             padding: 5px 10px;
@@ -252,9 +251,8 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
                 display: none;
             }
         }
-    </style>
+        </style>
 </head>
-
 <body>
     <div class="card-container">
         <div class="membership-card">
@@ -264,11 +262,11 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
                 </div>
                 <div class="card-title">MEMBERSHIP CARD</div>
             </div>
-
+            
             <div class="membership-title">PERFECT GYM FITNESS CLUB</div>
-
+            
             <div class="member-id">#<?php echo htmlspecialchars($memberDetails['member_id']); ?></div>
-
+            
             <div class="member-info">
                 <div class="member-details">
                     <div class="member-name"><?php echo htmlspecialchars($memberDetails['full_name']); ?></div>
@@ -290,9 +288,9 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
                     ?>
                 </div>
             </div>
-
+            
             <div class="card-footer">
-                VALID FROM: <?php echo date('F d, Y', strtotime($memberDetails['start_date'])); ?> TO
+                VALID FROM: <?php echo date('F d, Y', strtotime($memberDetails['start_date'])); ?> TO 
                 <?php echo date('F d, Y', strtotime($memberDetails['end_date'])); ?>
                 <span class="status-badge <?php echo $is_expired ? 'status-inactive' : 'status-active'; ?>">
                     <?php echo $is_expired ? 'EXPIRED' : "$days_remaining DAYS LEFT"; ?>
@@ -308,5 +306,4 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
         }
     </script>
 </body>
-
 </html>

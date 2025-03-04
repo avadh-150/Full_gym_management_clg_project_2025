@@ -39,6 +39,7 @@ if (isset($_POST["book_plan"])) {
     $price = mysqli_real_escape_string($con, $_POST['price']);
     $duration = mysqli_real_escape_string($con, $_POST['duration']);
     $plan_id = mysqli_real_escape_string($con, $_POST['plan_id']);
+    $trainer_id = mysqli_real_escape_string($con, $_POST['trainer_id']);
 
     // Verify Email is same as logged-in email
     $sql_query = "SELECT * FROM users WHERE email = '$email'";
@@ -75,7 +76,9 @@ echo "<script>alert('$member_id');</script>";
               image = '$image_path', 
               current_plan_id = '$plan_id', 
               occupation = '$occupation',
-              role = 'member_user'
+              role = 'member_user',
+              trainer_id = '$trainer_id'
+             
           WHERE email = '$email'";
 
         if (mysqli_query($con, $query)) {

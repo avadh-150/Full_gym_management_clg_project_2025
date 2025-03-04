@@ -60,6 +60,7 @@ if (!isset($_SESSION['user_id'])) {
                 <tr>
                   <th>#</th>
                   <th>Plan_name</th>
+                  <th>Plan Type</th>
                   <th>Duration</th>
                    <th>Price</th>
                   <th>Features</th>
@@ -72,20 +73,29 @@ if (!isset($_SESSION['user_id'])) {
                 while ($row = mysqli_fetch_array($result)) {
 
                   echo "<tbody> 
-               
-                <td><div class='text-center'>" . $cnt . "</div></td>
-                <td><div class='text-center'>" . $row['plan_name'] . "</div></td>
-                <td><div class='text-center'>" . $row['duration'] . " Days</div></td>
-                <td><div class='text-center'>₹ " . $row['price'] . "</div></td>
-                <td><div class='text-center'>" .substr($row['features'],0,100),'...'  . "</div></td>
-                      <td><div class='text-center'><a href='actions/delete-member.php?plans_id=" . $row['id'] . "' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div><br>
-                      <div class='text-center'><a href='edit-plans.php?id=" . $row['id'] . "'><i class='fas fa-edit'></i> Edit</a></div>
-</td>
-
-             
-                
-              </tbody>";
-                  $cnt++;
+                  <td><div class='text-center'>" . $cnt . "</div></td>
+                  <td><div class='text-center'>" . $row['plan_name'] . "</div></td>
+                  <td><div class='text-center'>" . (isset($row['type']) && !empty($row['type']) ? $row['type'] : 'None') . "</div></td>
+                  <td><div class='text-center'>" . $row['duration'] . " Days</div></td>
+                  <td><div class='text-center'>₹ " . $row['price'] . "</div></td>
+                  <td><div class='text-center'>" . substr($row['features'], 0, 100) . "...</div></td>
+                  <td>
+                      <div class='text-center'>
+                          <a href='actions/delete-member.php?plans_id=" . $row['id'] . "' style='color:#F66;'>
+                              <i class='fas fa-trash'></i> Remove
+                          </a>
+                      </div>
+                      <br>
+                      <div class='text-center'>
+                          <a href='edit-plans.php?id=" . $row['id'] . "'>
+                              <i class='fas fa-edit'></i> Edit
+                          </a>
+                      </div>
+                  </td>
+                </tbody>";
+          
+          $cnt++;
+          
                 }
               } else {
                 echo "<td colspan='10px'> <div class='text-center'> the data is not available</div></td>";

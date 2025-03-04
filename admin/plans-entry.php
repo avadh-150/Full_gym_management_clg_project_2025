@@ -64,6 +64,12 @@ if (!isset($_SESSION['user_id'])) {
                                         <input type="number" class="span11" name="price" placeholder="Price" min="0" step="0.01" />
                                     </div>
                                 </div>
+                                <div class="control-group">
+                                    <label class="control-label">Plan Type :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" name="type" placeholder="Like Personal or Others"/>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

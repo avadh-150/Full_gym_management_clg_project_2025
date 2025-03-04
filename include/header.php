@@ -27,3 +27,10 @@
   <!-- Theme Style -->
   <link rel="stylesheet" href="css/style.css">
  
+<style>
+  body {
+  font-family: "Poppins", sans-serif;
+  /* color: #333; */
+}
+
+</style>
