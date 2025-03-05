@@ -32,7 +32,7 @@ header('location:../index.php');
 <!--close-top-serch-->
 
 <!--sidebar-menu-->
-<?php $page="users"; include 'includes/sidebar.php'?>
+<?php $page="users-update"; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 
 <div id="content">
@@ -54,7 +54,7 @@ header('location:../index.php');
 	  <?php
 
       include "dbcon.php";
-      $qry="select * from users";
+      $qry="select * from users where role='normal_user' && plan_status='0'";
       $cnt = 1;
         $result=mysqli_query($con,$qry);
 
@@ -75,25 +75,34 @@ header('location:../index.php');
                 </tr>
               </thead>";
               
-            while($row=mysqli_fetch_array($result)){
-            
-            echo"<tbody> 
-               
-                <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['full_name']."</div></td>
-                <td><div class='text-center'>".$row['name']."</div></td>
-                <td><div class='text-center'>".$row['email']."</div></td>
-                <td><div class='text-center'>".$row['mobile']."</div></td>
-                <td><div class='text-center'>".$row['gender']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>".$row['join_date']."</div></td>
-                      <td><div class='text-center'><a href='actions/delete-member.php?users_id=" . $row['id'] . "' style='color:#F66;'><i class='fas fa-trash'></i> </a></div>
-                      <div class='text-center'><a href='edit-users.php?id=" . $row['id'] . "'><i class='fas fa-edit'></i> </a></div>
-</td>
- 
-              </tbody>";
-          $cnt++;  }
-            ?>
+              echo "<tbody>";
+              if (mysqli_num_rows($result) > 0) {
+                  $cnt = 1;
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      echo "
+                      <tr>
+                          <td><div class='text-center'>{$cnt}</div></td>
+                          <td><div class='text-center'>" . (!empty($row['full_name']) ? $row['full_name'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['name']) ? $row['name'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['email']) ? $row['email'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['mobile']) ? $row['mobile'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['gender']) ? $row['gender'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['address']) ? $row['address'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['join_date']) ? $row['join_date'] : 'N/R') . "</div></td>
+                          <td>
+                              <div class='text-center'>
+                                  <a href='actions/delete-member.php?users_id={$row['id']}' style='color:#F66;'><i class='fas fa-trash'></i></a>
+                                  <a href='edit-users.php?id={$row['id']}'><i class='fas fa-edit'></i></a>
+                              </div>
+                          </td>
+                      </tr>";
+                      $cnt++;
+                  }
+              } else {
+                  echo "<tr><td colspan='9' class='text-center'><strong>No records found</strong></td></tr>";
+              }
+              echo "</tbody>";
+?>              
 
             </table>
           </div>

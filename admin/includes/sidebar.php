@@ -104,7 +104,9 @@ echo "$query->num_rows";
                       echo 'active';
                     } ?>"><a href="expire-member.php"><i class="fas fa-arrow-right"></i> Expire Members</a></li>
 
-      
+<li class="<?php if ($page == 'trainer-assing') {
+                  echo 'active';
+                } ?>"><a href="trainer-assing.php"><i class="fas fa-arrow-right"></i>Assinging Trainers</a></li>
         <li class="<?php if ($page == 'payment_membership') {
                       echo 'active';
                     } ?>"><a href="payment_membership.php"><i class="fas fa-arrow-right"></i> Members Payment</a></li>
@@ -186,6 +188,7 @@ echo "$query->num_rows";
     <li class="<?php if ($page == 'staffs') {
                   echo 'active';
                 } ?>"><a href="staffs.php"><i class="fas fa-arrow-right"></i> Trainers</a></li>
+  
     <li class="<?php if ($page == 'set-trainer-table') {
                   echo 'active';
                 } ?>"><a href="set-trainer-table.php"><i class="fas fa-arrow-right"></i>Set Trainers Schedule</a></li>
@@ -198,7 +201,35 @@ echo "$query->num_rows";
 
     <li class="<?php if ($page == 'announcement') {
                   echo 'active';
-                } ?>"><a href="announcement.php"><i class="fa-solid fa-bell"></i> <span>Announcement</span></a></li>
+                } ?>"><a href="announcement.php"><i class="fa-solid fa-bell"></i> <span>Announcement</span></a>
+                </li>
+
+
+
+
+   
+             <li class="submenu"> <a href="#"><i class="fa-solid fa-book"></i> <span>Manage Blogs</span> <span class="label label-important">
+          <?php
+          include "dbcon.php";
+          $sql = "SELECT * FROM gym_blogs";
+          $query = $con->query($sql);
+          echo "$query->num_rows"; ?> </span></a>
+      <ul>
+        <li class="<?php if ($page == 'blogs') {
+                      echo 'active';
+                    } ?>"><a href="blogs.php"><i class="fas fa-arrow-right"></i> List All Blogs</a></li>
+        <li class="<?php if ($page == 'admins-entry') {
+                      echo 'active';
+                    } ?>"><a href="blogs-entry.php"><i class="fa-solid fa-user-plus"></i> Blogs Entry </a></li>
+        
+      </ul>
+    </li>
+
+
+
+
+
+
     <li class="<?php if ($page == 'reply') {
                   echo 'active';
                 } ?>"><a href="contact_replay.php"><i class="fas fa-question"></i> <span>Query Reply</span> <span class="label label-important">

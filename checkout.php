@@ -5,6 +5,13 @@ include "configuration.php";
 include "admin/dbcon.php";
 
 // $Publishable_key = "your_stripe_publishable_key"; // Replace with actual key
+
+if (!isset($_SESSION['auth_user'])) {
+    echo "<script>alert('Please login firsr to access this side');
+    window.location.href = 'login.php';
+    exit();
+    </script>";
+    }
 ?>
 
 <body>

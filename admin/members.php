@@ -81,7 +81,7 @@ while ($row = mysqli_fetch_array($result)) {
             <td><div class='text-center'>" . ($row['plan_status'] == '1' ? 'Active' : 'Inactive') . "</div></td>
             <td><div class='text-center'>" . ($row['payment_status'] == '1' ? 'Paid' : 'Unpaid') . "</div></td>
                              <td> <a href='memberProfile.php?id={$row['member_id']}' class='btn btn-info'><i class='fas fa-id-card'></i></a>
-                              <a href='edit_member.php?id={$row['member_id']}'' class='btn btn-dark'><i class='fas fa-edit'></i></a>
+                              <a href='edit-member.php?id={$row['member_id']}'' class='btn btn-dark'><i class='fas fa-edit'></i></a>
                     <button style='border:none;outline:none;' onclick='deleteMember({$row['member_id']})'><i class='fas fa-trash'></i></button></td>
 
           </tbody>";

@@ -8,12 +8,12 @@
     <!-- Navigation -->
     <?php include "include/nav.php"; 
     
-    if(!isset($_SESSION['auth_user'])){
-        echo "<script>
-        alert('Login to Continue');
-        window.location.href='login.php';
+    if (!isset($_SESSION['auth_user'])) {
+        echo "<script>alert('Please login firsr to access this side');
+        window.location.href = 'login.php';
+        exit();
         </script>";
-    }
+        }
     
     ?>
 

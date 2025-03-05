@@ -20,8 +20,10 @@ include "connection.php";
 
 // Check login status before any output
 if (!isset($_SESSION['auth_user'])) {
-    header("Location: login.php");
-    exit();
+echo "<script>alert('Please login firsr to access this side');
+window.location.href = 'login.php';
+exit();
+</script>";
 }
 
 // Check for member_id before including header/nav

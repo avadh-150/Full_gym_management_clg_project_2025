@@ -136,6 +136,11 @@ if (isset($_GET['id'])) {
 
                                 <!-- Right Column -->
                                 <div class="right-column">
+                                    <?php if($memberDetails['trainer_id']){?>
+                                    <p><strong>Assign Trainer ID:</strong> <?php echo $memberDetails['trainer_id']; ?></p>
+                                    <?php }else{?>
+                                    <p><strong>Assign Trainer ID:</strong> N/A</p>
+                                    <?php }?>
                                     <p><strong>Membership Type:</strong> <?php echo $memberDetails['plan_name']; ?></p>
                                     <p><strong>Amount:</strong> <?php echo $memberDetails['price'] ?></p>
                                     <p><strong>Membership Status:</strong> 

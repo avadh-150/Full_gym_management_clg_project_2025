@@ -74,21 +74,29 @@ header('location:../index.php');
                 </tr>
               </thead>";
               
-            while($row=mysqli_fetch_array($result)){
-            
-            echo"<tbody> 
-               
-                <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['full_name']."</div></td>
-                <td><div class='text-center'>".$row['name']."</div></td>
-                <td><div class='text-center'>".$row['email']."</div></td>
-                <td><div class='text-center'>".$row['mobile']."</div></td>
-                <td><div class='text-center'>".$row['gender']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>".$row['join_date']."</div></td>
-                        
-              </tbody>";
-          $cnt++;  }
+              echo "<tbody>";
+              if (mysqli_num_rows($result) > 0) {
+                  $cnt = 1;
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      echo "
+                      <tr>
+                          <td><div class='text-center'>{$cnt}</div></td>
+                          <td><div class='text-center'>" . (!empty($row['full_name']) ? $row['full_name'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['name']) ? $row['name'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['email']) ? $row['email'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['mobile']) ? $row['mobile'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['gender']) ? $row['gender'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['address']) ? $row['address'] : 'N/R') . "</div></td>
+                          <td><div class='text-center'>" . (!empty($row['join_date']) ? $row['join_date'] : 'N/R') . "</div></td>
+                         
+                      </tr>";
+                      $cnt++;
+                  }
+              } else {
+                  echo "<tr><td colspan='9' class='text-center'><strong>No records found</strong></td></tr>";
+              }
+              echo "</tbody>";
+              
             ?>
 
             </table>
