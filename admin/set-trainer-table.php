@@ -30,109 +30,33 @@
              <div id="breadcrumb">
                  <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
                  <a href="staffs.php" class="tip-bottom">Trainers</a>
-                 <a href="#" class="current">Set Trainer Schedule</a>
+                 <a href="#" class="current">Trainer Schedule</a>
              </div>
-             <h1>Trainer Schedule Entry</h1>
+             <hr>
+             <!-- <h1>Trainer Schedule Entry</h1> -->
          </div>
 
-         <div class="container-fluid">
-             <hr>
-             <div class="row-fluid">
-                 <!-- Plans Entry Section -->
 
-                 <!-- Trainer Schedule Entry Section -->
-                 <div class="span6">
-                     <div class="widget-box">
-                         <div class="widget-title">
-                             <span class="icon"><i class="fas fa-align-justify"></i></span>
-                             <h5>Trainer Schedule</h5>
-                         </div>
-                         <div class="widget-content nopadding">
-                             <form action="" method="POST" class="form-horizontal">
-                                 <div class="control-group">
-                                     <label class="control-label">Select Trainer:</label>
-                                     <div class="controls">
-                                         <select name="trainer_id" id="trainerDropdown" required>
-                                             <option value="">-- Choose a Trainer --</option>
-                                             <?php
-                                                $sql_trainers = "SELECT * FROM trainers";
-                                                $result_trainers = mysqli_query($con, $sql_trainers);
-                                                while ($trainer = mysqli_fetch_assoc($result_trainers)) {
-                                                ?>
-                                                 <option value="<?php echo $trainer['id']; ?>" data-image="uploads/trainers/<?php echo $trainer['image']; ?>">
-                                                     <?php echo $trainer['name']; ?>
-                                                 </option>
-                                             <?php
-                                                }
-                                                ?>
-                                         </select>
-                                         <br>
-                                         <!-- Trainer Image Preview -->
-                                         <div id="trainerPreview">
-                                             <img id="trainerImg" src="" alt="Trainer Image" width="50px" height="50px" style=" display: none;">
-                                         </div>
-                                         <script>
-                                             document.getElementById("trainerDropdown").addEventListener("change", function() {
-                                                 var selectedOption = this.options[this.selectedIndex];
-                                                 var imgSrc = selectedOption.getAttribute("data-image");
 
-                                                 if (imgSrc) {
-                                                     document.getElementById("trainerImg").src = imgSrc;
-                                                     document.getElementById("trainerImg").style.display = "block";
-                                                 } else {
-                                                     document.getElementById("trainerImg").style.display = "none";
-                                                 }
-                                             });
-                                         </script>
-
-                                     </div>
-                                 </div>
-
-                                 <div class="control-group">
-                                     <label class="control-label">Select Schedule:</label>
-                                     <div class="controls">
-                                         <select name="schedule_id" required>
-                                             <option value="">-- Choose a Schedule --</option>
-                                             <?php
-                                                $sql_schedules = "SELECT * FROM schedule";
-                                                $result_schedules = mysqli_query($con, $sql_schedules);
-                                                while ($schedule = mysqli_fetch_assoc($result_schedules)) {
-                                                    echo "<option value='" . $schedule['schedule_id'] . "'>" . htmlspecialchars($schedule['schedule_name']) . " (" . $schedule['start_date'] . " - " . $schedule['end_date'] . ")</option>";
-                                                }
-                                                ?>
-                                         </select>
-                                     </div>
-                                 </div>
-
-                                 <div class="form-actions text-center">
-                                     <button type="submit" name="assign_schedule" class="btn btn-success">Assign Schedule</button>
-                                 </div>
-                             </form>
-                         </div>
-                     </div>
-                 </div>
-
+         <!-- Feature Details -->
+         <div class="widget-box">
+             <div class="widget-title"><span class="icon"><i class="fas fa-align-justify"></i></span>
+                 <h5>Trainers Schedule Details</h5>
              </div>
-
-             <!-- Feature Details -->
-             <div class="widget-box">
-                 <div class="widget-title"><span class="icon"><i class="fas fa-align-justify"></i></span>
-                     <h5>Trainers Schedule Details</h5>
-                 </div>
-                 <div class="widget-content nopadding">
+             <div class="widget-content nopadding">
                  <?php
-include "dbcon.php";
+                    include "dbcon.php";
 
-$qry = "SELECT t.name AS trainer_name, sd.schedule_name,s.*, sd.start_date, sd.end_date 
+                    $qry = "SELECT t.*,s.*
         FROM trainers t
-        JOIN trainer_schedule s ON t.id = s.trainer_id 
+        JOIN schedule s ON t.id = s.trainer_id 
         JOIN schedule sd ON sd.schedule_id = s.schedule_id 
         WHERE t.status = 'active'";
 
-$cnt = 1;
-$result = mysqli_query($con, $qry);
+                    $cnt = 1;
+                    $result = mysqli_query($con, $qry);
 
-echo "<table class='table table-bordered table-hover'>
+                    echo "<table class='table table-bordered table-hover'>
 <thead>
   <tr>
     <th>#</th>
@@ -143,15 +67,15 @@ echo "<table class='table table-bordered table-hover'>
   </tr>
 </thead>";
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
-        echo "<tbody> 
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<tbody> 
             <tr>
                 <td><div class='text-center'>" . $cnt . "</div></td>
-                <td><div class='text-center'>" . $row['trainer_name'] . "</div></td>
+                <td><div class='text-center'>" . $row['name'] . "</div></td>
                 <td><div class='text-center'>" . $row['schedule_name'] . "</div></td>
-                <td><div class='text-center'>" . date('l, d M Y h:i A', strtotime($row['start_date'])) . 
-                    " - " . date('h:i A', strtotime($row['end_date'])) . "</div></td>
+                <td><div class='text-center'>" . date('l, d M Y h:i A', strtotime($row['start_time'])) .
+                                " - " . date('h:i A', strtotime($row['end_time'])) . "</div></td>
                 <td>
                     <div class='text-center'>
                          
@@ -163,19 +87,19 @@ if (mysqli_num_rows($result) > 0) {
                 </td>
             </tr>
         </tbody>";
-        $cnt++;
-    }
-} else {
-    echo "<tr><td colspan='5'> <div class='text-center'> No schedule data available </div></td></tr>";
-}
+                            $cnt++;
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'> <div class='text-center'> No schedule data available </div></td></tr>";
+                    }
 
-?>
-              </table>
-              <!-- mjasjhasbjhb -->
-                 </div>
+                    ?>
+                 </table>
+                 <!-- mjasjhasbjhb -->
              </div>
-
          </div>
+
+     </div>
      </div>
 
 
@@ -256,32 +180,32 @@ if (mysqli_num_rows($result) > 0) {
         }
     }
     ?>
-    <?php
-include "dbcon.php";
+ <?php
+    include "dbcon.php";
 
-if (isset($_GET['id'])) {
-    $schedule_id = intval($_GET['id']); // Ensure it's an integer for security
+    if (isset($_GET['id'])) {
+        $schedule_id = intval($_GET['id']); // Ensure it's an integer for security
 
-    // Delete query
-    $deleteQuery = "DELETE FROM trainer_schedule WHERE schedule_id = ?";
-    
-    // Prepare statement
-    $stmt = mysqli_prepare($con, $deleteQuery);
-    mysqli_stmt_bind_param($stmt, "i", $schedule_id);
-    
-    if (mysqli_stmt_execute($stmt)) {
-        echo "<script>
+        // Delete query
+        $deleteQuery = "DELETE FROM trainer_schedule WHERE schedule_id = ?";
+
+        // Prepare statement
+        $stmt = mysqli_prepare($con, $deleteQuery);
+        mysqli_stmt_bind_param($stmt, "i", $schedule_id);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>
                 alert('Schedule deleted successfully!');
                 window.location.href = 'set-trainer-table.php'; // Redirect to schedule page
               </script>";
-    } else {
-        echo "<script>
+        } else {
+            echo "<script>
                 alert('Error deleting schedule.');
                 window.location.href = 'set-trainer-table.php'; // Redirect back
               </script>";
-    }
+        }
 
-    // Close statement
-    mysqli_stmt_close($stmt);
-} 
-?>
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    ?>

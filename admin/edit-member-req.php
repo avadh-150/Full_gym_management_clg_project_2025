@@ -43,64 +43,82 @@ if (!isset($_SESSION['user_id'])) {
       <h1>Update Member Details</h1>
     </div>
     <form role="form" action="index.php" method="POST">
-      <?php
+    <?php
+include 'dbcon.php';
 
-      include 'dbcon.php';
+if (isset($_POST["book_plan"])) {
+    // Check if database connection is successful
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-      if (isset($_POST["book_plan"])) {
-        $member_id = mysqli_real_escape_string($con, $_POST['member_id']);
-        $full_name = mysqli_real_escape_string($con, $_POST['fullname']);
-        $dor = mysqli_real_escape_string($con, $_POST['dor']);
-        $gender = mysqli_real_escape_string($con, $_POST['gender']);
-        $phone = mysqli_real_escape_string($con, $_POST['phone']);
-        $occupation = mysqli_real_escape_string($con, $_POST['Occupation']);
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-        $address = mysqli_real_escape_string($con, $_POST['address']);
-        $trainer_id = mysqli_real_escape_string($con, $_POST['trainer_id']);
+    $member_id = mysqli_real_escape_string($con, $_POST['member_id']);
+    $full_name = mysqli_real_escape_string($con, $_POST['fullname']);
+    $dor = mysqli_real_escape_string($con, $_POST['dor']);
+    $gender = mysqli_real_escape_string($con, $_POST['gender']);
+    $phone = mysqli_real_escape_string($con, $_POST['phone']);
+    $occupation = mysqli_real_escape_string($con, $_POST['Occupation']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
+    $trainer_id = mysqli_real_escape_string($con, $_POST['trainer_id']);
 
-        // Fetch existing image path
-        $query_get_image = "SELECT image FROM users WHERE member_id = '$member_id'";
-        $result_image = mysqli_query($con, $query_get_image);
-        $row = mysqli_fetch_assoc($result_image);
-        $existing_image = $row['image'];
+    // echo "<script>alert(' the member id is : $member_id');</script>";
+    // Fetch existing image path
+    $query_get_image = "SELECT image FROM users WHERE member_id = '$member_id'";
 
-        // Handle File Upload
-        if (!empty($_FILES['image']['name'])) {
-          $image = $_FILES['image']['name'];
-          $image_tmp = $_FILES['image']['tmp_name'];
-          $upload_dir = "admin/uploads/profiles/";
-          $image_path = $upload_dir . basename($image);
+    $result_image = mysqli_query($con, $query_get_image);
+    // echo "<script>alert(' the image is of lod image exist');</script>";
 
-          // Ensure upload directory exists
-          if (!is_dir($upload_dir)) {
+    
+    if (!$result_image) {
+        die("Image query failed: " . mysqli_error($con));
+    }
+
+    $row = mysqli_fetch_assoc($result_image);
+    
+    $existing_image = $row['image'] ?? ''; // Use null coalescing operator for safety
+    // echo "<script>alert(' the old image path id is : $existing_image');</script>";
+
+    // Handle File Upload
+    if (!empty($_FILES['image']['name'])) {
+        $image = $_FILES['image']['name'];
+        $image_tmp = $_FILES['image']['tmp_name'];
+        $upload_dir = "uploads/profiles/";
+
+        // Ensure upload directory exists
+        if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true);
-          }
-
-          if (move_uploaded_file($image_tmp, $image_path)) {
-            $final_image = $image_path; // Use new image
-          } else {
-            $final_image = $existing_image; // Keep old image if upload fails
-          }
-        } else {
-          $final_image = $existing_image; // No new image uploaded, keep old one
         }
 
-        // Update Query
-        $query = "UPDATE users SET 
-                    full_name = '$full_name',
-                    mobile = '$phone', 
-                    gender = '$gender', 
-                    address = '$address', 
-                    image = '$final_image', 
-                    occupation = '$occupation',
-                    trainer_id = '$trainer_id',
-                    join_date = '$dor',
-                    email = '$email'
-                    WHERE member_id = '$member_id'";
+        // Generate unique filename
+        $image_name = time() . "_" . basename($image);
+        $image_path = $upload_dir . $image_name;
 
-        $result = mysqli_query($con, $query);
+        if (move_uploaded_file($image_tmp, $image_path)) {
+            $final_image = $image_name;
+        } else {
+            $final_image = $existing_image;
+            echo "File upload failed";
+        }
+    } else {
+        $final_image = $existing_image;
+    }
 
-        if (!$result) {
+    // Update Query
+    $query = "UPDATE users SET 
+        full_name = '$full_name',
+        mobile = '$phone', 
+        gender = '$gender', 
+        address = '$address', 
+        image = '$final_image', 
+        occupation = '$occupation',
+        trainer_id = '$trainer_id',
+        join_date = '$dor',
+        email = '$email'
+        WHERE member_id = '$member_id'";
+
+    $result = mysqli_query($con, $query);
+     if (!$result) {
           echo "<div class='container-fluid'>
                             <div class='row-fluid'>
                                 <div class='span12'>

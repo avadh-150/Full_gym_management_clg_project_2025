@@ -5,14 +5,10 @@ include "connection.php";
 
 // Fetch schedules along with assigned trainers
 $query = "
-    SELECT s.schedule_name, s.start_date, s.end_date, t.*, 
-           t.name AS trainer_name, t.image AS trainer_image,
-           t.specialization
+    SELECT s.*,t.*
     FROM schedule s
-    LEFT JOIN trainer_schedule ts ON s.schedule_id = ts.schedule_id
-    LEFT JOIN trainers t ON ts.trainer_id = t.id
-    ORDER BY DAYOFWEEK(s.start_date), s.start_date ASC"; // Order by day of week, then time
-
+    LEFT JOIN trainers t ON s.trainer_id = t.id
+    ";
 $result = mysqli_query($con, $query);
 
 if (!$result) {
@@ -23,7 +19,7 @@ if (!$result) {
 $schedulesByDay = [];
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $day = date('l', strtotime($row['start_date'])); // Get day name (e.g., Monday)
+        $day =$row['schedule_day']; // Get day name (e.g., Monday)
         if (!isset($schedulesByDay[$day])) {
             $schedulesByDay[$day] = [];
         }
@@ -40,318 +36,7 @@ include "include/header.php";
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/schedule.css">
 <style>
-    /* Main Styles for Schedule Page */
-
-/* Global Styles */
-body {
-  font-family: "Poppins", sans-serif;
-  color: #333;
-}
-
-.section-title {
-  font-weight: 700;
-  position: relative;
-}
-
-/* Animations */
-.animate__animated {
-  animation-duration: 1s;
-}
-
-.animate__fadeInUp {
-  animation-name: fadeInUp;
-}
-
-.animate__delay-1s {
-  animation-delay: 0.3s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 40px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Schedule Tabs */
-.schedule-tabs {
-  margin-bottom: 50px;
-}
-
-.nav-pills .nav-link {
-  border-radius: 30px;
-  padding: 10px 25px;
-  margin: 0 5px;
-  font-weight: 600;
-  color: #555;
-  transition: all 0.3s ease;
-}
-
-.nav-pills .nav-link:hover {
-  background-color: rgba(0, 123, 255, 0.1);
-}
-
-.nav-pills .nav-link.active {
-  background-color: #007bff;
-  color: white;
-  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-}
-
-/* Schedule Timeline */
-.schedule-timeline {
-  position: relative;
-  padding: 20px 0;
-}
-
-.schedule-timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 120px;
-  width: 3px;
-  background-color: #e9ecef;
-}
-
-.schedule-item {
-  position: relative;
-  display: flex;
-  margin-bottom: 30px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.schedule-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.schedule-time {
-  width: 120px;
-  padding: 20px 15px;
-  background-color: #f8f9fa;
-  text-align: center;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid #e9ecef;
-}
-
-.schedule-time .time {
-  font-size: 14px;
-  color: #555;
-}
-
-.schedule-content {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
-
-.class-info {
-  flex: 1;
-}
-
-.class-info h4 {
-  margin-bottom: 5px;
-  font-weight: 600;
-  color: #333;
-}
-
-.class-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  font-size: 14px;
-  color: #6c757d;
-}
-
-.class-meta span {
-  display: flex;
-  align-items: center;
-}
-
-.class-meta i {
-  margin-right: 5px;
-}
-
-.class-type {
-  background-color: rgba(0, 123, 255, 0.1);
-  color: #007bff;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.trainer-info {
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-  border-left: 1px solid #e9ecef;
-}
-
-.trainer-link {
-  display: flex;
-  align-items: center;
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.trainer-link:hover {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.trainer-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 15px;
-  border: 2px solid #e9ecef;
-}
-
-.trainer-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.trainer-details h5 {
-  margin-bottom: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.trainer-role {
-  font-size: 12px;
-  color: #6c757d;
-}
-
-/* Class Categories */
-.class-category-card {
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.class-category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.category-image {
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.category-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.category-overlay h3 {
-  color: white;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.category-content {
-  padding: 20px;
-  background-color: white;
-}
-
-/* Mobile Schedule */
-.mobile-schedule {
-  display: none;
-}
-
-.mobile-trainer-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.mobile-time {
-  min-width: 80px;
-  text-align: center;
-}
-
-/* Media Queries */
-@media (max-width: 991px) {
-  .schedule-timeline::before {
-    left: 100px;
-  }
-
-  .schedule-time {
-    width: 100px;
-  }
-
-  .trainer-avatar {
-    width: 40px;
-    height: 40px;
-  }
-
-  .trainer-details h5 {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 767px) {
-  .schedule-tabs {
-    display: none;
-  }
-
-  .mobile-schedule {
-    display: block;
-  }
-
-  .schedule-timeline::before {
-    display: none;
-  }
-}
-
-@media (max-width: 575px) {
-  .nav-pills .nav-link {
-    padding: 8px 15px;
-    font-size: 14px;
-  }
-
-  .class-info h4 {
-    font-size: 16px;
-  }
-
-  .class-meta {
-    font-size: 12px;
-  }
-}
-
-
-</style>
+ </style>
 </head>
 <body>
 
@@ -437,15 +122,15 @@ body {
                     
                     <div class="schedule-timeline">
                         <?php foreach ($schedulesByDay[$day] as $schedule): 
-                            $start_time = date('h:i A', strtotime($schedule['start_date']));
-                            $end_time = date('h:i A', strtotime($schedule['end_date']));
-                            $trainer_name = !empty($schedule['trainer_name']) ? $schedule['trainer_name'] : 'Unassigned';
-                            $trainer_img = !empty($schedule['trainer_image']) ? 'admin/uploads/trainers/' . $schedule['trainer_image'] : 'img/default-avatar.png';
+                            $start_time = $schedule['start_time'];
+                            $end_time = $schedule['end_time'];
+                            $trainer_name = !empty($schedule['name']) ? $schedule['name'] : 'Unassigned';
+                            $trainer_img = !empty($schedule['image']) ? 'admin/uploads/trainers/' . $schedule['image'] : 'img/default-avatar.png';
                             $specialization = !empty($schedule['specialization']) ? $schedule['specialization'] : 'General Fitness';
                         ?>
                         <div class="schedule-item">
                             <div class="schedule-time">
-                                <span class="time"><?= $start_time ?> - <?= $end_time ?></span>
+                                <span class="time">Schedule</span>
                             </div>
                             <div class="schedule-content">
                                 <div class="class-info">
@@ -475,6 +160,11 @@ body {
                                         <span class="trainer-role">To be announced</span>
                                     </div>
                                     <?php endif; ?>
+                                </div>
+                                <div class="class-info " >
+
+                                    <a href="" class="join_btn btn btn-grey">Join Now</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -577,10 +267,10 @@ body {
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush">
                             <?php foreach ($schedulesByDay[$day] as $schedule): 
-                                $start_time = date('h:i A', strtotime($schedule['start_date']));
-                                $end_time = date('h:i A', strtotime($schedule['end_date']));
-                                $trainer_name = !empty($schedule['trainer_name']) ? $schedule['trainer_name'] : 'Unassigned';
-                                $trainer_img = !empty($schedule['trainer_image']) ? 'admin/uploads/trainers/' . $schedule['trainer_image'] : 'img/default-avatar.png';
+                                $start_time = $schedule['start_time'];
+                                $end_time = $schedule['end_time'];
+                                $trainer_name = !empty($schedule['name']) ? $schedule['name'] : 'Unassigned';
+                                $trainer_img = !empty($schedule['image']) ? 'admin/uploads/trainers/' . $schedule['image'] : 'img/default-avatar.png';
                             ?>
                             <li class="list-group-item">
                                 <div class="d-flex align-items-center">
@@ -593,6 +283,11 @@ body {
                                         <div class="d-flex align-items-center">
                                             <img src="<?= $trainer_img ?>" alt="<?= $trainer_name ?>" class="mobile-trainer-img mr-2">
                                             <span><?= $trainer_name ?></span>
+                                            <div class="class-info " >
+
+<a href="" class="join_btn btn btn-grey">Join Now</a>
+
+</div>
                                         </div>
                                     </div>
                                 </div>

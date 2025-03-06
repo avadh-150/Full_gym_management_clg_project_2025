@@ -5,13 +5,13 @@ $(document).ready(function () {
             e.preventDefault();
     
             
-            var qty = $(this).closest('.product-content').find('.quantity-input').val();
+            var qty = $(this).closest('.product-details').find('.quantity-input').val();
             var value = parseInt(qty, 10);
             value = isNaN(value) ? 0 : value;
     
             if (value < 10) {
                 value++;
-                $(this).closest('.product-content').find('.quantity-input').val(value);
+                $(this).closest('.product-details').find('.quantity-input').val(value);
             }
     
         });
@@ -21,13 +21,13 @@ $(document).ready(function () {
             $(document).on('click', '.decrease-btn', function (e) {
             e.preventDefault();
     
-            var qty = $(this).closest('.product-content').find('.quantity-input').val();
+            var qty = $(this).closest('.product-details').find('.quantity-input').val();
             var value = parseInt(qty, 10);
             value = isNaN(value) ? 0 : value;
     
             if (value > 1) {
                 value--;
-                $(this).closest('.product-content').find('.quantity-input').val(value);
+                $(this).closest('.product-details').find('.quantity-input').val(value);
             }
         }); 
     
@@ -36,7 +36,7 @@ $(document).ready(function () {
     $(document).on('click', '.addTocart', function (e) {
         e.preventDefault();
 
-        var qty = $(this).closest('.product-content').find('.quantity-input').val();
+        var qty = $(this).closest('.product-details').find('.quantity-input').val();
         var pro_id = $(this).val();
 
         $.ajax({
@@ -82,9 +82,9 @@ $(document).ready(function () {
     });
     $(document).on('click', ".updateQty",function (e) {
         e.preventDefault();
-        var qty = $(this).closest('.product-content').find('.quantity-input').val();
+        var qty = $(this).closest('.product-details').find('.quantity-input').val();
         
-        var pro_id = $(this).closest('.product-content').find('.product_id').val();
+        var pro_id = $(this).closest('.product-details').find('.product_id').val();
         
         
 

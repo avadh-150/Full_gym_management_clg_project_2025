@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 include "include/header.php"; ?>
 <style>
@@ -374,14 +375,6 @@ body {
         <h2>Latest Articles</h2>
         <p>Stay updated with our fitness knowledge base</p>
       </div>
-
-      <!-- <div class="blog-filter">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="workout">Workouts</button>
-        <button class="filter-btn" data-filter="nutrition">Nutrition</button>
-        <button class="filter-btn" data-filter="wellness">Wellness</button>
-      </div> -->
-
       <div class="blog-grid">
     <?php
     include 'connection.php';

@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Plans</a> </div>
-      <h1 class="text-center">Plans List <i class="fas fa-group"></i></h1>
+      <!-- <h1 class="text-center">Plans List <i class="fas fa-group"></i></h1> -->
     </div>
     <div class="container-fluid">
       <hr>
@@ -44,6 +44,12 @@ if (!isset($_SESSION['user_id'])) {
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
               <h5>Plan table</h5>
+              <a href="plans-entry.php" style="float: right; margin:5px 40px;"><button class="btn btn-primary">
+        <b>
+          <i class="fa-solid fa-plus"></i>
+          
+        </b>
+      </button></a>
             </div>
             <div class='widget-content nopadding'>
 
@@ -81,14 +87,11 @@ if (!isset($_SESSION['user_id'])) {
                   <td><div class='text-center'>" . substr($row['features'], 0, 100) . "...</div></td>
                   <td>
                       <div class='text-center'>
+                      <a href='edit-plans.php?id=" . $row['id'] . "' class='text-success'>
+                      <i class='fas fa-edit'></i> 
+                  </a> |
                           <a href='actions/delete-member.php?plans_id=" . $row['id'] . "' style='color:#F66;'>
-                              <i class='fas fa-trash'></i> Remove
-                          </a>
-                      </div>
-                      <br>
-                      <div class='text-center'>
-                          <a href='edit-plans.php?id=" . $row['id'] . "'>
-                              <i class='fas fa-edit'></i> Edit
+                              <i class='fas fa-trash'></i> 
                           </a>
                       </div>
                   </td>

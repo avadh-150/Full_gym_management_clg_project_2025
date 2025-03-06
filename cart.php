@@ -38,7 +38,7 @@
                                     <tr>
                                         <th>Product Image</th>
                                         <th>Product Name</th>
-                                        <th width="130px">Qty.</th>
+                                        <th width="180px">Qty.</th>
                                         <th width="120px">Product Rent</th>
                                         <th>Action</th>
                                     </tr>
@@ -63,7 +63,7 @@
 
                                         while ($product = mysqli_fetch_assoc($result)) {
                                     ?>
-                                            <tr class="product-content">
+                                            <tr class="product-details">
                                                 <td>
                                                     <img src="admin/uploads/products/<?= htmlspecialchars($product['image']) ?>"
                                                         alt="<?= htmlspecialchars($product['name']) ?>"

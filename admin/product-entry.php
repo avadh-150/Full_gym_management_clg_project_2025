@@ -90,7 +90,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
             <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
                 <a href="products.php" class="current">Product List</a><a href="#" class="current">Products Entry</a>
             </div>
-            <h1>Products Entry Form</h1>
+            <!-- <h1>Products Entry Form</h1> -->
         </div>
         <!-- Message Display -->
         <?php if (isset($message)): ?>

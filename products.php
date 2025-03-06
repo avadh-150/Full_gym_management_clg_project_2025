@@ -1,5 +1,7 @@
 
- <?php include "include/header.php"; ?>
+ <?php include "include/header.php";
+//  session_start();
+ ?>
 
  <!-- <link rel="stylesheet" href="css/plan.css"> -->
 <style>
@@ -94,7 +96,8 @@
                 ?>
                     <ol class="breadcrumb">
                         <li><a href="index.php">Home </a> / </li> 
-                        <li><a href="gallery.php"> <?php echo $row2['category_name']; ?></a></li>
+                        <li><a href="gallery.php">Category </a> / </li> 
+                        <li><a href="#"> <?php echo $row2['category_name']; ?></a></li>
                     </ol>
                 <?php
                 } else {
@@ -117,7 +120,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
               <a href="single_product.php?pid=<?=$product['id']?>">
 
-                <div class="product-card product-content">
+                <div class="product-card product-details">
                   <img src="admin/uploads/products/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="img-fluid">
                   <h4><?= substr($product['name'],0,50),'...' ?></h4>
                   <p>Price: Rs.<?= number_format($product['price'], 2) ?></p>

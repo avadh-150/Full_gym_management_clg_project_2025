@@ -18,27 +18,15 @@ header('location:login.php');
 <div id="header">
   <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
 </div>
-<!--close-Header-part--> 
 
-<!-- Visit codeastro.com for more projects -->
-<!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
-<!--close-top-Header-menu-->
-<!--start-top-serch-->
-<!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-<!--close-top-serch-->
 
-<!--sidebar-menu-->
 <?php $page="admins"; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Registered Admins</a> </div>
-    <h1 class="text-center">Registered Admins List <i class="fas fa-group"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -48,6 +36,12 @@ header('location:login.php');
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Admin table</h5>
+            <a href="add-schedules.php" style="float: right; margin:5px 30px;"><button class="btn btn-primary">
+        <b>
+          <i class="fa-solid fa-plus"></i>
+          
+        </b>
+      </button></a>
           </div>
           <div class='widget-content nopadding'>
 	  	  
@@ -63,13 +57,14 @@ header('location:login.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>name</th>
-                  <th>email</th>
-                   <th>gender</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                   <th>Gender</th>
                   <th>Contact Number</th>
-                  <th>street</th>
-                  <th>city</th>
-                  <th>status</th>
+                  <th>Street</th>
+                  <th>City</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 
                 </tr>
               </thead>";
@@ -86,7 +81,12 @@ header('location:login.php');
                 <td><div class='text-center'>".$row['street']."</div></td>
                 <td><div class='text-center'>".$row['city']."</div></td>
                 <td><div class='text-center'>".$row['state']."</div></td>
-             
+                     <td><div class='text-center'>
+                     <a href='edit-adminform.php?id=".$row['a_id']."' class='text-success'><i class='fas fa-edit'></i> </a> |
+
+                     <a href='actions/delete-member.php?remove_id=" . $row['a_id'] . "' style='color:#F66;'><i class='fas fa-trash'></i> </a> </div>
+                     </td>
+
                 
               </tbody>";
           $cnt++;  }

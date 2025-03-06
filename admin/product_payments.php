@@ -20,14 +20,7 @@ if (!isset($_SESSION['user_id'])) {
         <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
     </div>
     <?php include 'includes/topheader.php' ?>
-    <!--close-top-Header-menu-->
-    <!--start-top-serch-->
-    <!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-    <!--close-top-serch-->
-
+  
     <!--sidebar-menu-->
     <?php $page = 'product_payments';
     include 'includes/sidebar.php' ?>
@@ -35,8 +28,8 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="product_payments.php" class="current">Product_Payments</a> </div>
-            <h1 class="text-center">Product Payment <i class="fas fa-group"></i></h1>
+            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="product_payments.php" class="current">Product Payments <i class="fas fa-group"></i></a> </div>
+            <!-- <h1 class="text-center">Product Payment </i></h1> -->
         </div>
         <div class="container-fluid">
             <hr>

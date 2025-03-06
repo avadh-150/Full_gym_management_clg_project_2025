@@ -22,13 +22,13 @@
                     } ?>"><a href="admins.php"><i class="fas fa-arrow-right"></i> List All Admins</a></li>
         <li class="<?php if ($page == 'admins-entry') {
                       echo 'active';
-                    } ?>"><a href="admins-entry.php"><i class="fa-solid fa-user-plus"></i> Admins Entry </a></li>
-        <li class="<?php if ($page == 'admins-remove') {
+                    } ?>"><a href="admins-entry.php"><i class="fa-solid fa-user-plus"></i> Add Admins </a></li>
+        <!-- <li class="<?php if ($page == 'admins-remove') {
                       echo 'active';
                     } ?>"><a href="remove-admins.php"><i class="fas fa-arrow-right"></i> Remove Admins</a></li>
         <li class="<?php if ($page == 'admins-update') {
                       echo 'active';
-                    } ?>"><a href="edit-admins.php"><i class="fas fa-arrow-right"></i> Update Admins Details</a></li>
+                    } ?>"><a href="edit-admins.php"><i class="fas fa-arrow-right"></i> Update Admins </a></li> -->
       </ul>
     </li>
 
@@ -49,11 +49,11 @@
                     } ?>"><a href="users.php"><i class="fas fa-arrow-right"></i> List All Users</a></li>
         <li class="<?php if ($page == 'users-entry') {
                       echo 'active';
-                    } ?>"><a href="users-entry.php"><i class="fa-solid fa-user-plus"></i> Users Entry Form</a></li>
+                    } ?>"><a href="users-entry.php"><i class="fa-solid fa-user-plus"></i> Add Users</a></li>
 
-        <li class="<?php if ($page == 'users-update') {
+        <!-- <li class="<?php if ($page == 'users-update') {
                       echo 'active';
-                    } ?>"><a href="update-users.php"><i class="fas fa-arrow-right"></i> Update Users Details</a></li>
+                    } ?>"><a href="update-users.php"><i class="fas fa-arrow-right"></i> Update Users Details</a></li> -->
       </ul>
     </li>
 
@@ -62,7 +62,7 @@
 
 
 <!-- Gym Product -->
-    <li class="submenu"> <a href="#"><i class="fas fa-dumbbell"></i> <span>Gym Products</span> <span class="label label-important">
+    <li class="submenu"> <a href="#"><i class="fas fa-dumbbell"></i> <span> Products</span> <span class="label label-important">
           <?php
           include "dbcon.php";
           $sql = "SELECT * FROM products";
@@ -77,7 +77,7 @@
                     } ?>"><a href="products.php"><i class="fas fa-arrow-right"></i> List Products</a></li>
         <li class="<?php if ($page == 'product-entry') {
                       echo 'active';
-                    } ?>"><a href="product-entry.php"><i class="fas fa-arrow-right"></i> Products Entry </a></li>
+                    } ?>"><a href="product-entry.php"><i class="fas fa-arrow-right"></i> Add Products </a></li>
 
 
       </ul>
@@ -104,9 +104,9 @@ echo "$query->num_rows";
                       echo 'active';
                     } ?>"><a href="expire-member.php"><i class="fas fa-arrow-right"></i> Expire Members</a></li>
 
-<li class="<?php if ($page == 'trainer-assing') {
+<!-- <li class="<?php if ($page == 'trainer-assing') {
                   echo 'active';
-                } ?>"><a href="trainer-assing.php"><i class="fas fa-arrow-right"></i>Assinging Trainers</a></li>
+                } ?>"><a href="trainer-assing.php"><i class="fas fa-arrow-right"></i>Assinging Trainers</a></li> -->
         <li class="<?php if ($page == 'payment_membership') {
                       echo 'active';
                     } ?>"><a href="payment_membership.php"><i class="fas fa-arrow-right"></i> Members Payment</a></li>
@@ -148,14 +148,14 @@ echo "$query->num_rows";
     <li class="submenu"> <a href="#"><i class="fa-solid fa-calendar-days"></i> <span>Manage Schedule</span> 
         </a>
           
-      <ul>  <li class="<?php if ($page == 'schedules') {
+      <ul>  <li class="<?php if ($page == 'add-schedules') {
           echo 'active';
-        } ?>"><a href="schedules.php"><i class="fas fa-arrow-right"></i> Schedule Entry </a></li>
+        } ?>"><a href="add-schedules.php"><i class="fas fa-arrow-right"></i>Add Schedule </a></li>
 
 
-        <li class="<?php if ($page == 'view_schedule') {
+        <li class="<?php if ($page == 'schedule') {
                       echo 'active';
-                    } ?>"><a href="view_schedule.php"><i class="fas fa-arrow-right"></i> View Schedules </a></li>
+                    } ?>"><a href="schedule.php"><i class="fas fa-arrow-right"></i> Schedules </a></li>
         
       </ul>
     </li>
@@ -183,15 +183,17 @@ echo "$query->num_rows";
     </li>
 
     <!-- Staffs -->
-    <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span>Trainer Management</span> <span class="label label-important"><?php include 'dashboard-equipcount.php'; ?> </span></a>
+    <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span>Trainers</span> <span class="label label-important"><?php 
+    $sql='select count(*) as total from trainers where status = "active"';
+    $query = $con->query($sql);
+    $result=$query->fetch_assoc();
+    echo $result['total'];
+    ?> </span></a>
   <ul>
     <li class="<?php if ($page == 'staffs') {
                   echo 'active';
                 } ?>"><a href="staffs.php"><i class="fas fa-arrow-right"></i> Trainers</a></li>
   
-    <li class="<?php if ($page == 'set-trainer-table') {
-                  echo 'active';
-                } ?>"><a href="set-trainer-table.php"><i class="fas fa-arrow-right"></i>Set Trainers Schedule</a></li>
     
   </ul>
 </li>

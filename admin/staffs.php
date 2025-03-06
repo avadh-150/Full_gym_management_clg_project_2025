@@ -30,17 +30,23 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Trainers</a> </div>
-    <h1 class="text-center">GYM's Trainers List <i class="fas fa-briefcase"></i></h1>
+    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Trainers <i class="fas fa-briefcase"></i></a> </div>
+    <!-- <h1 class="text-center">GYM's Trainers List </h1> -->
   </div>
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
       <div class="span12">
-        <a href="staffs-entry.php"><button class="btn btn-primary">Add Trainers</button></a>
+        <!-- <a href="staffs-entry.php"><button class="btn btn-primary">Add Trainers</button></a> -->
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Trainers table</h5>
+            <a href="staffs-entry.php" style="float: right; margin:5px 10px;"><button class="btn btn-primary">
+        <b>
+          <i class="fa-solid fa-plus"></i>
+          
+        </b>
+      </button></a>
           </div>
           <div class='widget-content nopadding'>
 	  
@@ -56,6 +62,7 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Image</th>
                   <th>Fullname</th>
                   <th>Email</th>
                   <th>Phone</th>
@@ -65,7 +72,6 @@ header('location:../index.php');
                   <th>Joining Date</th>
                   <th>Working Hours</th>
                   <th>Qualification</th>
-                  <th>Image</th>
                   <th>Salary</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -77,6 +83,7 @@ header('location:../index.php');
             echo"<tbody> 
                 <tr class=''>
                 <td><div class='text-center'>".$cnt."</div></td>
+                <td><img src='uploads/trainers/".$row['image']."' width='50' height='50' class='text-center'/></td>
                 <td><div class='text-center'>".$row['name']."</div></td>
                 <td><div class='text-center'>".$row['email']."</div></td>
                 <td><div class='text-center'>".$row['phone']."</div></td>
@@ -85,12 +92,11 @@ header('location:../index.php');
                 <td><div class='text-center'>".$row['gender']."</div></td>
                 <td><div class='text-center'>".$row['joining_date']."</div></td>
                 <td><div class='text-center'>".$row['working_hours']." Hr</div></td>
-                <td><img src='uploads/trainers/qualifications/".$row['qualification']."' width='70' height='70' class='text-center'/></td>
-                <td><img src='uploads/trainers/".$row['image']."' width='50' height='50' class='text-center'/></td>
+                <td><img src='uploads/trainers/qualifications/".$row['qualification']."' width='50' height='50' class='text-center'/></td>
                 <td><div class='text-center'>".$row['salary']."</div></td>
                 <td><div class='badge badge-success text-center'>".$row['status']."</div></td>
              
-                <td><div class='text-center'><a href='edit-staff-form.php?id=".$row['id']."'><i class='fas fa-edit' style='color:#28b779'></i>  <br></a> <a href='remove-staff.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i> </a></div></td>
+                <td><div class='text-center'><a href='edit-staff-form.php?id=".$row['id']."'><i class='fas fa-edit' style='color:#28b779'></i>  | </a> <a href='remove-staff.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i> </a></div></td>
                 </tr>
                 
               </tbody>";

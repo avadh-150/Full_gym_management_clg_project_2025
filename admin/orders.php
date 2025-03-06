@@ -68,9 +68,9 @@ include "dbcon.php";
         <div id="content-header">
             <div id="breadcrumb">
                 <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
-                <a href="#" class="current">Orders List</a>
+                <a href="#" class="current">Orders List <i class="fa-solid fa-truck-fast"></i></a>
             </div>
-            <h1 class="text-center">Orders List <i class="fa-solid fa-truck-fast"></i></h1>
+            <!-- <h1 class="text-center">Orders List </h1> -->
         </div>
         <div class="container-fluid">
             <hr>

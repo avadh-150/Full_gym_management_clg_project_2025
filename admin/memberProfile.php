@@ -103,9 +103,9 @@ if (isset($_GET['id'])) {
         <div id="breadcrumb"> 
             <a href="#" class="tip-bottom"><i class="fas fa-home"></i> Home</a> 
             <a href="members.php" class="current">Registered Members</a>  
-            <a href="#" class="current">Member's Profile</a>
+            <a href="#" class="current">Member's Profile  <i class="fa-solid fa-user"></i></a>
         </div>
-        <h1 class="text-center">Member's Profile <i class="fa-solid fa-user"></i></h1>
+        <!-- <h1 class="text-center">Member's Profile</h1> -->
     </div>
     
     <div class="container-fluid">
@@ -167,7 +167,7 @@ if (isset($_GET['id'])) {
                                 <?php
                                 if (!empty($memberDetails['images'])) {
                                     $photoPath =$memberDetails['images'];
-                                    echo '<img src="../' . $photoPath . '" class="img-thumbnail" alt="Member Photo">';
+                                    echo '<img src="uploads/profiles/' . $photoPath . '" class="img-thumbnail" alt="Member Photo">';
                                 } else {
                                     echo '<p>No photo available</p>';
                                 }

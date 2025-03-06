@@ -59,7 +59,7 @@ if($_GET['bid']){
   <div id="content">
     <div id="content-header">
       <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Blogs</a> </div>
-      <h1 class="text-center">Blogs List <i class="fas fa-group"></i></h1>
+      <!-- <h1 class="text-center">Blogs List <i class="fas fa-group"></i></h1> -->
     </div>
     <div class="container-fluid">
       <hr>
@@ -69,6 +69,12 @@ if($_GET['bid']){
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
               <h5>Blog table</h5>
+              <a href="add-schedules.php" style="float: right; margin:5px 10px;"><button class="btn btn-primary">
+        <b>
+          <i class="fa-solid fa-plus"></i>
+          
+        </b>
+      </button></a>
             </div>
             <div class='widget-content nopadding'>
             <?php
@@ -101,15 +107,13 @@ if (mysqli_num_rows($result) > 0) {
       <td><div class='text-center'>" . $row['created_at'] . "</div></td>
       <td>
           <div class='text-center'>
+          <a href='edit-blogs.php?id=" . $row['id'] . "' class='text-success'>
+              <i class='fas fa-edit'></i> 
+          </a> | 
               <a href='blogs.php?bid=" . $row['id'] . "' style='color:#F66;' >
-                  <i class='fas fa-trash'></i> Remove
+                  <i class='fas fa-trash'></i> 
               </a>
-          </div>
-          <br>
-          <div class='text-center'>
-              <a href='edit-blogs.php?id=" . $row['id'] . "'>
-                  <i class='fas fa-edit'></i> Edit
-              </a>
+          
           </div>
       </td>
     </tr>";

@@ -21,7 +21,19 @@
       </div>
     </div>
   </section>
+  
+<?php 
+include "connection.php";
+// $user_id = $_SESSION['auth_user']['user_id'];
+$sql = "SELECT count(*) as total_members FROM users WHERE role='member_user'";
+$result = $con->query($sql);
+$user = $result->fetch_assoc();
 
+$sql1 = "SELECT count(*) as total_trainers FROM trainers";
+$result1 = $con->query($sql1);
+$trainer = $result1->fetch_assoc();
+
+?>
   <!-- Stats Section -->
   <section class="stats-section py-5">
     <div class="container">
@@ -29,21 +41,21 @@
         <div class="col-md-3 col-6 mb-4 mb-md-0">
           <div class="stat-item">
             <i class="fas fa-dumbbell fa-3x text-primary mb-3"></i>
-            <h3 class="counter">2600</h3>
+            <h3 class="counter">200</h3>
             <p>Locations</p>
           </div>
         </div>
         <div class="col-md-3 col-6 mb-4 mb-md-0">
           <div class="stat-item">
             <i class="fas fa-users fa-3x text-primary mb-3"></i>
-            <h3 class="counter">50K</h3>
+            <h3 class="counter"><?php echo $user['total_members'];?></h3>
             <p>Members</p>
           </div>
         </div>
         <div class="col-md-3 col-6 mb-4 mb-md-0">
           <div class="stat-item">
             <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
-            <h3 class="counter">100</h3>
+            <h3 class="counter"><?php echo $trainer['total_trainers']?></h3>
             <p>Expert Trainers</p>
           </div>
         </div>
@@ -241,7 +253,7 @@
           <p class="lead mb-0">Join our community and transform your life today.</p>
         </div>
         <div class="col-lg-4 text-lg-right">
-          <a href="membership.php" class="btn btn-light btn-lg px-5 py-3 rounded-pill">
+          <a href="plan.php" class="btn btn-light btn-lg px-5 py-3 rounded-pill">
             Get Started <i class="fas fa-arrow-right ml-2"></i>
           </a>
         </div>

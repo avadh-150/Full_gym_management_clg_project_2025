@@ -25,8 +25,8 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="members.php" class="current"> Members</a><a href="#" class="current">Active Members</a> </div>
-    <h1 class="text-center">Active Members List <i class="fa-solid fa-user-group"></i></h1>
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="members.php" class="current"> Members</a><a href="#" class="current">Active Members <i class="fa-solid fa-user-group"></i></a> </div>
+    <!-- <h1 class="text-center">Active Members List </h1> -->
   </div>
   <div class="container-fluid">
     <hr>
@@ -38,7 +38,16 @@ header('location:../index.php');
             <h5>Members Table</h5>
           </div>
           <div class='widget-content nopadding'>
-	  
+	      <!-- Search Form -->
+        <form action="" role="search" method="POST">
+                                <div id="search" class="p-3">
+                                    <input type="text" placeholder="Search Here.." name="search_products"
+                                        value="<?php echo isset($_POST['search_products']) ? htmlspecialchars($_POST['search_products']) : ''; ?>" />
+                                    <button type="submit" class="tip-bottom" name="search_submit" title="Search">
+                                        <i class="fas fa-search fa-white"></i>
+                                    </button>
+                                </div>
+                            </form>
           <?php
 include "dbcon.php";
 
@@ -70,25 +79,39 @@ echo "<table class='table table-bordered table-hover'>
             </tr>
         </thead>";
 
-while ($row = mysqli_fetch_array($result)) {
-    echo "<tbody> 
-            <td><div class='text-center'>" . $row['member_id'] . "</div></td>
-            <td><div class='text-center'>" . $row['full_name'] . "</div></td>
-            <td><div class='text-center'>" . $row['email'] . "</div></td>
-            <td><div class='text-center'>" . $row['mobile'] . "</div></td>
-            <td><div class='text-center'>" . substr($row['address'],0,20) .'..'. "</div></td>
-           
-            <td><div class='text-center'>" . ($row['plan_status'] == '1' ? 'Active' : 'Inactive') . "</div></td>
-            <td><div class='text-center'>" . ($row['payment_status'] == '1' ? 'Paid' : 'Unpaid') . "</div></td>
-                             <td> <a href='memberProfile.php?id={$row['member_id']}' class='btn btn-info'><i class='fas fa-id-card'></i></a>
-                              <a href='edit_member.php?id={$row['member_id']}'' class='btn btn-dark'><i class='fas fa-edit'></i></a>
-                    <button style='border:none;outline:none;' onclick='deleteMember({$row['member_id']})'><i class='fas fa-trash'></i></button></td>
+        while ($row = mysqli_fetch_array($result)) {
 
-          </tbody>";
-    $cnt++;
-}
-?>
 
+          if($row['plan_status']== '1'){
+          $plan_status=  "<p class='badge badge-success text-center'>Active</p>";
+          }
+          elseif($row['plan_status']== '0') {
+            $plan_status= "<p class='badge badge-warning text-center'>Expire</p>";
+          }
+      
+          if ($row['payment_status'] == '1') {
+            $status = "<span class='label label-success' style='background:#28a745;'>Paid</span>";
+        } else {
+            $status = "<span class='label label-danger' style='background:#ffc107;'>Unpaid</span>";
+        }
+      
+          echo "<tbody> 
+                  <td><div class='text-center'>" . $row['member_id'] . "</div></td>
+                  <td><div class='text-center'>" . $row['full_name'] . "</div></td>
+                  <td><div class='text-center'>" . $row['email'] . "</div></td>
+                  <td><div class='text-center'>" . $row['mobile'] . "</div></td>
+                  <td><div class='text-center'>" . substr($row['address'],0,20) .'..'. "</div></td>
+                 
+                  <td><div class='text-center'>" . $plan_status . "</div></td>
+                  <td><div class='text-center'>" . $status . "</div></td>
+                                  <td style='font-size:13px'> <a href='memberProfile.php?id={$row['member_id']}' class='text-info'><i class='fas fa-id-card'></i></a> |
+                              <a href='edit-member.php?id={$row['member_id']}' class='text-success'><i class='fas fa-edit'></i></a> | 
+                    <button style='border:none;outline:none;color:red;' onclick='deleteMember({$row['member_id']})'><i class='fas fa-trash'></i></button></td>
+
+                </tbody>";
+          $cnt++;
+      }
+      ?>
             </table>
           </div>
         </div>

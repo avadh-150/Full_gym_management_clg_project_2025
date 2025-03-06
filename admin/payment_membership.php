@@ -32,8 +32,8 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="content">
         <div id="content-header">
-            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment_membership.php" class="current">Member's Payment</a> </div>
-            <h1 class="text-center">Membership Payment <i class="fa-solid fa-money-check-dollar"></i></h1>
+            <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment_membership.php" class="current">Member's Payment <i class="fa-solid fa-money-check-dollar"></i></a> </div>
+            <!-- <h1 class="text-center">Membership Payment <i class="fa-solid fa-money-check-dollar"></i></h1> -->
         </div>
         <div class="container-fluid">
             <hr>

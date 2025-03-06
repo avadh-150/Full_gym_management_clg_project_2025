@@ -281,7 +281,7 @@ $status = ($memberDetails['status'] == '1' && !$is_expired) ? 'Active' : 'Inacti
                 <div class="member-photo">
                     <?php
                     if (!empty($memberDetails['images'])) {
-                        echo '<img src="../' . htmlspecialchars($memberDetails['images']) . '" class="photo" alt="Member Photo">';
+                        echo '<img src="uploads/profiles/' . htmlspecialchars($memberDetails['images']) . '" class="photo" alt="Member Photo">';
                     } else {
                         echo '<img src="/api/placeholder/120/120" class="photo" alt="Default Photo">';
                     }

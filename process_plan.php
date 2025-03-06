@@ -26,7 +26,6 @@ if (!isset($_SESSION['auth_user'])) {
     header("Location: login.php");
     exit();
 }
-
 if (isset($_POST["book_plan"])) {
     // Collect form data safely
     $full_name = mysqli_real_escape_string($con, $_POST['full_name']);
@@ -52,47 +51,50 @@ if (isset($_POST["book_plan"])) {
     }
 
     // Handle File Upload
-    $image = $_FILES['image']['name'];
-    $image_tmp = $_FILES['image']['tmp_name'];
-    $upload_dir = "admin/uploads/profiles/";
-    $image_path = $upload_dir . basename($image);
+    if (!empty($_FILES['image']['name'])) {
+        $upload_dir = "admin/uploads/profiles/";
+        $image_name = time() . "_" . basename($_FILES['image']['name']); // Ensure unique file names
+        $image_tmp = $_FILES['image']['tmp_name'];
+        $target_file = $upload_dir . $image_name;
 
-    // Ensure upload directory exists
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
-    }
+        // Ensure upload directory exists
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
 
-    if (move_uploaded_file($image_tmp, $image_path)) {
-        // Insert Data into Database
-  // Generate a Unique Member ID securely
-  $member_id = substr(hash('sha256', $phone . uniqid(mt_rand(), true)), 0, 12);     // Use last 2 digits instead of first 2
-echo "<script>alert('$member_id');</script>";
-        $query = "UPDATE users 
-          SET full_name = '$full_name',
-          member_id='$member_id', 
-              mobile = '$phone', 
-              gender = '$gender', 
-              address = '$address', 
-              image = '$image_path', 
-              current_plan_id = '$plan_id', 
-              occupation = '$occupation',
-              role = 'member_user',
-              trainer_id = '$trainer_id'
-             
-          WHERE email = '$email'";
-
-        if (mysqli_query($con, $query)) {
-            $_SESSION['message'] = "Membership Added Successfully!";
-            header("Location: plan_payment.php"); // Redirect to success page
-            exit();
-        } else {
-            $_SESSION['message'] = "Error: " . mysqli_error($con);
-            header("Location: plan_view.php"); // Redirect back to form
+        if (!move_uploaded_file($image_tmp, $target_file)) {
+            $_SESSION['message'] = "Failed to upload image.";
+            header("Location: plan_view.php");
             exit();
         }
     } else {
-        $_SESSION['message'] = "Failed to upload image.";
-        header("Location: plan_view.php");
+        $image_name = ""; // No image uploaded
+    }
+
+    // Generate a Unique Member ID securely
+    $member_id = substr(hash('sha256', $phone . uniqid(mt_rand(), true)), 0, 12); 
+
+    // Update User Information
+    $query = "UPDATE users 
+              SET full_name = '$full_name',
+                  member_id = '$member_id', 
+                  mobile = '$phone', 
+                  gender = '$gender', 
+                  address = '$address', 
+                  image = '$image_name',  -- Only save image name, not full path
+                  current_plan_id = '$plan_id', 
+                  occupation = '$occupation',
+                  role = 'member_user',
+                  trainer_id = '$trainer_id'
+              WHERE email = '$email'";
+
+    if (mysqli_query($con, $query)) {
+        $_SESSION['message'] = "Membership Added Successfully!";
+        header("Location: plan_payment.php"); // Redirect to payment page
+        exit();
+    } else {
+        $_SESSION['message'] = "Error: " . mysqli_error($con);
+        header("Location: plan_view.php"); // Redirect back to form
         exit();
     }
 } else {
@@ -100,4 +102,5 @@ echo "<script>alert('$member_id');</script>";
     header("Location: plan.php");
     exit();
 }
+
 ?>

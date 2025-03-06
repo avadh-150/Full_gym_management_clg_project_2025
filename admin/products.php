@@ -30,25 +30,32 @@ if (!isset($_SESSION['user_id'])) {
         <div id="content-header">
             <div id="breadcrumb">
                 <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a>
-                <a href="#" class="current">Product List</a>
+                <a href="#" class="current">Product List <i class="fa-solid fa-dumbbell"></i></a>
             </div>
-            <h1 class="text-center">Product List <i class="fa-solid fa-dumbbell"></i></h1>
+            <!-- <h1 class="text-center">Product List </h1> -->
         </div>
         <div class="container-fluid">
             <hr>
+            <a href="product-entry.php"><button class="btn btn-primary">
+                                    <b> 
+                                        <i class="fa-solid fa-plus"></i>
+    
+                                    </b>
+                                </button></a>
             <div class="row-fluid">
                 <div class="span12">
                     <div class='widget-box'>
                         <div class='widget-title'>
                             <span class='icon'> <i class='fas fa-th'></i> </span>
                             <h5>Products Table</h5>
+                            
                         </div>
                         <div class='widget-content nopadding'>
                             <!-- Search Form -->
                             <form action="" role="search" method="POST">
                                 <div id="search" class="p-3">
-                                    <input type="text" placeholder="Search Here.." name="search_products" 
-                                           value="<?php echo isset($_POST['search_products']) ? htmlspecialchars($_POST['search_products']) : ''; ?>" />
+                                    <input type="text" placeholder="Search Here.." name="search_products"
+                                        value="<?php echo isset($_POST['search_products']) ? htmlspecialchars($_POST['search_products']) : ''; ?>" />
                                     <button type="submit" class="tip-bottom" name="search_submit" title="Search">
                                         <i class="fas fa-search fa-white"></i>
                                     </button>
@@ -96,11 +103,11 @@ if (!isset($_SESSION['user_id'])) {
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Image</th>
                                         <th>Product Name</th>
                                         <th>Price</th>
                                         <th>Category</th>
                                         <th>Quantity</th>
-                                        <th>Image</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -111,22 +118,29 @@ if (!isset($_SESSION['user_id'])) {
                                 while ($product = $result->fetch_assoc()) {
                                     echo "<tr>
                                         <td><div class='text-center'> GMPX00" . $cnt . "</div></td>
-                                        <td><div class='text-center'>" . substr($product['product_name'], 0, 70) . '...' . "</div></td>
-                                        <td><div class='text-center'>Rs." . $product['price'] . "</div></td>
-                                        <td><div class='text-center'>" . $product['category_name'] . "</div></td>
-                                        <td><div class='text-center'>" . $product['quantity'] . "</div></td>
                                         <td><div class='text-center'>";
                                     if ($product['image']) {
                                         echo "<img src='uploads/products/" . $product['image'] . "' alt='Product Image' style='width: 50px; height: 50px;'>";
                                     } else {
                                         echo "No Image";
                                     }
+                                    if($product['status'] == 1){
+                                        $dis="<p class='badge badge-success text-center'>ACTIVE</p>";
+                                    }
+                                    else if($product['status'] == 0){
+                                        $dis= "<p class='badge badge-warging text-center'>INACTIVE</p>";
+
+                                    }
                                     echo "</div></td>
-                                        <td><div class='text-center' style='background:yellow;'>" . ($product['status'] == 1 ? 'Active' : 'Inactive') . "</div></td>
+                                        <td><div class='text-center'>" . substr($product['product_name'], 0, 70) . '...' . "</div></td>
+                                        <td><div class='text-center'>Rs." . $product['price'] . "</div></td>
+                                        <td><div class='text-center'>" . $product['category_name'] . "</div></td>
+                                        <td><div class='text-center'>" . $product['quantity'] . "</div></td>
+                                        <td><div class='text-center'>" . $dis . "</div></td>
                                         <td><div class='text-center'>
-                                            <a href='actions/delete-member.php?pro_id=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> Remove</a>
-                                            <br>
-                                            <a href='edit-product.php?id=" . $product['id'] . "'><i class='fas fa-edit'></i> Edit</a>
+                                        <a href='edit-product.php?id=" . $product['id'] . "' class='text-success'><i class='fas fa-edit'></i></a>
+                                        |
+                                            <a href='actions/delete-member.php?pro_id=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> </a>
                                         </div></td>
                                     </tr>";
                                     $cnt++;
@@ -137,7 +151,7 @@ if (!isset($_SESSION['user_id'])) {
                                 // Pagination links
                                 echo "<div class='pagination pagination-centered'>
                                     <ul>";
-                                
+
                                 // Previous page link
                                 if ($current_page > 1) {
                                     echo "<li><a href='?page=" . ($current_page - 1) . "'>Prev</a></li>";

@@ -1,25 +1,24 @@
 <?php                
 require 'dbcon.php'; 
-$event_name = $_POST['schedule_name'];
-$event_start_date = date("y-m-d", strtotime($_POST['start_date'])); 
-$event_end_date = date("y-m-d", strtotime($_POST['end_date'])); 
-			
-$insert_query = "INSERT INTO `schedule` (`schedule_name`, `start_date`, `end_date`) 
-                VALUES ('$event_name', '$event_start_date', '$event_end_date')";
+if(isset($_REQUEST['assign_schedule'])){
+    $title=$_POST['name'];
+    $day=$_POST['days'];
+    $stime=$_POST['stime'];
+    $etime=$_POST['etime'];
+    $tid=$_POST['trainer_id'];
+$insert_query = "INSERT INTO schedule (schedule_day,schedule_name,trainer_id ,start_time, end_time) 
+                VALUES ('$day', '$title', '$tid', '$stime', '$etime')";
 
 if(mysqli_query($con, $insert_query))
 {
-	$data = [
-                'status' => true,
-                'msg' => 'Event added successfully!'
-            ];
+    echo "<script>alert('Schedule Added Successfully')</script>";
+    echo "<script>window.open('schedule.php','_self')</script>";
+	
 }
-else
-{
-	$data = [
-                'status' => false,
-                'msg' => 'Sorry, Event not added.'				
-            ];
+else{
+    echo "<script>alert('Failed to Add Schedule')</script>";
+    echo "<script>window.open('schedule.php','_self')</script>";
+    
 }
-echo json_encode($data);	
+}
 ?>

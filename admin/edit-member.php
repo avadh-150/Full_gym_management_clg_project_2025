@@ -71,7 +71,7 @@ $result_trainers = mysqli_query($con, $sql_trainers);
               </div>
               <div class="widget-content nopadding">
 
-                <form action="edit-member-req.php" method="POST" class="form-horizontal">
+                <form action="edit-member-req.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
                   <div class="control-group">
                     <label class="control-label">Member Number :</label>
                     <div class="controls">
@@ -212,7 +212,7 @@ $result_trainers = mysqli_query($con, $sql_trainers);
             <label class="control-label">Profile Image :</label>
             <div class="controls">
                 <input type="file" name="image" class="span11">
-                <img src="../<?php echo $row['image']; ?>" alt="" width="100" height="100">
+                <img src="uploads/profiles/<?php echo $row['image']; ?>" alt="" width="100" height="100">
             </div>
         </div>
 

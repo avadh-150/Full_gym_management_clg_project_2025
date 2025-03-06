@@ -1,5 +1,6 @@
 <?php
 // Include database connection file
+session_start();
 include 'connection.php'; // Update this with your actual connection file
 error_reporting(0);
 // Initialize success and error messages
@@ -48,12 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             --light-color: #f8f9fa;
             --dark-color: #343a40;
         }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: #333;
-            line-height: 1.6;
-        }
+       
         
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/pic-19.jpg');
