@@ -36,7 +36,7 @@ header('location:login.php');
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Admin table</h5>
-            <a href="add-schedules.php" style="float: right; margin:5px 30px;"><button class="btn btn-primary">
+            <a href="admins-entry.php" style="float: right; margin:5px 30px;"><button class="btn btn-primary">
         <b>
           <i class="fa-solid fa-plus"></i>
           

@@ -259,9 +259,16 @@ $result5=mysqli_query($con,$qry);
          ?></a> </li>
           <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
           <li class="bg_ly span3"> <a href="form-common.html"> <i class="fas fa-th-list"></i> Forms</a> </li>
-          <li class="bg_lb span2"> <a href="interface.html"> <i class="fas fa-pencil"></i>Elements</a> </li> 
-          <li class="bg_lg"> <a href="calendar.html"> <i class="fas fa-calendar"></i> Calendar</a> </li>
-          <li class="bg_lr"> <a href="error404.html"> <i class="fas fa-info-sign"></i> Error</a> </li> -->
+          <li class="bg_lb span2"> <a href="interface.html"> <i class="fas fa-pencil"></i>Elements</a> </li>  -->
+          <li class="bg_ly span3"> <a href="appointments.php"> <i class="fas fa-calendar"></i> <span class="label label-important"> <?php
+          include "dbcon.php";
+          $sql = "SELECT count(*) as total FROM appointments";
+          $query = mysqli_query($con,$sql);
+          $row=mysqli_fetch_assoc($query);
+          echo $row['total'] ?? 0;
+
+         ?> </span>   Total Appointments </a> </li>
+          <!-- <li class="bg_lr"> <a href="error404.html"> <i class="fas fa-info-sign"></i> Error</a> </li> -->
 <!-- Visit codeastro.com for more projects -->
       </ul>
     </div>

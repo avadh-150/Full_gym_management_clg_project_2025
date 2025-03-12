@@ -206,113 +206,6 @@ error_reporting(0);
 
 
 
-  <?php
-
-  include "connection.php";
-  $sql = "SELECT * FROM gym_images";
-  $result = $con->query($sql);
-
-
-  ?>
-  <!-- Gallery Section -->
-  <section class="fitness-gallery">
-
-    <div class="trainer-showcase__header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h2 class="trainer-showcase__title">Fitness Gallery</h2>
-            <span class="trainer-showcase__subtitle">Take a visual tour of our premium gym facilities, equipment, and training spaces</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Gallery Carousel -->
-    <div class="fitness-gallery__showcase">
-      <!-- Loading Spinner -->
-      <div class="fitness-gallery__loading">
-        <i class="fas fa-spinner fa-pulse"></i>
-      </div>
-
-      <!-- Gallery Carousel Track -->
-      <div class="fitness-gallery__track" id="galleryTrack" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-        <?php
-        if ($result && $result->num_rows > 0) {
-          $i = 0;
-          while ($row = $result->fetch_assoc()) {
-            $i++;
-            $caption = "Gym Image " . $i;
-        ?>
-            <div class="fitness-gallery__item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="<?php echo ($i * 50); ?>">
-              <a href="<?php echo htmlspecialchars($row['image_path']); ?>" class="fitness-gallery__lightbox">
-                <div class="fitness-gallery__image-container">
-                  <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['image_path'] ?? 'Gym Image'); ?>" loading="lazy" class="fitness-gallery__image">
-                </div>
-                <div class="fitness-gallery__overlay">
-                  <i class="fas fa-search-plus fitness-gallery__icon"></i>
-                </div>
-
-              </a>
-            </div>
-        <?php
-          }
-        } else {
-          echo '<div class="fitness-gallery__empty">
-                        <h3>No images found</h3>
-                        <p>Check back soon for our updated gallery.</p>
-                    </div>';
-        }
-        // $stmt->close();
-        ?>
-      </div>
-
-      <!-- Gallery Controls -->
-      <div class="fitness-gallery__controls">
-        <a href="photos.php" class="fitness-gallery__more-btn">View Full Gallery</a>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Clone gallery items for infinite scrolling effect
-      const track = document.getElementById('galleryTrack');
-      const items = document.querySelectorAll('.fitness-gallery__item');
-
-      // Only proceed if we have items
-      if (items.length > 0) {
-        // Clone each item and append to the track
-        items.forEach(item => {
-          const clone = item.cloneNode(true);
-          track.appendChild(clone);
-        });
-      }
-
-      // Hide loading spinner when images are loaded
-      const images = document.querySelectorAll('.fitness-gallery__image');
-      let loadedImages = 0;
-
-      function checkAllImagesLoaded() {
-        loadedImages++;
-        if (loadedImages >= images.length) {
-          document.querySelector('.fitness-gallery__loading').style.display = 'none';
-        }
-      }
-
-      images.forEach(img => {
-        if (img.complete) {
-          checkAllImagesLoaded();
-        } else {
-          img.addEventListener('load', checkAllImagesLoaded);
-          img.addEventListener('error', checkAllImagesLoaded);
-        }
-      });
-    });
-  </script>
-
 
 
 
@@ -324,7 +217,7 @@ error_reporting(0);
 
   // Fetch schedules along with assigned trainers
   $query = "
-    SELECT s.*,t.*
+    SELECT s.*,t.*,s.schedule_id as app_id
     FROM schedule s
     LEFT JOIN trainers t ON s.trainer_id = t.id
     ";
@@ -433,7 +326,7 @@ error_reporting(0);
                         </div>
                         <div class="class-info ">
 
-                          <a href="" class="join_btn btn btn-grey">Join Now</a>
+                          <a href="appointment.php?id=<?php echo $schedule['app_id']?>" class="join_btn btn btn-grey">Join Now</a>
 
                         </div>
                       </div>
@@ -592,6 +485,122 @@ error_reporting(0);
       </div>
   </section>
 
+  <?php
+
+  include "connection.php";
+  $sql = "SELECT * FROM gym_images";
+  $result = $con->query($sql);
+
+
+  ?>
+  <!-- Gallery Section -->
+  <section class="fitness-gallery">
+    <div class="trainer-showcase__header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="trainer-showcase__title">Fitness Gallery</h2>
+            <span class="trainer-showcase__subtitle">Take a visual tour of our premium gym facilities, equipment, and training spaces</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fitness-gallery__container">
+      <div class="fitness-gallery__track">
+        <?php
+        if ($result && $result->num_rows > 0) {
+          $images = $result->fetch_all(MYSQLI_ASSOC);
+          for ($loop = 0; $loop < 2; $loop++) {
+            foreach ($images as $row) {
+        ?>
+            <div class="fitness-gallery__item">
+              <a href="<?php echo htmlspecialchars($row['image_path']); ?>" class="fitness-gallery__lightbox">
+                <div class="fitness-gallery__image-container">
+                  <img src="<?php echo htmlspecialchars($row['image_path']); ?>" alt="<?php echo htmlspecialchars($row['image_path'] ?? 'Gym Image'); ?>" loading="lazy" class="fitness-gallery__image">
+                </div>
+                <div class="fitness-gallery__overlay">
+                  <i class="fas fa-search-plus fitness-gallery__icon"></i>
+                </div>
+              </a>
+            </div>
+        <?php
+            }
+          }
+        } else {
+          echo '<div class="fitness-gallery__empty">
+                  <h3>No images found</h3>
+                  <p>Check back soon for our updated gallery.</p>
+                </div>';
+        }
+        ?>
+      </div>
+    </div>
+
+    <div class="fitness-gallery__controls">
+      <a href="photos.php" class="fitness-gallery__more-btn">View Full Gallery</a>
+    </div>
+</section>
+  
+  
+<!-- Blog section -->
+<section class="fitness-blog-section py-5">
+    <div class="container">
+        
+        <div class="trainer-showcase__header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="trainer-showcase__title">Latest Articles</h2>
+            <span class="trainer-showcase__subtitle">Stay updated with our fitness knowledge base</span>
+            <p class="text-muted lead mx-auto" style="max-width: 700px;">.</p>
+          </div>
+        </div>
+        <div class="fitness-blog-grid">
+            <?php
+            include 'connection.php';
+
+            // Fetch only 3 latest blogs
+            $sql = "SELECT * FROM gym_blogs ORDER BY created_at DESC LIMIT 6";
+            $result = mysqli_query($con, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                foreach ($result as $row) {
+            ?>
+                    <article class="fitness-blog-card">
+                        <div class="fitness-blog-image-wrapper">
+                            <img class="fitness-blog-image" src="admin/<?= $row['image_path'] ?>" alt="<?= htmlspecialchars($row['title']) ?>">
+                        </div>
+                        <div class="fitness-blog-content">
+                            <h3 class="fitness-blog-title"><?= htmlspecialchars($row['title']) ?></h3>
+                            <p class="fitness-blog-excerpt"><?= htmlspecialchars(substr(strip_tags($row['content']), 0, 100)) . '...' ?></p>
+                            <div class="fitness-blog-footer">
+                                <a href="read_blog.php?id=<?= $row['id'] ?>" class="fitness-blog-read-more">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+            <?php
+                }
+            } else {
+            ?>
+                <div class="fitness-blog-empty">
+                    <div class="empty-content">
+                        <i class="fas fa-newspaper empty-icon"></i>
+                        <h3>No Articles Yet</h3>
+                        <p>Check back soon for new fitness content and tips!</p>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+        <div class="fitness-blog-footer text-center mt-4">
+            <a href="blogs.php" class="fitness-blog-view-all">View All Articles</a>
+        </div>
+    </div>
+</section>
 
 
 

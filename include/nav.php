@@ -40,9 +40,9 @@
           <li class="nav-item">
             <a class="nav-link" href="http://localhost/gymphp/schedules.php">Schedule</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost/gymphp/appoinment.php">Appoinment</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/appointment.php">Appointment</a>
+          </li> -->
           
 
 
@@ -51,6 +51,10 @@
           // session_start();
           if (isset($_SESSION['auth_user'])) {
           ?>
+
+<!-- <li class="nav-item">
+            <a class="nav-link" href="http://localhost/gymphp/photos.php">Gallery</a>
+          </li> -->
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo substr($_SESSION['auth_user']['email'], 0, 5), '..' ?><i class="fa-solid fa-user"></i></a>
@@ -79,9 +83,10 @@
                   <a class="dropdown-item" href="http://localhost/gymphp/users/profile.php"><i class="fa-solid fa-user"></i>Member Profile</a>
 
                 <?php } ?>
+
                 <a class="dropdown-item" href="http://localhost/gymphp/my_orders.php"><i class="fa-solid fa-truck-fast"></i> My Order</a>
                 <a class="dropdown-item" href="http://localhost/gymphp/my_membership.php"><i class="fa-solid fa-spa"></i> My Membership</a>
-                <a class="dropdown-item" href="http://localhost/gymphp/personal.php"><i class="fa-solid fa-landmark"></i> Payments</a>
+                <a class="dropdown-item" href="http://localhost/gymphp/my_appointment.php"><i class="fa-solid fa-landmark"></i> My Appointments</a>
                 <a class="dropdown-item" href="http://localhost/gymphp/users/Announcements.php"><i class="fa-solid fa-bell"></i> Announcements</a>
                 <a class="dropdown-item" href="http://localhost/gymphp/users/chatbot.php"><i class="fa-solid fa-comment"></i> ChatSupport</a>
 

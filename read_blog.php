@@ -668,7 +668,7 @@ include "include/header.php"; ?>
             </div>
             <div class="related-post-content">
               <h3><a href="read_blog.php?id=<?= $related['id'] ?>"><?= htmlspecialchars($related['title']) ?></a></h3>
-              <p><?= htmlspecialchars(substr($related['content'], 0, 100)) . '...' ?></p>
+              <!-- <p><?= htmlspecialchars(substr($related['content'], 0, 100)) . '...' ?></p> -->
               <a href="read_blog.php?id=<?= $related['id'] ?>" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>

@@ -161,9 +161,9 @@ include "include/header.php";
                                     </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="class-info " >
+                                <div class="class-info" >
 
-                                    <a href="" class="join_btn btn btn-grey">Join Now</a>
+                                    <a href="appointment.php?id=<?= $schedule['schedule_id'] ?>" class="join_btn btn btn-grey">Join Now</a>
                                     
                                 </div>
                             </div>

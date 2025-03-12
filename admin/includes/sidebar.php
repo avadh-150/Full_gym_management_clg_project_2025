@@ -10,6 +10,24 @@
 
 
 <!-- Admin Users -->
+    <li class="submenu"> <a href="#"><i class="fa-solid fa-calendar-check"></i> <span>Appointments</span> <span class="label label-important">
+          <?php
+          include "dbcon.php";
+          $sql = "SELECT * FROM appointments";
+          $query = $con->query($sql);
+          echo "$query->num_rows"; ?> </span></a>
+      <ul>
+        <li class="<?php if ($page == 'appointments') {
+                      echo 'active';
+                    } ?>"><a href="appointments.php"><i class="fas fa-arrow-right"></i> Appointment List</a></li>
+        <li class="<?php if ($page == 'admins-entry') {
+                      echo 'active';
+                    } ?>"><a href="admins-entry.php"><i class="fa-solid fa-user-plus"></i> Test </a></li>
+       
+      </ul>
+    </li>
+
+<!-- Admin Users -->
     <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Manage Admin</span> <span class="label label-important">
           <?php
           include "dbcon.php";

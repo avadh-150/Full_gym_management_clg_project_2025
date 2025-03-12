@@ -1,4 +1,5 @@
 <?php include "include/header.php"; ?>
+<link rel="stylesheet" href="css/empty.css">
 
 <body>
 
@@ -17,6 +18,12 @@
             <div class="col-md-12">
                 <?php if (isset($_SESSION['auth_user'])) {
                     include 'admin/dbcon.php';
+                    $status = '';
+                    $user_id = $_SESSION['auth_user']['user_id'];
+                    $sql = "SELECT * from orders WHERE user_id='$user_id'";
+                    $result = mysqli_query($con, $sql);
+                 
+                    if (mysqli_num_rows($result) > 0) {
                 ?>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -34,12 +41,7 @@
                         <tbody>
                             <?php
                             // Fetch user cart
-                            $status = '';
-                            $user_id = $_SESSION['auth_user']['user_id'];
-                            $sql = "SELECT * from orders WHERE user_id='$user_id'";
-                            $result = mysqli_query($con, $sql);
-                         
-                            if (mysqli_num_rows($result) > 0) {
+                           
 
                                 while ($product = mysqli_fetch_assoc($result)) {
                             ?>
@@ -68,18 +70,23 @@
                                             <span><b>Delivery Expected By :</b> <?php echo date('d',strtotime($product['create_at']. ' +4 day')); ?> - <?php echo date('d F, Y',strtotime($product['create_at']. ' +7 day')); ?></span>
                                         </td>
                                     </tr>
-                                <?php
+                                    <?php
                                 }
                             } else {
-                                ?>
-                                <tr height="200px">
-                                    <td colspan="5" class="text-center alert alert-warning">
-                                        <b>Your cart is empty.</b>
-                                    </td>
-                                </tr>
-                            <?php
+                                    ?>
+                        <div class="col-12">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <h3>No Order Found</h3>
+                                <p>We couldn't find any Order in this MY_order. Please check back later or browse View some Products.</p>
+                                <a href="gallery.php" class="btn btn-primary">Browse All Products</a>
+                            </div>
+                        </div>
+                    <?php
                             }
-                            ?>
+                    ?>
                         </tbody>
                     </table>
 

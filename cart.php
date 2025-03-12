@@ -1,8 +1,6 @@
 <?php include "include/header.php";
-
-
 ?>
-
+<link rel="stylesheet" href="css/empty.css">
 <body>
 
     <!-- Navigation -->
@@ -30,7 +28,22 @@
 
                 <div class="col-md-12">
                     <?php if (isset($_SESSION['auth_user'])) {
-                         include 'admin/dbcon.php';                        
+                         include 'admin/dbcon.php';    
+                         
+                                    // Fetch user cart
+                                    $user_id = $_SESSION['auth_user']['user_id'];
+                                    $sql = "SELECT c.id as cid, c.product_id, c.product_qty, p.id as pid, p.name as name, p.image as image, p.price as price 
+                                            FROM carts c 
+                                            INNER JOIN products p ON c.product_id = p.id 
+                                            WHERE c.user_id='$user_id' 
+                                            ORDER BY cid DESC";
+                                    $result = mysqli_query($con, $sql);
+
+                                    $cart_empty = true; // Flag to check if the cart is empty
+
+                                    if (mysqli_num_rows($result) > 0) {
+                                        $cart_empty = false; // Set to false if products exist
+                    
                         ?>
                         <form action="" method="post" class="checkout-form">
                             <table class="table table-bordered">
@@ -46,20 +59,6 @@
                                 <tbody>
                                     <?php
                                    
-
-                                    // Fetch user cart
-                                    $user_id = $_SESSION['auth_user']['user_id'];
-                                    $sql = "SELECT c.id as cid, c.product_id, c.product_qty, p.id as pid, p.name as name, p.image as image, p.price as price 
-                                            FROM carts c 
-                                            INNER JOIN products p ON c.product_id = p.id 
-                                            WHERE c.user_id='$user_id' 
-                                            ORDER BY cid DESC";
-                                    $result = mysqli_query($con, $sql);
-
-                                    $cart_empty = true; // Flag to check if the cart is empty
-
-                                    if (mysqli_num_rows($result) > 0) {
-                                        $cart_empty = false; // Set to false if products exist
 
                                         while ($product = mysqli_fetch_assoc($result)) {
                                     ?>
@@ -83,18 +82,23 @@
                                                     <button type="button" value="<?= $product['cid'] ?>" class="btn btn-danger btn-sm deleteItems">Remove</button>
                                                 </td>
                                             </tr>
-                                        <?php
-                                        }
-                                    } else {
-                                        ?>
-                                        <tr height="200px">
-                                            <td colspan="5" class="text-center alert alert-warning">
-                                                <b>Your cart is empty.</b>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
+                                            <?php
+                                }
+                            } else {
                                     ?>
+                        <div class="col-12">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <h3>No products in your cart.</h3>
+                                <p>We couldn't find any products in this Cart. Please check back later or browse other categories.</p>
+                                <a href="gallery.php" class="btn btn-primary">Browse All Products</a>
+                            </div>
+                        </div>
+                    <?php
+                            }
+                    ?>
                                 </tbody>
                             </table>
 
@@ -110,7 +114,7 @@
                         </form>
                     <?php } else { ?>
                         <div class="alert alert-warning text-center">
-                            <b>No products in your cart.</b>
+                            <b></b>
                         </div>
                     <?php } ?>
                 </div>

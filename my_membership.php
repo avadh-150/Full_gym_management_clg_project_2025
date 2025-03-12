@@ -1,4 +1,5 @@
 <?php include "include/header.php"; ?>
+<link rel="stylesheet" href="css/empty.css">
 
 <body>
 
@@ -86,16 +87,28 @@
                             <?php } ?>
                             </tbody>
                         </table>
-                    <?php } else { ?>
-                        <div class="alert alert-warning text-center">
-                            <b><i class="fas fa-exclamation-triangle"></i> No membership plan is Active</b>
+                        <?php
+                                }
+                             else {
+                                    ?>
+                        <div class="col-12">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-box-open"></i>
+                                </div>
+                                <h3>No Membership Found</h3>
+                                <p>We couldn't find any membership plan in this membership. Please check back later or browse other Plans.</p>
+                                <a href="plan.php" class="btn btn-primary">Browse All Plans</a>
+                            </div>
                         </div>
-                    <?php }
-                } else { ?>
-                    <div class="alert alert-warning text-center">
-                        <b>Please login to view membership details.</b>
-                    </div>
-                <?php } ?>
+                    <?php
+                            }
+                        }else{
+                            echo "<script>
+                            alert('Please Login First');
+                            window.location='login.php';</script>";
+                        } 
+                    ?>
             </div>
         </div>
     </section>

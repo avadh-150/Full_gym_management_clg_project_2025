@@ -411,6 +411,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
     
+<!-- Call to Action -->
+<section class="cta-section text-white py-5" style="background: linear-gradient(135deg, #0062cc, #0097ff);">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mb-4 mb-lg-0">
+          <h2 class="font-weight-bold mb-3">Ready to Start Your Fitness Journey?</h2>
+          <p class="lead mb-0">Join our community and transform your life today.</p>
+        </div>
+        <div class="col-lg-4 text-lg-right">
+          <a href="plan.php" class="btn btn-light btn-lg px-5 py-3 rounded-pill">
+            Get Started <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    </section>
+    
     <!-- Include Footer -->
     <?php include "include/footer.php"; ?>
     

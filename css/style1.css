@@ -1,132 +1,50 @@
 
-/* Gallery css section */
-.fitness-gallery {
-  padding: 80px 0;
-  background-color: #f8f9fa;
-  overflow: hidden;
-  position: relative;
-}
-
+.fitness-gallery{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  background-color: #D9AFD9;
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+  }
 .fitness-gallery__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-/* Header Styles */
-.fitness-gallery__header {
-  text-align: center;
-  margin-bottom: 50px;
-  position: relative;
-}
-
-.fitness-gallery__title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 15px;
-  position: relative;
-  display: inline-block;
-}
-
-.fitness-gallery__title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
-  border-radius: 3px;
-}
-
-.fitness-gallery__subtitle {
-  font-size: 1.1rem;
-  color: #666;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* Gallery Showcase */
-.fitness-gallery__showcase {
-  position: relative;
-  width: 100%;
   overflow: hidden;
+  width: 100%;
+  padding: 20px 0;
+  
+/* height: 500px; */
 }
 
-/* Loading Spinner */
-.fitness-gallery__loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: #ff6b6b;
-  z-index: 5;
-  display: none;
-}
-
-.fitness-gallery__loading.active {
-  display: block;
-}
-
-/* Gallery Track - Auto Scrolling Container */
 .fitness-gallery__track {
   display: flex;
-  width: fit-content;
-  animation: scrollGallery 5s linear infinite;
-  padding: 20px 0;
+  animation: scroll 30s linear infinite;
+  width: max-content;
 }
 
-/* Animation for auto-scrolling */
-@keyframes scrollGallery {
-  0% {
-      transform: translateX(0);
-  }
-  100%{
-      transform: translateX(-50%);
-  }
-}
-
-/* Pause animation on hover */
-.fitness-gallery__track:hover {
-  animation-play-state: paused;
-}
-
-/* Gallery Item */
 .fitness-gallery__item {
-  flex: 0 0 320px;
+  flex: 0 0 auto;
   margin: 0 15px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-}
-
-.fitness-gallery__item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  width: 320px; /* Slightly wider */
+  height: 300px; /* Increased height from 200px to 300px */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .fitness-gallery__image-container {
-  height: 400px;
+  width: 100%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
+  border-radius: 8px; /* Added subtle rounding */
 }
 
 .fitness-gallery__image {
   width: 100%;
-  height: 400px;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.4s ease, filter 0.3s ease;
 }
 
-.fitness-gallery__item:hover .fitness-gallery__image {
-  transform: scale(1.1);
-}
-
-/* Overlay */
 .fitness-gallery__overlay {
   position: absolute;
   top: 0;
@@ -138,7 +56,18 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
+}
+
+/* Enhanced hover effects */
+.fitness-gallery__item:hover {
+  transform: translateY(-10px); /* Slight lift effect */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Added shadow */
+}
+
+.fitness-gallery__item:hover .fitness-gallery__image {
+  transform: scale(1.1); /* Increased zoom effect */
+  filter: brightness(1.1); /* Slight brightness boost */
 }
 
 .fitness-gallery__item:hover .fitness-gallery__overlay {
@@ -146,51 +75,13 @@
 }
 
 .fitness-gallery__icon {
-  font-size: 2rem;
-  color: #fff;
-  transform: scale(0.8);
+  color: white;
+  font-size: 28px; /* Slightly larger icon */
   transition: transform 0.3s ease;
 }
 
 .fitness-gallery__item:hover .fitness-gallery__icon {
-  transform: scale(1);
-}
-
-/* Caption */
-.fitness-gallery__caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: #fff;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-}
-
-.fitness-gallery__item:hover .fitness-gallery__caption {
-  transform: translateY(0);
-}
-
-.fitness-gallery__caption-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.fitness-gallery__caption-text {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-/* Empty State */
-.fitness-gallery__empty {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: scale(1.2); /* Icon grows on hover */
 }
 
 /* Controls */
@@ -245,6 +136,32 @@
       height: 180px;
   }
 }
+/* Animation keyframes */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.fitness-gallery__container:hover .fitness-gallery__track {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fitness-gallery__item {
+    width: 240px;
+    height: 200px; /* Adjusted height for mobile */
+  }
+  
+  .fitness-gallery__icon {
+    font-size: 24px;
+  }
+}
 /* Schedule section 0 */
 
 /* Schedule Tabs */
@@ -284,8 +201,9 @@
   bottom: 0;
   left: 120px;
   width: 3px;
-  background-color: #e9ecef;
-}
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+  }
 
 .schedule-item {
   position: relative;
@@ -531,6 +449,9 @@ trainer-showcase {
 
 /* Trainer card styles */
 .trainer-card {
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+  
   flex: 0 0 300px;
   margin: 0 20px;
   border-radius: 12px;
@@ -780,5 +701,208 @@ trainer-showcase {
   .newsletter-form .btn {
     border-radius: var(--border-radius);
     padding: 15px;
+  }
+}
+/* Blog section  */
+
+/* Blog Section Styles */
+.fitness-blog-section {
+  background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+padding: 80px 0;
+}
+
+.fitness-blog-header {
+  margin-bottom: 50px;
+  
+}
+
+.fitness-blog-title {
+  
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.fitness-blog-subtitle {
+  color: #666;
+}
+
+.fitness-blog-grid {
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.fitness-blog-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.fitness-blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.fitness-blog-image-wrapper {
+  position: relative;
+  padding-top: 60%;
+  overflow: hidden;
+}
+
+.fitness-blog-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.fitness-blog-card:hover .fitness-blog-image {
+  transform: scale(1.05);
+}
+
+.fitness-blog-date {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.9);
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.date-day {
+  display: block;
+  font-size: 1.5em;
+  font-weight: 700;
+  color:  #e64a19;;
+  line-height: 1;
+}
+
+.date-month {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.fitness-blog-category {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background:  #e64a19;;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.fitness-blog-content {
+  padding: 25px;
+}
+
+.fitness-blog-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fitness-blog-excerpt {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.fitness-blog-footer {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fitness-blog-read-more {
+  color: #e64a19;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.fitness-blog-read-more:hover {
+  color:  #e64a19;
+  text-decoration: none;
+}
+
+.fitness-blog-read-more i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.fitness-blog-read-more:hover i {
+  transform: translateX(5px);
+}
+
+.fitness-blog-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 15px;
+}
+
+.empty-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.fitness-blog-view-all {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 12px 30px;
+  background: #0062cc;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.fitness-blog-view-all:hover {
+  background:  #e64a19;
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .fitness-blog-grid {
+      grid-template-columns: 1fr;
+      padding: 0 15px;
+  }
+  
+  .fitness-blog-card {
+      margin-bottom: 30px;
   }
 }
