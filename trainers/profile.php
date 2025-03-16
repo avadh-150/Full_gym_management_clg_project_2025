@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 // Database connection and data fetching logic remains unchanged
 $trainer_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

@@ -604,21 +604,7 @@ error_reporting(0);
 
 
 
-  <!-- Newsletter Section -->
-  <section class="newsletter-section">
-    <div class="container">
-      <div class="newsletter-content">
-        <h2>Subscribe to Our Newsletter</h2>
-        <p>Get the latest fitness tips, workout plans, and exclusive offers directly to your inbox.</p>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Your email address" required>
-          <button type="submit" class="btn">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="section element-animate">
+  <!-- <section class="section element-animate">
 
     <div class="clearfix mb-5 pb-5">
       <div class="container-fluid">
@@ -671,7 +657,7 @@ error_reporting(0);
         </div>
       </div>
     </div>
-  </section> <!-- .section -->
+  </section> .section -->
   <!-- Call to Action -->
   <section class="cta-section text-white py-5" style="background: linear-gradient(135deg, #0062cc, #0097ff);">
     <div class="container">

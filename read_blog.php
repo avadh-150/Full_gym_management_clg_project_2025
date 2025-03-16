@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 include "include/header.php"; ?>
 <!-- <link rel="stylesheet" href="css/blog-styles.css"> -->

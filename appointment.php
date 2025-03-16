@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'connection.php'; // Update with your actual connection file
-// error_
+error_reporting(0);
 require_once 'configuration.php';
 
 if (!isset($_GET['id'])) {
@@ -911,7 +911,7 @@ if (!isset($_GET['id'])) {
                                     </div>
                                     <div class="summary-total">
                                         <span class="total-label">Total Amount:</span>
-                                        <span class="total-value" id="summary-price">$0.00</span>
+                                        <span class="total-value" id="summary-price">₹550</span>
                                     </div>
                                 </div>
 

@@ -15,6 +15,7 @@ include "include/header.php";
 
  <!-- Navigation -->
 <?php
+// session_start();
 // error_reporting(0);
 include "connection.php";
 
@@ -156,7 +157,7 @@ if ($user['current_plan_id']) {
                     <div class="col-md-12 mb-2">
                         <label class="fw-bold">Uploaded Image:</label>
                         <div class="border p-1">
-                            <img src="<?= htmlspecialchars($user['image']); ?>" alt="User Image" width="50" style="border-radius: 10px;">
+                            <img src="admin/uploads/profiles/<?= htmlspecialchars($user['image']); ?>" alt="User Image" width="50" style="border-radius: 10px;">
                         </div>
                     </div>
                 </div>
