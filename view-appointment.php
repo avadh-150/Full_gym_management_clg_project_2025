@@ -200,6 +200,10 @@ exit();
                             <label class="fw-bold">Booking Date:</label>
                             <div class="border p-1"><?= htmlspecialchars($user['created_at']); ?></div>
                         </div>
+                        <div class="col-md-12 mb-2">
+                            <label class="fw-bold">Amount:</label>
+                            <div class="border p-1">₹<?= htmlspecialchars($user['amount']); ?></div>
+                        </div>
                         <hr>
                         <label style="font-weight:bold;">Booking Status</label>
                         <div class="border p-1 mb-3">

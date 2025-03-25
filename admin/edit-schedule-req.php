@@ -38,13 +38,15 @@ if (!isset($_SESSION['user_id'])) {
     $trainer_id = mysqli_real_escape_string($con, $_POST['trainer_id']);
     $start_time = mysqli_real_escape_string($con, $_POST['stime']);
     $end_time = mysqli_real_escape_string($con, $_POST['etime']);
+    $price= mysqli_real_escape_string($con, $_POST['price']);
 
     $query = "UPDATE schedule SET 
                 schedule_name = '$schedule_name', 
                 schedule_day = '$schedule_day', 
                 trainer_id = '$trainer_id', 
                 start_time = '$start_time', 
-                end_time = '$end_time' 
+                end_time = '$end_time' ,
+                price='$price'
               WHERE schedule_id = '$schedule_id'";
 
                 $result = mysqli_query($con, $query);

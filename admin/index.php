@@ -278,14 +278,14 @@ $result5=mysqli_query($con,$qry);
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Services Report</h5>
+          <h5> Report</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
             <div class="span8">
-              <div id="top_x_div" style="width: 700px; height: 290px;"></div>
+              <!-- <div id="top_x_div" style="width: 700px; height: 290px;"></div> -->
             </div>
-            <div class="span4">
+            <div class="span5">
               <ul class="site-stats">
 
                 <!-- Total products -->
@@ -306,7 +306,6 @@ $result5=mysqli_query($con,$qry);
                 echo $row['count'];?>
                 </strong> <small>Admin Users</small></li>
 
-<!-- total Orders -->
                 <li class="bg_ls"><i class="fa-solid fa-truck-fast"></i> <strong><?php  include "dbcon.php";
                 $sql="select count(*) as count from orders";
                 $query=mysqli_query($con,$sql);
@@ -364,9 +363,9 @@ $result5=mysqli_query($con,$qry);
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="span6">
+      <!-- <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
             <h5>Staff Members by Designation: Overview</h5>
@@ -378,8 +377,8 @@ $result5=mysqli_query($con,$qry);
             </ul>
           </div>
         </div>   
-      </div>
       </div> -->
+      </div>
 	
 <!--End-Chart-box-->
     <!-- <hr/> -->

@@ -28,6 +28,7 @@ include "configuration.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+                        use Stripe\Billing\Alert;
 
 require 'vendor/autoload.php';
 
@@ -43,6 +44,7 @@ if (isset($_POST['app_date']) && isset($_POST['app_time']) && isset($_POST['app_
     $app_trainerid = mysqli_real_escape_string($con, $_POST['app_trainerid']);
     $app_service = mysqli_real_escape_string($con, $_POST['app_service']);
     $app_pay_method = mysqli_real_escape_string($con, $_POST['app_pay_method']);
+    $price = mysqli_real_escape_string($con, $_POST['price']);
 
     // Fetch user details
     $app_sql = "SELECT * FROM appointments WHERE appointment_date = '$app_date' AND trainer_id = $app_trainerid AND service_type = '$app_service' AND  appointment_time='$app_time' AND payment_method='$app_pay_method'";
@@ -59,13 +61,14 @@ if (isset($_POST['app_date']) && isset($_POST['app_time']) && isset($_POST['app_
     $app_email = $app_items['email'];
     $user_id = $app_items['user_id'];
     $user_status = $app_items['status'];
-    $price = 550;
+    // $price = $app_items['price'];
+    
     if (isset($_POST['stripeToken'])) {
         $token = $_POST['stripeToken'];
 
-        echo "<script>
-    alert('stripeToken is collected');
-    </script>";
+    //     echo "<script>
+    // alert('stripeToken is collected');
+    // </script>";
         try {
             // Process payment with Stripe
             $charge = \Stripe\Charge::create([

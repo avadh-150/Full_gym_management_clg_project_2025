@@ -911,7 +911,8 @@ if (!isset($_GET['id'])) {
                                     </div>
                                     <div class="summary-total">
                                         <span class="total-label">Total Amount:</span>
-                                        <span class="total-value" id="summary-price">₹550</span>
+                                        <span class="total-value" id="summary-price" name="price">₹<?php echo $row['price']?></span>
+                                        <input type="" class="total-value" id="price" name="price" value="<?php echo $row['price']?>"></in>
                                     </div>
                                 </div>
 
@@ -1274,7 +1275,8 @@ if (!isset($_GET['id'])) {
                 const contact = $('#contact').val();
                 const level = $('#fitness_level').val();
                 const goal = $('#fitness_goals').val();
-
+                const price = $('#price').val();
+                
                 if (!$('#terms_agree').is(':checked')) {
                     alert('Please agree to the terms and conditions');
                     return;

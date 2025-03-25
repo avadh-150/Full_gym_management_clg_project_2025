@@ -118,6 +118,12 @@ if (!isset($_SESSION['user_id'])) {
 
                                     </div>
                                 </div>
+                                <div class="control-group">
+                                    <label class="control-label">Cost of Class: </label>
+                                    <div class="controls">
+                                        <input type="number" class="span11" name="price" placeholder="Enter the Price of Sssion" />
+                                    </div>
+                                </div>
 
 
 

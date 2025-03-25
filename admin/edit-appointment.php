@@ -198,7 +198,7 @@ if (isset($_GET['app_id'])) {
                                                 <?php echo ($app['payment_status'] == '1') ? 'Paid' : 'Unpaid'; ?>
                                             </span>
                                         </p> -->
-                                        <p><strong>Amount: </strong> <?php echo isset($pay_row['amount']) ? $pay_row['amount'] : 'N/A'; ?></p>
+                                        <p><strong>Amount: </strong>₹ <?php echo isset($app['amount']) ? $app['amount'] : 'N/A'; ?></p>
 
                                     </div>
                                     
@@ -206,6 +206,8 @@ if (isset($_GET['app_id'])) {
                                     <div class="right-column1" style="float: right; margin: 20px;">
                                         <h4><strong>Payment Details:</strong></h4>
                                         <br>
+                                        <p><strong>Paid Amount: </strong> ₹<?php echo isset($pay_row['amount']) ? $pay_row['amount'] : 'N/A'; ?></p>
+
                                         <p><strong>Transaction ID:</strong> <?php echo isset($pay_row['transaction_id']) ? $pay_row['transaction_id'] : "N/A" ?></p>
 
                                                                                <p><strong>Payment Method:</strong><?php echo isset($pay_row['payment_method']) ? $pay_row['payment_method'] : 'N/A' ?></p>

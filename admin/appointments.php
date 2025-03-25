@@ -43,12 +43,12 @@ if (!isset($_SESSION['user_id'])) {
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
               <h5>Appointments table</h5>
-              <a href="users-entry.php" style="float: right; margin:5px 20px;"><button class="btn btn-primary">
+              <!-- <a href="users-entry.php" style="float: right; margin:5px 20px;"><button class="btn btn-primary">
                   <b>
                     <i class="fa-solid fa-plus"></i>
 
                   </b>
-                </button></a>
+                </button></a> -->
 
             </div>
             <div class='widget-content nopadding'>

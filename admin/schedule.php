@@ -54,6 +54,7 @@ $result = mysqli_query($con, $qry);
             <th>Day</th>
             <th>Classes</th>
             <th>Trainer</th>
+            <th>Cost</th>
             <th>Start Time</th>
             <th>Ending Time</th>
             <th>Posted Date</th>
@@ -74,6 +75,9 @@ $result = mysqli_query($con, $qry);
                 </td>
                 <td>
                     <div class='text-center'><?= htmlspecialchars($row['name']) ?></div>
+                </td>
+                <td>
+                    <div class='text-center'><?= htmlspecialchars($row['price']) ?></div>
                 </td>
                 <td>
                     <div class='text-center'><?= htmlspecialchars($row['start_time']) ?></div>

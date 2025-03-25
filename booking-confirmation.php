@@ -32,6 +32,7 @@ if ($result) {
         header("Location: appointment.php");
         exit();
     }
+   
 
     // $stmt->close();
 } else {
@@ -319,7 +320,7 @@ unset($_SESSION['appointment_ref']);
                                     <div class="detail-item">
                                         <span class="detail-label">Amount:</span>
                                         <span class="detail-value">
-                                            ₹<?php echo number_format($appointment['price'] ?? 550, 2); ?>
+                                            ₹<?php echo number_format($appointment['amount'] ?? $appointment['amount'], 2); ?>
                                         </span>
                                     </div>
                                 </div>
@@ -334,6 +335,7 @@ unset($_SESSION['appointment_ref']);
                                         <input type="hidden" name="app_trainerid" id="" value="<?php echo $appointment['trainer_id'] ?>">
                                         <input type="hidden" name="app_service" id="" value="<?php echo $appointment['service_type'] ?>">
                                         <input type="hidden" name="app_pay_method" id="" value="<?php echo $appointment['payment_method'] ?>">
+                                        <input type="hidden" name="price" id="" value="<?php echo $appointment['amount'] ?>">
 
                                         <button type="submit" name="place_order" class="btn btn-primary" style="background-color: #007bff; color: #fff; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-size: 1.2rem;">
                                             Proceed to Payment
@@ -366,6 +368,7 @@ unset($_SESSION['appointment_ref']);
         $app_email = $appointment['aemail'];
         $app_name = $appointment['fullname'];
         $app_id = $appointment['app_id'];
+        $price = $appointment['price'];
         $app_service = $appointment['service_type'];
         $app_trainer = $appointment['trainer_name'];
         $app_status = $appointment['status'];
@@ -434,6 +437,10 @@ unset($_SESSION['appointment_ref']);
 <tr>
     <th style='border: 1px solid #ddd; padding: 10px;'>Appointment status</th>
     <td style='border: 1px solid #ddd; padding: 10px;'>$app_status</td>
+</tr>
+<tr>
+    <th style='border: 1px solid #ddd; padding: 10px;'>Cost</th>
+    <td style='border: 1px solid #ddd; padding: 10px;'>$price</td>
 </tr>
 <tr>
     <th style='border: 1px solid #ddd; padding: 10px;'>Payment Mode</th>

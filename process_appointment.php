@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $des= $_POST['fitness_goals'];
     $level= $_POST['fitness_level'];
     $stype=$_POST['session_type'];
+    $price=$_POST['price'];
     $payment_method= $_POST['payment_method'];
     $userID= $_SESSION['auth_user']['user_id'];
     
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['TrainersID']=$trainer_id;
     // Insert the appointment into the database
     // $sql = "INSERT INTO appointments (appointment_date, appointment_time, name, email, contact, payment_method, status) VALUES (?, ?, ?, ?, ?, ?, 'pending')";
-    $sql = "INSERT INTO appointments (trainer_id,user_id,appointment_date, appointment_time, fullname, email, contact,Age,service_type,description,fitness_level,payment_method) VALUES ('$trainer_id','$userID','$appointment_date','$appointment_time', '$fullname','$email', '$contact',$age,'$stype', '$des','$level','$payment_method')";
+    $sql = "INSERT INTO appointments (trainer_id,user_id,appointment_date, appointment_time, fullname, email, contact,Age,service_type,amount,description,fitness_level,payment_method) VALUES ('$trainer_id','$userID','$appointment_date','$appointment_time', '$fullname','$email', '$contact',$age,'$stype','$price', '$des','$level','$payment_method')";
 
     $result = mysqli_query($con, $sql);
     if ($result) {

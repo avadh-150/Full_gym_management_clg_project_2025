@@ -110,6 +110,12 @@ if (!isset($_SESSION['user_id'])) {
                                         </select>
                                     </div>
                                 </div>
+                                <div class="control-group">
+                                    <label class="control-label">Cost of Class</label>
+                                    <div class="controls">
+                                        <input type="number" class="span11" name="price" value="<?php echo $schedule['price']?>" placeholder="Enter the Price of Sssion" />
+                                    </div>
+                                </div>
 
                                 <div class="form-actions text-center">
                                     <button type="submit" name="update_schedule" class="btn btn-primary">Update Schedule</button>
