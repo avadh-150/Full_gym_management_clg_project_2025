@@ -257,9 +257,6 @@ $result5=mysqli_query($con,$qry);
           echo $row['earning'] ?? 0;
 
          ?></a> </li>
-          <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
-          <li class="bg_ly span3"> <a href="form-common.html"> <i class="fas fa-th-list"></i> Forms</a> </li>
-          <li class="bg_lb span2"> <a href="interface.html"> <i class="fas fa-pencil"></i>Elements</a> </li>  -->
           <li class="bg_ly span3"> <a href="appointments.php"> <i class="fas fa-calendar"></i> <span class="label label-important"> <?php
           include "dbcon.php";
           $sql = "SELECT count(*) as total FROM appointments";
@@ -268,8 +265,7 @@ $result5=mysqli_query($con,$qry);
           echo $row['total'] ?? 0;
 
          ?> </span>   Total Appointments </a> </li>
-          <!-- <li class="bg_lr"> <a href="error404.html"> <i class="fas fa-info-sign"></i> Error</a> </li> -->
-<!-- Visit codeastro.com for more projects -->
+       
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -331,56 +327,6 @@ $result5=mysqli_query($con,$qry);
         </div>
       </div>
     </div>
-
-    <!-- <div class="row-fluid">
-      <div class="widget-box">
-        <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Earnings & Expenses Reports</h5>
-        </div>
-        <div class="widget-content" >
-          <div class="row-fluid">
-            <div class="span12">
-              <div id="piechart"></div>  
-              <div id="top_y_div" style="width: 700px; height: 180px;"></div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="row-fluid">
-      <div class="span6">
-        <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
-            <h5>Registered Gym Members by Gender: Overview</h5>
-          </div>
-          <div class="widget-content nopadding collapse in" id="collapseG2">
-            <ul class="recent-posts">
-              
-              <div id="donutchart" style="width: 600px; height: 300px;"></div>
-
-            </ul>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="span6">
-        <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
-            <h5>Staff Members by Designation: Overview</h5>
-          </div>
-          <div class="widget-content nopadding collapse in" id="collapseG2">
-            <ul class="recent-posts">
-              
-            <div id="donutchart2022" style="width: 600px; height: 300px;"></div>
-            </ul>
-          </div>
-        </div>   
-      </div> -->
-      </div>
-	
-<!--End-Chart-box-->
     <!-- <hr/> -->
     <div class="row-fluid">
       <div class="span6">
@@ -420,43 +366,7 @@ $result5=mysqli_query($con,$qry);
       </div>
       <div class="span6">
        
-      <!-- <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="fas fa-tasks"></i></span>
-            <h5>Customer's To-Do Lists</h5>
-          </div>
-          <div class="widget-content">
-            <div class="todo">
-              <ul>
-              <?php
-
-                // include "dbcon.php";
-                // $qry="SELECT * FROM todo";
-                // $result=mysqli_query($con,$qry);
-
-                // while($row=mysqli_fetch_array($result)){ ?>
-
-                <li class='clearfix'> 
-                                                                        
-                    <div class='txt'> <?php //echo $row["task_desc"]?> <?php //if ($row["task_status"] == "Pending") { echo '<span class="by label label-info">Pending</span>';} else { echo '<span class="by label label-success">In Progress</span>'; }?></div>
-                
-               <?php // }
-              //echo"</ul>";
-              ?>
-            </div>
-          </div>
-        </div>
-       
-                </div>
-       
-      </div> End of ToDo List Bar
-    </div>End of Announcement Bar
-  </div>End of container-fluid
-</div>End of content-ID -->
-
-<!--end-main-container-part-->
-
-<!--Footer-part-->
-
+     
 <div class="row-fluid">
   <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By GYM FITNESS CLUB CENTER</a> </div>
 </div>

@@ -11,12 +11,12 @@ $id=$_GET['id'];
 include 'dbcon.php';
 
 
-$qry="UPDATE members SET reminder = '1' where user_id=$id";
+$qry="UPDATE users SET remainder = '1' where member_id='$id'";
 $result=mysqli_query($con,$qry);
 
 if($result){
     echo '<script>alert("Notification sent to selected customer!")</script>';
-    echo '<script>window.location.href = "payment.php";</script>';
+    echo '<script>window.location.href = "members.php";</script>';
     
 }else{
     echo"ERROR!!";

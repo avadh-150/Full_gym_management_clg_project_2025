@@ -114,13 +114,13 @@ echo "$query->num_rows";
                       echo 'active';
                     } ?>"><a href="members.php"><i class="fas fa-arrow-right"></i> List All Members</a></li>
 
-        <li class="<?php if ($page == 'active-members') {
+        <!-- <li class="<?php if ($page == 'active-members') {
                       echo 'active';
                     } ?>"><a href="active-members.php"><i class="fas fa-arrow-right"></i> Active Members</a></li>
 
         <li class="<?php if ($page == 'expire-members') {
                       echo 'active';
-                    } ?>"><a href="expire-member.php"><i class="fas fa-arrow-right"></i> Expire Members</a></li>
+                    } ?>"><a href="expire-member.php"><i class="fas fa-arrow-right"></i> Expire Members</a></li> -->
 
 <!-- <li class="<?php if ($page == 'trainer-assing') {
                   echo 'active';

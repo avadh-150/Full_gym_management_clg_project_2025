@@ -182,6 +182,7 @@ if (isset($_GET['id'])) {
                     <button onclick="window.print();" class="btn btn-info"><i class="fa-solid fa-print"></i> Print Member Info.</button>
                     <!-- <a href="" class="btn btn-info"><i class="fas fa-id-card"></i> Print Membership Card</a> -->
                     <a href="print_card.php?id=<?php echo $memberId; ?>" target="_blank" class="print-button"><button class="btn btn-info"><i class="fas fa-id-card"></i> Membership Card</button></a>
+                    <a href="notify.php?id=<?php echo $memberId; ?>" target="_blank" class="print-button"><button class="btn btn-info"><i class="fa-solid fa-paper-plane"></i> Nofiry </button></a>
 
                 </div>
 

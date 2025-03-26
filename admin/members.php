@@ -67,6 +67,8 @@ $qry = "SELECT s.*, m.*
 $cnt = 1;
 $result = mysqli_query($con, $qry);
 
+
+
 echo "<table class='table table-bordered table-hover'>
         <thead>
             <tr>
@@ -81,37 +83,61 @@ echo "<table class='table table-bordered table-hover'>
                 <th>Plan</th>
                 <th>Payment Status</th>
                 <th>Action</th>
+                <th>Alert</th>
             </tr>
         </thead>";
 
 while ($row = mysqli_fetch_array($result)) {
-
-
-    if($row['plan_status']== '1'){
-    $plan_status=  "<p class='badge badge-success text-center'>Active</p>";
-    }
-    elseif($row['plan_status']== '0') {
-      $plan_status= "<p class='badge badge-warning text-center'>Expire</p>";
-    }
-
-    if ($row['payment_status'] == '1') {
-      $status = "<span class='label label-success' style='background:#28a745;'>Paid</span>";
-  } else {
-      $status = "<span class='label label-danger' style='background:#ffc107;'>Unpaid</span>";
+// Calculate days remaining and status
+$end_date = new DateTime($row['end_date']);
+$current_date = new DateTime();
+$days_remaining = $current_date->diff($end_date)->days;
+$is_expired = $current_date > $end_date;
+$status_plan = ($row['status'] == '1' && !$is_expired) ? 'Active' : 'Inactive';
+// Update status to 0 if membership is expired
+if ($is_expired) {
+  $esql = "UPDATE member_plans SET status='0' WHERE member_id = '" . $row['member_id'] . "' AND end_date = '" . $row['end_date'] . "'";
+  $usql = "UPDATE users SET plan_status='0' WHERE member_id = '" . $row['member_id'] . "'";
+    
+  if (mysqli_query($con, $esql) && mysqli_query($con, $usql)) {
+      error_log("Membership expired for member_id: " . $row['member_id'] . " - Status updated in both tables");
   }
+}
 
-    echo "<tbody> 
-            <td><div class='text-center'>" . htmlspecialchars($row['member_id']) . "</div></td>
-            <td><div class='text-center'>" . $row['full_name'] . "</div></td>
-            <td><div class='text-center'>" . $row['email'] . "</div></td>
-            <td><div class='text-center'>" . $row['mobile'] . "</div></td>
-            <td><div class='text-center'>" . substr($row['address'],0,20) .'..'. "</div></td>
-           
-            <td><div class='text-center'>" . $plan_status . "</div></td>
+// Set color for status_plan
+$status_plan_display = ($status_plan === 'Active') 
+    ? "<span class='label label-success' style='background:#28a745;'>Active</span>"
+    : "<span class='label label-danger' style='background:#dc3545;'>Inactive</span>";
+
+if ($row['payment_status'] == '1') {
+    $status = "<span class='label label-success' style='background:#28a745;'>Paid</span>";
+} else {
+    $status = "<span class='label label-danger' style='background:#ffc107;'>Unpaid</span>";
+}
+
+echo "<tbody> 
+        <td><div class='text-center'>" . htmlspecialchars($row['member_id']) . "</div></td>
+        <td><div class='text-center'>" . $row['full_name'] . "</div></td>
+        <td><div class='text-center'>" . $row['email'] . "</div></td>
+        <td><div class='text-center'>" . $row['mobile'] . "</div></td>
+        <td><div class='text-center'>" . substr($row['address'],0,20) .'..'. "</div></td>
+        <td><div class='text-center'>" . $status_plan_display . "</div></td>";
+            echo " 
             <td><div class='text-center'>" . $status . "</div></td>
-                             <td style='font-size:13px'> <a href='memberProfile.php?id={$row['member_id']}' class='text-info'><i class='fas fa-id-card'></i></a> |
+
+
+            
+                           <td style='font-size:13px'> <a href='memberProfile.php?id={$row['member_id']}' class='text-info'><i class='fas fa-id-card'></i></a> |
                               <a href='edit-member.php?id={$row['member_id']}' class='text-success'><i class='fas fa-edit'></i></a> | 
                     <button style='border:none;outline:none;color:red;' onclick='deleteMember({$row['member_id']})'><i class='fas fa-trash'></i></button></td>
+                    <td>
+                    <div class='text-center'>";
+                    ?>
+                    <a href='sendReminder.php?id=<?php echo $row['member_id']?>'><button class='btn btn-danger btn' <?php echo($row['remainder'] == 1 ? "disabled" : "")?>>Alert</button></a>
+                    <?php 
+                    
+                    echo "</div>
+                    </td>
 
           </tbody>";
     $cnt++;

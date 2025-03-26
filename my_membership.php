@@ -47,6 +47,7 @@
                                     <th>End Date</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th>Details</th>
                                     
 
                                 </tr>
@@ -57,20 +58,18 @@
                                 // Determine status label
                                 switch($product['status']) {
                                     case '1':
-                                        $status = '<label style="background-color:#acbd58; color:#000; padding:5px 10px; border-radius:3px;">Active</label>';
+                                        $status = '<label class="badge bg-success text-white">Active</label>';
                                         break;
                                     case '0':
-                                        $status = '<label style="background-color:#f6f858; color:#000; padding:5px 10px; border-radius:3px;">Inactive</label>';
+                                        $status = '<label class="badge bg-danger text-white">Expired</label>';
                                         break;
-                                    case '2':
-                                        $status = '<label style="background-color:#51ff82; color:#000; padding:5px 10px; border-radius:3px;">Expired</label>';
-                                        break;
+                                    
                                 }
                                 
                                 // Determine remainder status
-                                // $remainder_status = ($product['remainder'] == '1') 
-                                //     ? '<label style="background-color:#ffff07; color:#000; padding:5px 10px; border-radius:3px;">Notify to Renew your membership</label>'
-                                //     : '<label style="background-color:#63f858; color:#000; padding:5px 10px; border-radius:3px;">Active</label>';
+                                $remainder_status = ($user['remainder'] == '1') 
+                                    ? '<label style="background-color:red; color:#000; padding:5px 10px; border-radius:3px;">Notify to Renew your membership is expire soon</label>'
+                                    : '<label style="background-color:; color:#000; padding:5px 10px; border-radius:3px;">We Notify when your Membership is Expire</label>';
                                 ?>
                                 <tr class="product-content">
                                     <td><?= htmlspecialchars($product['id']) ?></td>
@@ -82,7 +81,7 @@
                                         <td>
                                         <a href="member-view.php?member_id=<?= htmlspecialchars($product['member_id']) ?>" class="btn btn-primary btn-sm">view detail..</a>
                                     </td>
-                                    <!-- <td><?= $remainder_status ?></td> -->
+                                    <td><?= $remainder_status ?></td>
                                 </tr>
                             <?php } ?>
                             </tbody>

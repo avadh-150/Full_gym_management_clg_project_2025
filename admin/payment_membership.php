@@ -61,13 +61,13 @@ if (!isset($_SESSION['user_id'])) {
                             <?php
 
                             include "dbcon.php";
-                            $qry = "SELECT ps.*, p.*, s.name 
+                            $qry = "SELECT ps.*, p.*, s.name,s.* 
                                    FROM payments p 
                                    JOIN users s ON s.member_id = p.member_id 
                                    JOIN membership_plans ps ON ps.id = s.current_plan_id 
                                    WHERE p.payment_type = 'membership' 
                                    AND s.role = 'member_user' 
-                                   AND s.plan_status = '1' and p.payment_status='1'";
+                                   AND p.payment_status='1'";
                             $cnt = 1;
                             $result = mysqli_query($con, $qry);
 
@@ -82,13 +82,24 @@ if (!isset($_SESSION['user_id'])) {
                   <th>Amount</th>
                   <th>Payment Method</th>
                   <th>Payment Type</th>
+                  <th>Membership</th>
                   <th>User Name</th>
                   <th>Payment Status</th>
                   <th></th>
                     </tr>
               </thead>";
 
-                            while ($row = mysqli_fetch_array($result)) { ?>
+                            while ($row = mysqli_fetch_array($result)) { 
+                                
+                                
+    if($row['plan_status']== '1'){
+        $plan_status=  "<p class='badge badge-success text-center'>Active</p>";
+        }
+        elseif($row['plan_status']== '0') {
+          $plan_status= "<p class='badge badge-warning text-center'>Expire</p>";
+        }
+    
+                                ?>
 
                                 <tbody>
                                     <td>
@@ -112,6 +123,9 @@ if (!isset($_SESSION['user_id'])) {
                                     </td>
                                     <td>
                                         <div class='text-center'><?php echo $row['payment_type'] ?></div>
+                                    </td>
+                                    <td>
+                                        <div class='text-center'><?php echo $plan_status ?></div>
                                     </td>
                                     
 
