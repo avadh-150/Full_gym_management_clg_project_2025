@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2025 at 03:34 PM
+-- Generation Time: Mar 27, 2025 at 06:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,6 +89,7 @@ CREATE TABLE `appointments` (
   `contact` varchar(50) NOT NULL,
   `Age` int(50) NOT NULL,
   `service_type` varchar(50) NOT NULL,
+  `amount` varchar(50) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `fitness_level` varchar(100) NOT NULL,
   `payment_id` int(11) NOT NULL,
@@ -103,17 +104,20 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `user_id`, `trainer_id`, `appointment_date`, `appointment_time`, `fullname`, `email`, `contact`, `Age`, `service_type`, `description`, `fitness_level`, `payment_id`, `payment_status`, `payment_method`, `status`, `created_at`, `updated_at`) VALUES
-(14, 41, 3, '2025-03-31', '08:00:00', 'ava joy', 'wotor30234@arensus.com', '0985647123', 23, 'Cardio', 'mfesbf', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-07 17:51:25', '2025-03-09 17:21:09'),
-(19, 41, 1, '2025-03-14', '06:00:00', 'white paguses', 'wotor30234@arensus.com', '9085647123', 25, 'Yoga', 's/la.ndevvfvhxcskjcndseifikdjcisfjefj x,j ifds fkjf', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-07 18:04:34', '2025-03-09 17:21:03'),
-(20, 39, 3, '2025-03-21', '08:00:00', 'Jenish Rameshnbhai Piplaya', 'jenish123@gmail.com', '9737264689', 21, 'Cardio', 'Hi go gym fitness club', 'intermediate', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-08 05:34:48', '2025-03-11 16:47:06'),
-(25, 31, 6, '2025-03-18', '18:08:00', 'ava joy', 'wotor30234@arensus.com', '9764318521', 20, 'Running', 'poiuytrewsdfghjkl,mnbvc', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-11 06:50:36', '2025-03-11 16:47:08'),
-(27, 31, 5, '2025-03-19', '05:10:00', 'Het Joshy K.', 'sutax8081@gmail.com', '9874560123', 24, 'Meditation', 'i want to join your classes to good health', 'intermediate', 35, 1, 'credit_card', 'scheduled', '2025-03-11 10:00:06', '2025-03-11 11:30:59'),
-(30, 43, 6, '2025-03-18', '18:08:00', 'Rahul Bhardwaj M.', 'avadhradadiya43@gmail.com', '9512368742', 21, 'Running', 'oiuytrdsghjkkjhgcxn kjhgfjhgv', 'advanced', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-11 16:27:38', '2025-03-12 17:43:56'),
-(33, 44, 6, '2025-03-19', '16:00:00', 'Neha Savaliya R.', 'bowadav568@payposs.com', '9856320147', 54, 'Running', 'iuytresdfglkjhgxvb', 'beginner', 36, 1, 'credit_card', 'completed', '2025-03-12 10:24:03', '2025-03-12 17:51:44'),
-(34, 44, 7, '2025-03-21', '06:30:00', 'Neha Savaliya R.', 'bowadav568@payposs.com', '9874563210', 52, 'Zumba', 'poiuytsdfghjklkjhvc', 'intermediate', 0, 1, 'pay_at_gym', 'completed', '2025-03-12 10:36:45', '2025-03-12 10:52:19'),
-(35, 45, 2, '2025-03-21', '16:10:00', 'ava joy', 'wotor30234@arensus.com', '0908564712', 21, 'Light heavyweight', 'jhgfghiuytfvbnjmk', 'intermediate', 37, 1, 'credit_card', 'completed', '2025-03-13 03:48:00', '2025-03-13 03:49:02'),
-(36, 39, 2, '2025-03-25', '09:10:00', 'Jenish Joshy J.', 'sutax8081@gmail.com', '9874632510', 50, 'Bodybuilding', 'oiuytrdghjklkjhbv ytfcvbnm', 'athlete', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-16 14:20:54', '2025-03-16 14:20:54');
+INSERT INTO `appointments` (`id`, `user_id`, `trainer_id`, `appointment_date`, `appointment_time`, `fullname`, `email`, `contact`, `Age`, `service_type`, `amount`, `description`, `fitness_level`, `payment_id`, `payment_status`, `payment_method`, `status`, `created_at`, `updated_at`) VALUES
+(14, 41, 3, '2025-03-31', '08:00:00', 'ava joy', 'wotor30234@arensus.com', '0985647123', 23, 'Cardio', '', 'mfesbf', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-07 17:51:25', '2025-03-09 17:21:09'),
+(19, 41, 1, '2025-03-14', '06:00:00', 'white paguses', 'wotor30234@arensus.com', '9085647123', 25, 'Yoga', '', 's/la.ndevvfvhxcskjcndseifikdjcisfjefj x,j ifds fkjf', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-07 18:04:34', '2025-03-09 17:21:03'),
+(20, 39, 3, '2025-03-21', '08:00:00', 'Jenish Rameshnbhai Piplaya', 'jenish123@gmail.com', '9737264689', 21, 'Cardio', '', 'Hi go gym fitness club', 'intermediate', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-08 05:34:48', '2025-03-11 16:47:06'),
+(25, 31, 6, '2025-03-18', '18:08:00', 'ava joy', 'wotor30234@arensus.com', '9764318521', 20, 'Running', '', 'poiuytrewsdfghjkl,mnbvc', 'beginner', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-11 06:50:36', '2025-03-11 16:47:08'),
+(27, 31, 5, '2025-03-19', '05:10:00', 'Het Joshy K.', 'sutax8081@gmail.com', '9874560123', 24, 'Meditation', '', 'i want to join your classes to good health', 'intermediate', 35, 1, 'credit_card', 'scheduled', '2025-03-11 10:00:06', '2025-03-11 11:30:59'),
+(30, 43, 6, '2025-03-18', '18:08:00', 'Rahul Bhardwaj M.', 'avadhradadiya43@gmail.com', '9512368742', 21, 'Running', '', 'oiuytrdsghjkkjhgcxn kjhgfjhgv', 'advanced', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-11 16:27:38', '2025-03-12 17:43:56'),
+(33, 44, 6, '2025-03-19', '16:00:00', 'Neha Savaliya R.', 'bowadav568@payposs.com', '9856320147', 54, 'Running', '', 'iuytresdfglkjhgxvb', 'beginner', 36, 1, 'credit_card', 'completed', '2025-03-12 10:24:03', '2025-03-12 17:51:44'),
+(34, 44, 7, '2025-03-21', '06:30:00', 'Neha Savaliya R.', 'bowadav568@payposs.com', '9874563210', 52, 'Zumba', '', 'poiuytsdfghjklkjhvc', 'intermediate', 0, 1, 'pay_at_gym', 'completed', '2025-03-12 10:36:45', '2025-03-12 10:52:19'),
+(35, 45, 2, '2025-03-21', '16:10:00', 'ava joy', 'wotor30234@arensus.com', '0908564712', 21, 'Light heavyweight', '', 'jhgfghiuytfvbnjmk', 'intermediate', 37, 1, 'credit_card', 'completed', '2025-03-13 03:48:00', '2025-03-13 03:49:02'),
+(36, 39, 2, '2025-03-25', '09:10:00', 'Jenish Joshy J.', 'sutax8081@gmail.com', '9874632510', 50, 'Bodybuilding', '', 'oiuytrdghjklkjhbv ytfcvbnm', 'athlete', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-16 14:20:54', '2025-03-16 14:20:54'),
+(37, 31, 2, '2025-03-26', '09:10:00', 'ayush mangukiya k.', 'ayushmangukiya007@gmail.com', '1236547890', 24, 'Bodybuilding', '', 'oiuytrsazxghjklkjhgfcxcvbnmuhyg ', 'beginner', 38, 1, 'credit_card', 'completed', '2025-03-17 03:45:04', '2025-03-17 03:48:49'),
+(38, 31, 1, '2025-03-26', '07:45:00', 'ava joy', 'yitejay730@doishy.com', '0085647123', 32, 'Vinyasa Yoga', '', 'rtyuiopoiugfvbn', 'intermediate', 0, 1, 'pay_at_gym', 'completed', '2025-03-17 03:51:04', '2025-03-17 03:52:42'),
+(45, 40, 4, '2025-03-30', '11:00:00', 'avadh', 'sutax8081@gmail.com', '9856321047', 54, 'workout', '800', 'poiuytrewadfghjkl,mnbvcxz', 'advanced', 40, 1, 'credit_card', 'scheduled', '2025-03-25 18:22:52', '2025-03-25 18:34:57');
 
 -- --------------------------------------------------------
 
@@ -143,27 +147,14 @@ CREATE TABLE `carts` (
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `classes`
+-- Dumping data for table `carts`
 --
 
-CREATE TABLE `classes` (
-  `class_id` int(11) NOT NULL,
-  `class_name` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
-  `trainer_id` int(11) DEFAULT NULL,
-  `schedule_day` varchar(20) NOT NULL,
-  `schedule_time` time NOT NULL,
-  `duration_minutes` int(11) NOT NULL,
-  `capacity` int(11) NOT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `image_path` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_qty`, `create_at`) VALUES
+(80, 40, 9, 1, '2025-03-27 04:59:33'),
+(81, 40, 7, 1, '2025-03-27 04:59:41'),
+(82, 40, 15, 1, '2025-03-27 04:59:50');
 
 -- --------------------------------------------------------
 
@@ -191,7 +182,8 @@ INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `answer`, `cre
 (7, 'white paguses', 'wotor30234@arensus.com', '09085647123', 'skjbnskfmjsnsm jn,f jne,fn,nfjsn skn  ,n,fnk,snkjsndnd f e', '', '2025-01-22 08:41:27', 1),
 (8, 'ava joy', 'direya4166@halbov.com', '09085647123', 'hello sir i have some query for your gym to join your club plz reply  ', '', '2025-01-22 09:57:49', 1),
 (9, 'white paguses', 'whitehack880@gmail.coom', '884866151398', ' mcs djasdhabdhdbawhdbawhjdbwhjdfbhj', '', '2025-01-22 10:00:41', 1),
-(10, 'ava joy', 'wotor30234@arensus.com', '09085647123', ' msmdmdscs', '', '2025-03-06 12:20:48', 0);
+(10, 'ava joy', 'wotor30234@arensus.com', '09085647123', ' msmdmdscs', '', '2025-03-06 12:20:48', 0),
+(11, 'ava joy', 'yitejay730@doishy.com', '09085647123', 'kjhgfewqhhdsshcyhdsc', '', '2025-03-17 03:58:13', 1);
 
 -- --------------------------------------------------------
 
@@ -326,7 +318,7 @@ CREATE TABLE `members` (
 INSERT INTO `members` (`user_id`, `fullname`, `username`, `password`, `gender`, `dor`, `services`, `amount`, `paid_date`, `p_year`, `plan`, `address`, `contact`, `status`, `attendance_count`, `ini_weight`, `curr_weight`, `ini_bodytype`, `curr_bodytype`, `progress_date`, `reminder`) VALUES
 (26, 'Mattie F. Maher', 'mattie', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '1995-05-18', 'Sauna', 420, '2022-06-01', 2022, '12', '73 Settlers Lane', '9995554444', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
 (27, 'Justin C. Lusk', 'justin', 'cac29d7a34687eb14b37068ee4708e7b', 'Male', '1995-12-12', 'Cardio', 40, '2022-05-30', 2022, '1', '45 Bell Street', '3545785540', 'Active', 1, 0, 0, '', '', '0000-00-00', 0),
-(29, 'Kathy J. Glennon', 'kathy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2022-06-02', 'Fitness', 330, '2022-06-02', 0, '6', '87 Harry Place', '7896587458', 'Active', 0, 0, 0, '', '', '0000-00-00', 0),
+(29, 'Kathy J. Glennon', 'kathy', 'cac29d7a34687eb14b37068ee4708e7b', 'Female', '2022-06-02', 'Fitness', 330, '2022-06-02', 0, '6', '87 Harry Place', '7896587458', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
 (30, 'avadh', '@avadh', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'Male', '2025-01-11', 'Fitness', 0, '0000-00-00', 0, '1', 'puga', '985632147', 'Pending', 0, 0, 0, '', '', '0000-00-00', 0),
 (31, 'het', 'het123', '202cb962ac59075b964b07152d234b70', 'Male', '2025-01-11', 'Cardio', 0, '0000-00-00', 0, '1', 'punagam', '9852361470', 'Pending', 0, 0, 0, '', '', '0000-00-00', 0),
 (32, 'ram', 'ram123', '6a557ed1005dddd940595b8fc6ed47b2', 'Male', '1991-02-05', 'Cardio', 40, '2025-01-11', 2025, '1', 'ayodhya', '6589742789', 'Active', 0, 0, 0, '', '', '0000-00-00', 1),
@@ -382,8 +374,8 @@ CREATE TABLE `member_plans` (
 --
 
 INSERT INTO `member_plans` (`id`, `member_id`, `plan_id`, `start_date`, `end_date`, `status`, `payment_id`, `created_at`) VALUES
-(9, '6e37116788aa', 10, '2025-02-27', '2025-03-29', 1, 24, '2025-02-27 17:16:00'),
-(10, 'abb4a0a08f7d', 10, '2025-02-27', '2025-03-29', 1, 25, '2025-02-27 17:51:58'),
+(9, '6e37116788aa', 10, '2025-02-02', '2025-03-29', 1, 24, '2025-02-27 17:16:00'),
+(10, 'abb4a0a08f7d', 10, '2025-02-01', '2025-03-26', 0, 25, '2025-02-27 17:51:58'),
 (11, '0098472b9f9a', 13, '2025-03-03', '2025-06-01', 1, 26, '2025-03-03 11:17:23');
 
 -- --------------------------------------------------------
@@ -422,7 +414,8 @@ INSERT INTO `orders` (`id`, `tracking_id`, `user_id`, `name`, `email`, `phone`, 
 (22, '916710394823', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 12999, 'Visa Card', '9', 1, NULL, '2025-02-17 15:56:54', 1),
 (23, '346438359023', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 35000, 'Visa Card', '10', 1, NULL, '2025-02-18 15:08:56', 0),
 (24, '320382988423', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 35000, 'Visa Card', '11', 1, NULL, '2025-02-19 04:18:59', 1),
-(25, '588383473123', 36, 'jay vanani remabhai', 'sutax102@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 65998, 'Visa Card', '19', 1, NULL, '2025-02-26 11:24:40', 1);
+(25, '588383473123', 36, 'jay vanani remabhai', 'sutax102@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 65998, 'Visa Card', '19', 1, NULL, '2025-02-26 11:24:40', 1),
+(26, '745745951723', 31, 'ayush mangukiya k.', 'ayushmangukiya007@gmail.com', '0985647123', 'surat\r\nsurat', 390004, 12999, 'Visa Card', '39', 1, NULL, '2025-03-17 03:56:26', 1);
 
 -- --------------------------------------------------------
 
@@ -454,7 +447,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `qty`, `price`, `crea
 (23, 23, 14, 1, 35000, '2025-02-18 15:08:56'),
 (24, 24, 14, 1, 35000, '2025-02-19 04:18:59'),
 (25, 25, 1, 2, 24999, '2025-02-26 11:24:40'),
-(26, 25, 7, 1, 16000, '2025-02-26 11:24:40');
+(26, 25, 7, 1, 16000, '2025-02-26 11:24:40'),
+(27, 26, 2, 1, 12999, '2025-03-17 03:56:26');
 
 -- --------------------------------------------------------
 
@@ -496,7 +490,10 @@ INSERT INTO `payments` (`id`, `member_id`, `amount`, `payment_date`, `payment_me
 (26, '0098472b9f9a', 2999.00, '2025-03-03 12:17:23', 'Visa Card', 'txn_3QyX01Px6HkKfodW23k6z21h', 13, 1, 'membership', NULL, NULL, NULL, NULL, '2025-03-03 11:17:23', 40),
 (35, NULL, 550.00, '2025-03-11 12:30:59', 'credit_card', 'txn_3R1R1WPx6HkKfodW1799VSV1', NULL, 1, 'appointment', NULL, 27, NULL, NULL, '2025-03-11 11:30:59', 31),
 (36, NULL, 550.00, '2025-03-12 11:31:46', 'credit_card', 'txn_3R1mZmPx6HkKfodW1GgIfk4F', NULL, 1, 'appointment', NULL, 33, NULL, NULL, '2025-03-12 10:31:46', 44),
-(37, NULL, 550.00, '2025-03-13 04:48:28', 'credit_card', 'txn_3R22l3Px6HkKfodW2Qegcacp', NULL, 1, 'appointment', NULL, 35, NULL, NULL, '2025-03-13 03:48:28', 45);
+(37, NULL, 550.00, '2025-03-13 04:48:28', 'credit_card', 'txn_3R22l3Px6HkKfodW2Qegcacp', NULL, 1, 'appointment', NULL, 35, NULL, NULL, '2025-03-13 03:48:28', 45),
+(38, NULL, 550.00, '2025-03-17 04:45:39', 'credit_card', 'txn_3R3UcSPx6HkKfodW02ucoFRD', NULL, 1, 'appointment', NULL, 37, NULL, NULL, '2025-03-17 03:45:39', 31),
+(39, NULL, 12999.00, '2025-03-17 04:56:26', 'Visa Card', 'txn_3R3UmtPx6HkKfodW0qqvf7pL', NULL, 1, 'product', 26, NULL, NULL, NULL, '2025-03-17 03:56:26', 31),
+(40, NULL, 800.00, '2025-03-25 19:34:57', 'credit_card', 'txn_3R6cJbPx6HkKfodW2LYg1i2P', NULL, 1, 'appointment', NULL, 45, NULL, NULL, '2025-03-25 18:34:57', 40);
 
 -- --------------------------------------------------------
 
@@ -618,6 +615,7 @@ CREATE TABLE `schedule` (
   `trainer_id` int(11) NOT NULL,
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
+  `price` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -625,27 +623,28 @@ CREATE TABLE `schedule` (
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`schedule_id`, `schedule_day`, `schedule_name`, `trainer_id`, `start_time`, `end_time`, `created_at`) VALUES
-(70, 'Monday', 'Yoga', 1, '06:00:00', '07:30:00', '2025-03-06 05:48:17'),
-(71, 'Monday', 'Cardio', 3, '08:00:00', '10:00:00', '2025-03-06 06:42:01'),
-(72, 'Tuesday', 'Meditation', 5, '05:10:00', '06:15:00', '2025-03-06 06:42:51'),
-(73, 'Monday', 'Body Building', 2, '16:00:00', '18:00:00', '2025-03-06 09:40:04'),
-(74, 'Monday', 'Running', 6, '18:08:00', '20:15:00', '2025-03-06 09:40:34'),
-(75, 'Tuesday', 'Zumba', 7, '06:20:00', '07:45:00', '2025-03-06 09:43:22'),
-(76, 'Tuesday', 'Dieting Class', 6, '09:15:00', '10:45:00', '2025-03-06 09:48:55'),
-(77, 'Wednesday', 'Heavyweight', 2, '08:15:00', '10:15:00', '2025-03-06 09:59:23'),
-(78, 'Thursday', 'Strength training for muscular endurance', 3, '09:00:00', '12:15:00', '2025-03-06 10:00:29'),
-(79, 'Wednesday', 'Yoga', 3, '11:15:00', '13:00:00', '2025-03-06 10:01:55'),
-(80, 'Wednesday', 'Running', 6, '16:00:00', '18:30:00', '2025-03-06 10:02:33'),
-(81, 'Thursday', 'Muscular strength', 4, '13:30:00', '15:00:00', '2025-03-06 10:04:54'),
-(82, 'Thursday', 'Light heavyweight', 2, '16:10:00', '18:50:00', '2025-03-06 10:05:52'),
-(83, 'Friday', 'Meditation', 5, '06:00:00', '07:30:00', '2025-03-06 10:06:31'),
-(84, 'Friday', 'Vinyasa Yoga', 1, '07:45:00', '09:30:00', '2025-03-06 10:07:11'),
-(85, 'Friday', 'Strength training for muscle power', 3, '09:45:00', '11:00:00', '2025-03-06 10:07:52'),
-(86, 'Friday', 'Body Composition', 4, '16:12:00', '18:00:00', '2025-03-06 10:08:39'),
-(87, 'Saturday', 'Zumba', 7, '06:30:00', '08:30:00', '2025-03-06 10:09:07'),
-(88, 'Saturday', 'Kundalini Yoga', 8, '09:00:00', '11:01:00', '2025-03-06 10:09:53'),
-(89, 'Sunday', 'Bodybuilding', 2, '09:10:00', '12:30:00', '2025-03-06 10:12:30');
+INSERT INTO `schedule` (`schedule_id`, `schedule_day`, `schedule_name`, `trainer_id`, `start_time`, `end_time`, `price`, `created_at`) VALUES
+(70, 'Monday', 'Yoga', 1, '06:00:00', '07:30:00', '', '2025-03-06 05:48:17'),
+(71, 'Monday', 'Cardio', 3, '08:00:00', '10:00:00', '', '2025-03-06 06:42:01'),
+(72, 'Tuesday', 'Meditation', 5, '05:10:00', '06:15:00', '', '2025-03-06 06:42:51'),
+(73, 'Monday', 'Body Building', 2, '16:00:00', '18:00:00', '', '2025-03-06 09:40:04'),
+(74, 'Monday', 'Running', 6, '18:08:00', '20:15:00', '', '2025-03-06 09:40:34'),
+(75, 'Tuesday', 'Zumba', 7, '06:20:00', '07:45:00', '', '2025-03-06 09:43:22'),
+(76, 'Tuesday', 'Dieting Class', 6, '09:15:00', '10:45:00', '', '2025-03-06 09:48:55'),
+(77, 'Wednesday', 'Heavyweight', 2, '08:15:00', '10:15:00', '', '2025-03-06 09:59:23'),
+(78, 'Thursday', 'Strength training for muscular endurance', 3, '09:00:00', '12:15:00', '', '2025-03-06 10:00:29'),
+(79, 'Wednesday', 'Yoga', 3, '11:15:00', '13:00:00', '', '2025-03-06 10:01:55'),
+(80, 'Wednesday', 'Running', 6, '16:00:00', '18:30:00', '', '2025-03-06 10:02:33'),
+(81, 'Thursday', 'Muscular strength', 4, '13:30:00', '15:00:00', '', '2025-03-06 10:04:54'),
+(82, 'Thursday', 'Light heavyweight', 2, '16:10:00', '18:50:00', '', '2025-03-06 10:05:52'),
+(83, 'Friday', 'Meditation', 5, '06:00:00', '07:30:00', '450', '2025-03-06 10:06:31'),
+(84, 'Friday', 'Vinyasa Yoga', 1, '07:45:00', '09:30:00', '400', '2025-03-06 10:07:11'),
+(85, 'Friday', 'Strength training for muscle power', 3, '09:45:00', '11:00:00', '500', '2025-03-06 10:07:52'),
+(86, 'Friday', 'Body Composition', 4, '16:12:00', '18:00:00', '250', '2025-03-06 10:08:39'),
+(87, 'Saturday', 'Zumba', 7, '06:30:00', '08:30:00', '250', '2025-03-06 10:09:07'),
+(88, 'Saturday', 'Kundalini Yoga', 8, '09:00:00', '11:01:00', '400', '2025-03-06 10:09:53'),
+(89, 'Sunday', 'Bodybuilding', 2, '09:10:00', '12:30:00', '500', '2025-03-06 10:12:30'),
+(90, 'Sunday', 'workout', 4, '11:00:00', '15:00:00', '800', '2025-03-25 17:49:22');
 
 -- --------------------------------------------------------
 
@@ -745,18 +744,6 @@ INSERT INTO `trainers` (`id`, `name`, `email`, `phone`, `specialization`, `exper
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trainer_schedule`
---
-
-CREATE TABLE `trainer_schedule` (
-  `id` int(11) NOT NULL,
-  `trainer_id` int(11) NOT NULL,
-  `schedule_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -798,9 +785,9 @@ INSERT INTO `users` (`id`, `member_id`, `full_name`, `name`, `email`, `mobile`, 
 (21, '0', 'Josy kalu', 'kalu', 'mofivo9318@halbov.com', '9856321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'male', '263 sivay society, puna', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', 'b2c986fc52369e1cf2ae4c1b8b0e03f3', 1, '2025-02-28 10:16:28', 'normal_user'),
 (22, '0', '', 'Keval', 'direya4166@halbov.com', '', '9445676904c4c57181bf262426988083', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-20', '058b1b59139ab772c42f24325a443aed', 1, '2025-02-24 14:23:05', 'normal_user'),
 (23, '0', 'ava joy', 'ava123', 'ava@gmail.com', '9856321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'Female', '182 shivay society,surat,gujarat ', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-02-16', '', 0, '2025-02-24 14:23:08', 'normal_user'),
-(31, '6e37116788aa', 'Ayush Mangukiya K.', 'ayush 123', 'xavixir832@envoes.com', '9085647123', '082b17c053274c462139ef53fe270780', 'Male', '84 Krishna Apartment, Surat, Gujarat 395010', '1741227207_person_2.jpg', 0, 0, 0, 10, 'IT Professional ', 0, '', 1, 1, 0, '2025-02-16', '', 0, '2025-03-06 02:13:27', 'member_user'),
-(39, 'abb4a0a08f7d', 'Jenish Rambhai Pipaliya', 'jenish123', 'jenish123@gmail.com', '9085647123', 'a1af9d54efd2b16c6c0d2abcd67610e2', 'Male', '485 2nd floor krishna apartment,surat,gujarat .398040', 'hero.png', 56, 60, 22, 10, 'Diamond worker', 0, '', 1, 1, 0, '2025-02-27', '42c68d414352a8734d8523248939905b', 0, '2025-03-06 02:04:04', 'member_user'),
-(40, '0098472b9f9a', 'Dipak Rameshbhain Shiyal', 'avadh-123', 'bihavow329@bnsteps.com', '9081939675', '831ccd5839331a317a353476d688a2cb', 'male', '12 House Number,In front of Kevat Society, Kargil chowk ,Surat, Gujarat 395010.', 'WhatsApp Image 2025-03-03 at 16.39.05_75938f632.jpg', 56, 60, 21, 13, 'Trader In BSE', 5, '', 1, 1, 0, '2025-03-03', 'e63ebe027a65d1d57fa65c46d1b2f0ca', 0, '2025-03-05 08:43:35', 'member_user'),
+(31, '6e37116788aa', 'Ayush Mangukiya K.', 'ayush 123', 'xavixir832@envoes.com', '9085647123', '082b17c053274c462139ef53fe270780', 'Male', '84 Krishna Apartment, Surat, Gujarat 395010', '1741227207_person_2.jpg', 56, 60, 21, 10, 'IT Professional ', 0, '', 1, 1, 0, '2025-02-16', '', 0, '2025-03-17 03:59:35', 'member_user'),
+(39, 'abb4a0a08f7d', 'Jenish Rambhai Pipaliya', 'jenish123', 'gihic39423@evluence.com', '9085647123', 'a1af9d54efd2b16c6c0d2abcd67610e2', 'Male', '485 2nd floor krishna apartment,surat,gujarat .398040', 'hero.png', 56, 60, 22, 10, 'Diamond worker', 0, '', 1, 0, 1, '2025-02-27', '42c68d414352a8734d8523248939905b', 0, '2025-03-26 08:27:35', 'member_user'),
+(40, '0098472b9f9a', 'Dipak Rameshbhain Shiyal', 'avadh-123', 'bihavow329@bnsteps.com', '9081939675', '831ccd5839331a317a353476d688a2cb', 'male', '12 House Number,In front of Kevat Society, Kargil chowk ,Surat, Gujarat 395010.', 'WhatsApp Image 2025-03-03 at 16.39.05_75938f632.jpg', 56, 60, 21, 13, 'Trader In BSE', 5, '', 1, 1, 0, '2025-03-03', 'e63ebe027a65d1d57fa65c46d1b2f0ca', 0, '2025-03-26 07:43:08', 'member_user'),
 (41, NULL, '', 'jack123', 'jack123@gmail.com', '', '7000dcb4458a658cd95a871e25c473c9', '', '', '1741229037_Screenshot 2025-03-04 135912.png', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-05', 'b485e9c7f44f16e4c999aa5e0f4b8fdf', 0, '2025-03-06 02:43:57', 'normal_user'),
 (42, NULL, '', 'het123', 'sutax8081@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-11', '1128374dbaf30868660701423267295a', 0, '2025-03-11 08:35:22', 'normal_user'),
 (43, NULL, '', 'ram123', 'avadhradadiya42@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-11', 'b5dfa3fde8728f4114e403890630530d', 0, '2025-03-11 15:56:14', 'normal_user'),
@@ -844,13 +831,6 @@ ALTER TABLE `attendance`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `classes`
---
-ALTER TABLE `classes`
-  ADD PRIMARY KEY (`class_id`),
-  ADD KEY `trainer_id` (`trainer_id`);
 
 --
 -- Indexes for table `contact`
@@ -969,14 +949,6 @@ ALTER TABLE `trainers`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `trainer_schedule`
---
-ALTER TABLE `trainer_schedule`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `trainer_id` (`trainer_id`),
-  ADD KEY `schedule_id` (`schedule_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1002,7 +974,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -1014,19 +986,13 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT for table `classes`
---
-ALTER TABLE `classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `equipment`
@@ -1068,19 +1034,19 @@ ALTER TABLE `member_plans`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1110,7 +1076,7 @@ ALTER TABLE `reminder`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -1131,12 +1097,6 @@ ALTER TABLE `trainers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `trainer_schedule`
---
-ALTER TABLE `trainer_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -1152,12 +1112,6 @@ ALTER TABLE `users`
 ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`);
-
---
--- Constraints for table `classes`
---
-ALTER TABLE `classes`
-  ADD CONSTRAINT `classes_ibfk_1` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`);
 
 --
 -- Constraints for table `member_plans`
@@ -1183,13 +1137,6 @@ ALTER TABLE `products`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `trainer_id` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`);
-
---
--- Constraints for table `trainer_schedule`
---
-ALTER TABLE `trainer_schedule`
-  ADD CONSTRAINT `trainer_schedule_ibfk_1` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `trainer_schedule_ibfk_2` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

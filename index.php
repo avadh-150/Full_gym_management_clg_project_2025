@@ -538,7 +538,7 @@ error_reporting(0);
     </div>
 
     <div class="fitness-gallery__controls">
-      <a href="photos.php" class="fitness-gallery__more-btn">View Full Gallery</a>
+      <!-- <a href="photos.php" class="fitness-gallery__more-btn">View Full Gallery</a> -->
     </div>
 </section>
   

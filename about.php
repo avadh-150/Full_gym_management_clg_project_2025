@@ -159,7 +159,7 @@ $trainer = $result1->fetch_assoc();
   </section>
 
   <!-- Leadership Section -->
-  <section class="leadership-section py-5 bg-light">
+  <!-- <section class="leadership-section py-5 bg-light">
     <div class="container">
       <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
@@ -199,7 +199,7 @@ $trainer = $result1->fetch_assoc();
         ?>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Values Section -->
   <section class="values-section py-5">
