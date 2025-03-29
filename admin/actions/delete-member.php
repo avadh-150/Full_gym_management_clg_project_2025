@@ -35,7 +35,7 @@ if (isset($_GET['remove_id'])) {
 
     if ($result) {
         echo "DELETED";
-        header('Location:../remove-admins.php');
+        header('Location:../admins.php');
     } else {
         echo "ERROR!!";
     }

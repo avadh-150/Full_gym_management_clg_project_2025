@@ -57,7 +57,7 @@ if (!isset($_SESSION['user_id'])) {
                             <?php
 
                             include "dbcon.php";
-                            $qry = "SELECT p.*,s.name as name FROM payments p, users s where s.id=p.user_id AND payment_type='product' AND p.payment_status='1'";
+                            $qry = "SELECT p.*,s.name as name,s.id as uid FROM payments p, users s where s.id=p.user_id AND payment_type='product' AND p.payment_status='1'";
                             $cnt = 1;
                             $result = mysqli_query($con, $qry);
 
@@ -66,13 +66,14 @@ if (!isset($_SESSION['user_id'])) {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>User ID</th>
+                  <th>User Name</th>
                   <th>Transaction ID</th>
                   <th>Payment Date/Time</th>
                   <th>Amount</th>
                   <th>Payment Method</th>
                   <th>Payment Type</th>
                   <th>Order ID</th>
-                  <th>User Name</th>
                   <th>Payment Status</th>
                   <th></th>
                     </tr>
@@ -84,6 +85,12 @@ if (!isset($_SESSION['user_id'])) {
 
                                     <td>
                                         <div class='text-center'><?php echo $cnt; ?></div>
+                                    </td>
+                                    <td>
+                                        <div class='text-center'><?php echo $row['uid'] ?></div>
+                                    </td>
+                                    <td>
+                                        <div class='text-center'><?php echo $row['name'] ?></div>
                                     </td>
                                     <td>
                                         <div class='text-center'><?php echo $row['transaction_id'] ?></div>
@@ -105,9 +112,6 @@ if (!isset($_SESSION['user_id'])) {
                                         <div class='text-center'><?php echo $row['order_id'] ?></div>
                                     </td>
 
-                                    <td>
-                                        <div class='text-center'><?php echo $row['name'] ?></div>
-                                    </td>
                                     <td><?php if ($row['payment_status'] == '1') {
                                             $status = "<span class='label label-success' style='background:#28a745; padding:5px 10px;'>Paid</span>";
                                         } else {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2025 at 06:01 AM
+-- Generation Time: Mar 29, 2025 at 06:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,8 +45,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`a_id`, `username`, `email`, `gender`, `password`, `contact`, `street`, `city`, `state`, `OTP`) VALUES
-(1, 'admin', 'admin@gmail.com', 'Male', 'e10adc3949ba59abbe56e057f20f883e', '5896321470', '123 shivay society', 'surat', 'Gujarat', ''),
-(4, 'admin_test', 'direya4166@halbov.com', 'Male', '7ef605fc8dba5425d6965fbd4c8fbe1f', '9874521360', 'surat', 'surat', 'Gujarat', '973126');
+(9, 'Nihal', 'ukaninihal@gmail.com', 'Male', '4a48db6397a59b7aa1ed297337a5aea4', '9723538158', 'Manadev Chowk', 'surat', 'Gujarat', ''),
+(10, 'Avadh', 'avadhradadiya43@gmail.com', 'Male', 'b91f83188d5faf657e91d80de919ef58', '9737261547', 'Punagam', 'Surat', 'Gujarat', '114358'),
+(11, 'Ayush', 'ayushmangukiya007@gmail.com', 'Male', '691c720c3152c8686e0ff812a767c552', '9016478486', 'Rachhana society', 'surat', 'gujarat', ''),
+(12, 'jenish', 'jenishpipala146@gmail.com', 'Male', '17c1eb805f782ec09e6ba5af68e29312', '9104798240', 'rachaana society', 'surat', 'gujarat', '');
 
 -- --------------------------------------------------------
 
@@ -67,7 +69,6 @@ CREATE TABLE `announcements` (
 INSERT INTO `announcements` (`id`, `message`, `date`) VALUES
 (7, 'This is to announce that our GYM will remain close for 51 days due to COVID-19.', '2020-03-30'),
 (8, 'Opening of GYM Halls and Clubs are not fixed yet. Stay tuned for more updates!!', '2020-04-03'),
-(9, 'Renovation Going On...', '2020-04-04'),
 (10, 'This is a demo announcement from admin', '2022-06-03'),
 (11, 'hi everyone', '2025-01-20'),
 (12, 'hi every one this your Admin i would like to inform about fitness club is going to celebrate the hol', '2025-03-12');
@@ -117,7 +118,8 @@ INSERT INTO `appointments` (`id`, `user_id`, `trainer_id`, `appointment_date`, `
 (36, 39, 2, '2025-03-25', '09:10:00', 'Jenish Joshy J.', 'sutax8081@gmail.com', '9874632510', 50, 'Bodybuilding', '', 'oiuytrdghjklkjhbv ytfcvbnm', 'athlete', 0, 0, 'pay_at_gym', 'scheduled', '2025-03-16 14:20:54', '2025-03-16 14:20:54'),
 (37, 31, 2, '2025-03-26', '09:10:00', 'ayush mangukiya k.', 'ayushmangukiya007@gmail.com', '1236547890', 24, 'Bodybuilding', '', 'oiuytrsazxghjklkjhgfcxcvbnmuhyg ', 'beginner', 38, 1, 'credit_card', 'completed', '2025-03-17 03:45:04', '2025-03-17 03:48:49'),
 (38, 31, 1, '2025-03-26', '07:45:00', 'ava joy', 'yitejay730@doishy.com', '0085647123', 32, 'Vinyasa Yoga', '', 'rtyuiopoiugfvbn', 'intermediate', 0, 1, 'pay_at_gym', 'completed', '2025-03-17 03:51:04', '2025-03-17 03:52:42'),
-(45, 40, 4, '2025-03-30', '11:00:00', 'avadh', 'sutax8081@gmail.com', '9856321047', 54, 'workout', '800', 'poiuytrewadfghjkl,mnbvcxz', 'advanced', 40, 1, 'credit_card', 'scheduled', '2025-03-25 18:22:52', '2025-03-25 18:34:57');
+(45, 40, 4, '2025-03-30', '11:00:00', 'avadh', 'sutax8081@gmail.com', '9856321047', 54, 'workout', '800', 'poiuytrewadfghjkl,mnbvcxz', 'advanced', 40, 1, 'credit_card', 'scheduled', '2025-03-25 18:22:52', '2025-03-25 18:34:57'),
+(46, 46, 3, '2025-04-01', '09:45:00', 'avadh radadiya', 'avadhradadiya43@gmail.com', '9737264678', 22, 'Strength training for muscle power', '500', 'My Goal is to body build with music', 'intermediate', 45, 1, 'credit_card', 'completed', '2025-03-28 09:54:02', '2025-03-28 16:02:45');
 
 -- --------------------------------------------------------
 
@@ -147,15 +149,6 @@ CREATE TABLE `carts` (
   `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `product_qty`, `create_at`) VALUES
-(80, 40, 9, 1, '2025-03-27 04:59:33'),
-(81, 40, 7, 1, '2025-03-27 04:59:41'),
-(82, 40, 15, 1, '2025-03-27 04:59:50');
-
 -- --------------------------------------------------------
 
 --
@@ -182,7 +175,7 @@ INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `answer`, `cre
 (7, 'white paguses', 'wotor30234@arensus.com', '09085647123', 'skjbnskfmjsnsm jn,f jne,fn,nfjsn skn  ,n,fnk,snkjsndnd f e', '', '2025-01-22 08:41:27', 1),
 (8, 'ava joy', 'direya4166@halbov.com', '09085647123', 'hello sir i have some query for your gym to join your club plz reply  ', '', '2025-01-22 09:57:49', 1),
 (9, 'white paguses', 'whitehack880@gmail.coom', '884866151398', ' mcs djasdhabdhdbawhdbawhjdbwhjdfbhj', '', '2025-01-22 10:00:41', 1),
-(10, 'ava joy', 'wotor30234@arensus.com', '09085647123', ' msmdmdscs', '', '2025-03-06 12:20:48', 0),
+(10, 'ava joy', 'wotor30234@arensus.com', '09085647123', ' msmdmdscs', '', '2025-03-06 12:20:48', 1),
 (11, 'ava joy', 'yitejay730@doishy.com', '09085647123', 'kjhgfewqhhdsshcyhdsc', '', '2025-03-17 03:58:13', 1);
 
 -- --------------------------------------------------------
@@ -237,7 +230,7 @@ INSERT INTO `gym_blogs` (`id`, `title`, `content`, `image_path`, `created_at`) V
 (1, 'Essential Tips for food Beginners at the Gym', '                                    Starting your fitness journey at the gym can feel overwhelming, but with the right approach, you can set yourself up for success. Here are 10 essential tips for beginners:\r\n1. Set Clear Goals\r\nBefore stepping into the gym, decide what you want to achieve: weight loss, muscle building, or improved endurance. Clear goals will keep you motivated and help tailor your workouts.\r\n\r\n2. Start Slow and Build Gradually\r\nDon’t rush into heavy lifting or intense workouts. Start with lighter weights and shorter sessions, focusing on proper form to prevent injuries.\r\n\r\n3. Warm Up Properly\r\nAlways warm up before exercising to prepare your muscles and joints. Simple activities like jogging or dynamic stretches for 5–10 minutes can reduce the risk of injuries.\r\n                                        ', 'uploads/blogs/1.jpg', '2025-01-18 09:18:45'),
 (2, 'Post-Workout Meals to Boost Recovery', '                                    Refueling your body after a workout is essential for muscle recovery, replenishing energy stores, and promoting overall health. A good post-workout meal should include a balance of protein, carbohydrates, and healthy fats. Here are some great options:\r\n1. Grilled Chicken with Sweet Potato\r\nWhy it’s great: Packed with lean protein for muscle repair and complex carbs to restore glycogen levels.\r\nTip: Add steamed veggies like broccoli or spinach for extra nutrients.\r\n2. Greek Yogurt and Fresh Fruit\r\nWhy it’s great: Greek yogurt provides high-quality protein, while fruits like berries or bananas offer quick-digesting carbs.\r\nTip: Sprinkle some chia seeds or granola for added fiber and omega-3s.\r\n                                        ', 'uploads/blogs/3.jpg', '2025-01-18 09:39:45'),
 (5, 'The Importance of Physical Therapy Internships for Career Growth', '                                    <p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">If you’re studying to become a physical therapist, you already know how rewarding this career can be. You get to help people move, feel, and live better. But here’s the thing—theoretical knowledge alone won’t get you where you want to be. To truly grow in the physical therapy field, you need hands-on experience. &nbsp;</p><p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Physical therapy internships allow you to apply what you’ve learned in real-world settings, work with actual patients, and learn from seasoned professionals. Whether you’re just starting or looking to specialize, internships can be a game-changer for your physical therapy career.&nbsp;&nbsp;</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Real-world applications can turn classroom knowledge into valuable clinical skills. While textbooks and lectures teach you the basics, nothing prepares you better than working with real patients.&nbsp;<a href=\"https://medicalaid.org/internships/physical-therapy/\" target=\"_blank\" rel=\"noopener\" data-lasso-id=\"6609\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">Physical therapy internships</a>&nbsp;allow you to apply what you’ve learned while experienced professionals guide you through the process.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">During this time, you get to assess patients, develop treatment plans, and adjust techniques as needed. Practicing stretches, exercises, and mobility treatments can also build your confidence, sharpen your physical therapy skills, and prepare you for the demands of the job.</p>\r\n                                        ', 'uploads/blogs/6052386-G16-2.jpg', '2025-03-04 10:58:36'),
-(6, 'IO Need To Knows For Your First Spin Class', '                                    <p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">It’s literally been over a decade since I qualified as an indoor cycling instructor, 10 years since I originally wrote this blog post and around 7 years since I took part in spin classes aka indoor cycling classes regularly.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">I’m not sure what prompted me to follow through with leading indoor cycling classes, but it’s been on my radar and my vision board for a couple of years now. So I recently took the opportunity to re-qualify, get some teaching experience under my belt, and get on the podium!</p><div><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">I’d once come across someone asking if indoor cycling classes would benefit them when cycling outdoors. To be honest, this is a valid question and some years ago, I honestly thought there was no value in indoor cycling for “actual” (lol) cyclists.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Back in 2014, when I got a bike for&nbsp;<a href=\"https://www.keepitsimpelle.com/improving-fitness-to-cycle-to-work/\" data-lasso-id=\"5855\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">commuting to work</a>, I was sure there was no point to me riding a bike indoors and taking part in spin classes. Why would I cycle to a studio, cycle on a stationary bike, and then cycle home?!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Then I decided to&nbsp;<a href=\"https://www.keepitsimpelle.com/the-london-duathlon-2014-mymoments/\" data-lasso-id=\"5856\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">take on a duathlon</a>&nbsp;and realised that my casual cycle commute was not gonna be enough to get me race ready. In that situation, it then made sense for me to add a spin class or two to my workout schedule in addition to cycle commuting.</p></div><div><br></div>\r\n                                        ', 'uploads/blogs/Launch-Event-48-1MB-1440x960.jpg', '2025-03-04 11:03:42'),
+(6, 'IO Need To Knows For Your First Spin Class', '                                    <p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">It’s literally been over a decade since I qualified as an indoor cycling instructor, 10 years since I originally wrote this blog post and around 7 years since I took part in spin classes aka indoor cycling classes regularly.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">I’m not sure what prompted me to follow through with leading indoor cycling classes, but it’s been on my radar and my vision board for a couple of years now. So I recently took the opportunity to re-qualify, get some teaching experience under my belt, and get on the podium!</p><div><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">I’d once come across someone asking if indoor cycling classes would benefit them when cycling outdoors. To be honest, this is a valid question and some years ago, I honestly thought there was no value in indoor cycling for “actual” (lol) cyclists.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Back in 2014, when I got a bike for&nbsp;<a href=\"https://www.keepitsimpelle.com/improving-fitness-to-cycle-to-work/\" data-lasso-id=\"5855\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">commuting to work</a>, I was sure there was no point to me riding a bike indoors and taking part in spin classes. Why would I cycle to a studio, cycle on a stationary bike, and then cycle home?!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Then&nbsp; decided to&nbsp;<a href=\"https://www.keepitsimpelle.com/the-london-duathlon-2014-mymoments/\" data-lasso-id=\"5856\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">take on a duathlon</a>&nbsp;and realised that my casual cycle commute was not gonna be enough to get me race ready. In that situation, it then made sense for me to add a spin class or two to my workout schedule in addition to cycle commuting.</p></div><div><br></div>\r\n                                        ', 'uploads/blogs/Launch-Event-48-1MB-1440x960.jpg', '2025-03-04 11:03:42'),
 (8, 'Perfect Form: How to Do a Kettlebell Press & Progressions', '<p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">I find something oddly satisfying about pressing weight overhead. It’s not just about strength; it’s about control, precision, and the confidence of moving a load into a position of power. But here’s the thing: not all presses are created equal.</p><p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">While barbells and dumbbells dominate gym floors, the kettlebell brings a whole different challenge to the game. Whether you’ve dabbled in kettlebell training or are just curious about what makes these oddly shaped weights so special, I’m going to show you how kettlebell presses can revolutionize your shoulder sessions.</p><h3 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 36px; padding-top: 40px; background-color: rgb(255, 255, 255);\">Different Angle from Dumbbells and Barbell Press</h3><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">With the weight’s centre of mass sitting below the handle, the kb creates a natural arc during pressing. This changes the mechanics of the lift, engaging muscles differently to barbells and dumbbells. The off-centre load also challenges your grip and wrist strength.</p><h3 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 36px; padding-top: 40px; background-color: rgb(255, 255, 255);\">Multiple Variations</h3><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Kettlebell presses come in many forms, such as the strict press, push press, bottoms-up press, and even the&nbsp;<a href=\"https://www.keepitsimpelle.com/i-like-to-move-it-kettlebell-swing/\" data-lasso-id=\"6444\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">kettlebell Swing</a>. Each variation targets slightly different muscle groups and requires varied levels of coordination and power.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">For example, the bottoms-up press demands extreme focus on grip and wrist stability, while the push press allows for greater load by incorporating the legs.</p><h3 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 36px; padding-top: 40px; background-color: rgb(255, 255, 255);\">Body Alignment</h3><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Pressing a kb naturally encourages better body alignment. The design of the kettlebell requires you to maintain a strong, stacked position, where the wrist, elbow, shoulder, and torso align properly.</p>\r\n                                        ', 'uploads/blogs/how-to-d-a-kettlebell-press.jpg', '2025-03-04 11:55:40'),
 (9, 'Gymboss HIIT Interval Timer Review', '                                    <p class=\"disclouser\" style=\"box-sizing: border-box; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; letter-spacing: 0.5px; background-color: rgb(255, 255, 255); margin-bottom: 35px !important; padding-left: 15px !important; font-size: 14px !important; line-height: 22px !important; border-left: 6px solid rgb(232, 236, 239) !important;\"><span style=\"font-size: 18px;\">I’ve used this Gymboss HIIT interval timer for 10 years now &amp; changed the batteries just once. It’s actually wild!</span></p><div class=\"entry-content\" data-content-ads-inserted=\"true\" style=\"box-sizing: border-box; counter-reset: footnotes 0; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\"><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">Years and years… and years ago on the blog, I posted a review and hosted a give-away for a&nbsp;<a href=\"https://www.amazon.co.uk/Gymboss-Interval-Timer-Stopwatch-Coating/dp/B00CO8HO6O/ref=as_li_ss_tl?tag=keepitsimpe-21&amp;s=gateway&amp;linkCode=sl1&amp;linkId=ab3cb0cda30b13531c3af187beb5411f\" target=\"_blank\" rel=\"nofollow sponsored noopener\" data-lasso-id=\"5690\" data-lasso-name=\"Gymboss Interval Timer and Stopwatch Soft Coating Black/Blue\" data-lasso-link=\"https://go.lasso.link/amazon?url=https%3A%2F%2Fwww.amazon.co.uk%2FGymboss-Interval-Timer-Stopwatch-Coating%2Fdp%2FB00CO8HO6O%2Fref%3Das_li_ss_tl%3Ftag%3Dkeepitsimpe-21%26s%3Dgateway%26linkCode%3Dsl1%26linkId%3Dab3cb0cda30b13531c3af187beb5411f\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">Gymboss Interval Timer &amp; Stopwatch</a>. My memory fails me, but I’m pretty sure I was sent the product and back then, this would have been epic!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">I had never heard of Gymboss Timers before but, [now] 10 years after writing my original post, I’m still using&nbsp;<span style=\"box-sizing: border-box; font-weight: 800;\">the exact</span>&nbsp;same timer as I did then… and I’ve only had to change the batteries for this HIIT interval timer once!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\"><em style=\"box-sizing: border-box;\">It started like this…</em></p><div style=\"box-sizing: border-box; padding: 1em; max-width: 45em; margin: 1em 0px; border: 1px solid rgb(205, 80, 124);\"><span style=\"box-sizing: border-box; font-weight: 800;\">*My stopwatch broke<br style=\"box-sizing: border-box;\">*I learnt to time drills without a stopwatch<br style=\"box-sizing: border-box;\">*My timing became akin to Transport for London (how long can 1 min really be?!)</span></div><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">I quickly became renowned for unspecific timing especially when distracted with conversation while teaching. But then, I started running my sessions literally like a BOSS! …although it seem’s more like all the peeps in my sessions were running them as they could see the time on my waistband.</p><h2 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 42px; padding-top: 40px;\">What Is A Gymboss Timer?</h2><p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">Gymboss&nbsp;Timers are programmable interval timers perfect for timing a single interval, or multiple intervals, and repeating them once or as many times as you wish. The interval timer mode allows timing of any one interval, or two different intervals insequence. These intervals can then be repeated once, or as many times as you select, up to 99 times.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">So the timing couldn’t have been more perfect… pun intended! A HIIT interval timer that you can set the intervals in advance, with various notification alarms (vibrate, beep) that I could choose. Or even choose to have it as non audible? I was onto a winner and didn’t even know it at the time.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">I’m pretty sure I have a second one still in its packaging somewhere which I was gonna use to take photos for this post but I couldn’t find it. So I used my battered (but still beautiful) orange version.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px;\">It’s missing the clip on the back, but gah, we can’t see that in a picture. It probably would be handy to have though ‘cos the amount of times I roam around class, put down my Gymboss, and then can’t remember where I left it… are countless</p></div>\r\n                                        ', 'uploads/blogs/191119-annarachelphotography-lowres-72709-1440x962.jpg', '2025-03-04 12:01:11'),
 (10, 'Home Gym Storage Ideas For Small Spaces', '<p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">It’s been a few years now since I started delivering online fitness from the living room of my one bedroom flat. As time has gone on, I’ve had to come up with good home gym storage ideas as the amount of equipment I own has increased!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Let’s be honest, one of the biggest challenges of working out at home, especially when you live in a smaller place, is finding a way to store all of your equipment (<a href=\"https://www.keepitsimpelle.com/bike-storage-for-small-spaces/\" data-lasso-id=\"5343\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">and also bikes for me</a>). I’m personally trying not to let all my weights and other gear take up all the valuable space in my living room.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">If you’re struggling to find a way to store your home gym equipment, don’t worry. There are a number of creative and affordable storage solutions available. Here are a few ideas to get you started:</p><h2 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 42px; padding-top: 40px; background-color: rgb(255, 255, 255);\">1. Use Your Wall Space</h2><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">One of the best ways to save space in a small home gym is to use wall space for storage. You can hang dumbbells, kettlebells, and other heavy equipment on hooks or racks, providing your walls are strong enough.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">You can also use wall-mounted&nbsp;<a href=\"https://www.bigdug.co.uk/shelving-c4505\" target=\"_blank\" rel=\"sponsored\" data-lasso-id=\"5344\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">shelving</a>*&nbsp;to store smaller items like resistance bands, yoga mats, and water bottles.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">This doesn’t have to be a wall in one of your main spaces either… if you’ve got a storage cupboard in your home, you can increase the capacity by using the wall space in there. I’ve got shelves up in my storage cupboard.</p><h2 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 42px; padding-top: 40px; background-color: rgb(255, 255, 255);\">2. Invest In A Storage Cabinet</h2><p data-slot-rendered-content=\"true\" style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">A storage cabinet is a great way to keep your home gym equipment organised and out of sight. If like you, you have a pretty sizeable hallway, that’s a great place to put it so it can also store things like shoes and umbrellas.There are loads of different types of storage cabinets available, like freestanding cabinets and or even cabinets that can be mounted under a desk or table. I’m a huge fan of the old school ‘locker’ style cabinets… in a bright colour to add some character.</p><h2 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 42px; padding-top: 40px; background-color: rgb(255, 255, 255);\">3. Use A Bench, Baskets Or Bins</h2><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Baskets and bins are a great way to store smaller items, such as resistance bands, foam rollers, and water bottles. You can either store baskets and bins on shelves or on the floor.</p><h2 class=\"wp-block-heading\" style=\"box-sizing: border-box; font-family: Italiana, Didot, serif; font-weight: normal; line-height: 1.3; margin-top: 0px; margin-bottom: 24px; color: rgb(69, 75, 89); letter-spacing: 0px; font-size: 42px; padding-top: 40px; background-color: rgb(255, 255, 255);\">4. Get Creative With Storage</h2><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\">Getting one of those beds that lifts up and turns into a full rack might be out of budget, but there can be more affordable storage solutions if you get creative.</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\"><a href=\"https://www.pinterest.co.uk/\" target=\"_blank\" rel=\"noopener\" data-lasso-id=\"5345\" style=\"box-sizing: border-box; background: transparent; transition: 0.2s ease-in-out; cursor: pointer; color: rgb(242, 148, 116);\">Pinterest</a>&nbsp;is always a good place to start when looking for creative ideas, right?!</p><p style=\"box-sizing: border-box; margin-bottom: 22px; padding: 0px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\"><em style=\"box-sizing: border-box;\">Here’s some of the ideas I’ve used:</em></p><ul class=\"wp-block-list\" style=\"box-sizing: border-box; margin-bottom: 30px; margin-left: 40px; color: rgb(17, 17, 17); font-family: &quot;Open Sans&quot;; font-size: 18px; letter-spacing: 0.5px; background-color: rgb(255, 255, 255);\"><li style=\"box-sizing: border-box; list-style-type: disc;\">fitness equipment stored under my TV stand</li><li style=\"box-sizing: border-box; list-style-type: disc;\">my bar fits nicely behind the living room door</li><li style=\"box-sizing: border-box; list-style-type: disc;\">dumbbells under a coffee table</li><li style=\"box-sizing: border-box; list-style-type: disc;\">walkpad next to a wall in the hallway</li><li></li></ul>\r\n                                        ', 'uploads/blogs/Home-Gym-Storage-Ideas-600x600.png', '2025-03-04 12:06:33'),
@@ -376,7 +369,8 @@ CREATE TABLE `member_plans` (
 INSERT INTO `member_plans` (`id`, `member_id`, `plan_id`, `start_date`, `end_date`, `status`, `payment_id`, `created_at`) VALUES
 (9, '6e37116788aa', 10, '2025-02-02', '2025-03-29', 1, 24, '2025-02-27 17:16:00'),
 (10, 'abb4a0a08f7d', 10, '2025-02-01', '2025-03-26', 0, 25, '2025-02-27 17:51:58'),
-(11, '0098472b9f9a', 13, '2025-03-03', '2025-06-01', 1, 26, '2025-03-03 11:17:23');
+(11, '0098472b9f9a', 13, '2025-03-03', '2025-06-01', 1, 26, '2025-03-03 11:17:23'),
+(13, '45a4e7837d86', 11, '2025-03-28', '2025-06-26', 1, 44, '2025-03-28 09:35:57');
 
 -- --------------------------------------------------------
 
@@ -407,15 +401,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `tracking_id`, `user_id`, `name`, `email`, `phone`, `address`, `pincode`, `total_price`, `payment_method`, `payment_id`, `status`, `comments`, `create_at`, `delivery`) VALUES
-(8, '104425147423', 21, 'avadh Radadiya ajaybhai', 'avadh@gmail.com', '09085647123', '129 sarita society , punagam , surat', 390004, 57998, 'COD', NULL, 0, NULL, '2025-01-29 17:36:51', 1),
-(9, '666526916747', 21, 'ayush mangukiya k.', 'ayush123@gmail.com', '9856320147', '125 rachana society , kapodara surat', 390004, 112000, 'COD', NULL, 0, NULL, '2025-01-30 16:46:57', 0),
-(20, '877847763523', 31, 'avadh Radadiya ajaybhai', 'avadh@gmail.com', '09085647123', '289 Ganga, Surat, Guratar.', 390004, 32000, 'Visa Card', '7', 1, NULL, '2025-02-17 15:47:37', 1),
-(21, '560081367823', 31, 'Shiyal Dipak R.', 'dip123@gmail.com', '09085647123', '563 Jio Park Plaza, Surat,Gujarat', 360001, 16000, 'Visa Card', '8', 1, NULL, '2025-02-17 15:53:19', 0),
-(22, '916710394823', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 12999, 'Visa Card', '9', 1, NULL, '2025-02-17 15:56:54', 1),
-(23, '346438359023', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 35000, 'Visa Card', '10', 1, NULL, '2025-02-18 15:08:56', 0),
-(24, '320382988423', 31, 'ava joy', 'avadh@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 35000, 'Visa Card', '11', 1, NULL, '2025-02-19 04:18:59', 1),
-(25, '588383473123', 36, 'jay vanani remabhai', 'sutax102@gmail.com', '09085647123', 'surat\r\nsurat', 390004, 65998, 'Visa Card', '19', 1, NULL, '2025-02-26 11:24:40', 1),
-(26, '745745951723', 31, 'ayush mangukiya k.', 'ayushmangukiya007@gmail.com', '0985647123', 'surat\r\nsurat', 390004, 12999, 'Visa Card', '39', 1, NULL, '2025-03-17 03:56:26', 1);
+(27, '502593215236', 40, 'avadh Radadiya ajaybhai', 'sutax8081@gmail.com', '9767451236', '283 Plana plaza, punagam, surat, gujarat', 395010, 76000, 'Visa Card', '41', 1, NULL, '2025-03-27 05:09:57', 0),
+(29, '123180886958', 40, 'Ayush Mangukiya K.', 'gihic39423@evluence.com', '9764310258', '175 Rachana Society, Kapodara, Surat, Gujarat', 395010, 64000, 'Visa Card', '43', 1, NULL, '2025-03-27 05:42:26', 1);
 
 -- --------------------------------------------------------
 
@@ -437,18 +424,10 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `qty`, `price`, `created_at`) VALUES
-(6, 8, 2, 2, 12999, '2025-01-29 17:36:51'),
-(7, 8, 9, 1, 32000, '2025-01-29 17:36:51'),
-(8, 9, 9, 2, 32000, '2025-01-30 16:46:57'),
-(9, 9, 3, 2, 24000, '2025-01-30 16:46:57'),
-(20, 20, 9, 1, 32000, '2025-02-17 15:47:37'),
-(21, 21, 7, 1, 16000, '2025-02-17 15:53:19'),
-(22, 22, 2, 1, 12999, '2025-02-17 15:56:54'),
-(23, 23, 14, 1, 35000, '2025-02-18 15:08:56'),
-(24, 24, 14, 1, 35000, '2025-02-19 04:18:59'),
-(25, 25, 1, 2, 24999, '2025-02-26 11:24:40'),
-(26, 25, 7, 1, 16000, '2025-02-26 11:24:40'),
-(27, 26, 2, 1, 12999, '2025-03-17 03:56:26');
+(28, 27, 9, 1, 32000, '2025-03-27 05:09:57'),
+(29, 27, 7, 1, 16000, '2025-03-27 05:09:57'),
+(30, 27, 15, 1, 28000, '2025-03-27 05:09:57'),
+(32, 29, 9, 2, 32000, '2025-03-27 05:42:26');
 
 -- --------------------------------------------------------
 
@@ -479,12 +458,6 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `member_id`, `amount`, `payment_date`, `payment_method`, `transaction_id`, `plan_id`, `payment_status`, `payment_type`, `order_id`, `appointment_id`, `invoice_number`, `notes`, `created_at`, `user_id`) VALUES
-(7, NULL, 32000.00, '2025-02-17 16:47:37', 'Visa Card', 'txn_3QtWXmPx6HkKfodW0nVUJIa7', NULL, 1, 'product', 20, NULL, NULL, NULL, '2025-02-17 15:47:37', 31),
-(8, NULL, 16000.00, '2025-02-17 16:53:19', 'Visa Card', 'txn_3QtWdIPx6HkKfodW2iBBbSus', NULL, 1, 'product', 21, NULL, NULL, NULL, '2025-02-17 15:53:19', 31),
-(9, NULL, 12999.00, '2025-02-17 16:56:54', 'Visa Card', 'txn_3QtWglPx6HkKfodW2YPqZT2n', NULL, 1, 'product', 22, NULL, NULL, NULL, '2025-02-17 15:56:54', 31),
-(10, NULL, 35000.00, '2025-02-18 16:08:56', 'Visa Card', 'txn_3QtsPuPx6HkKfodW0xBDm1iZ', NULL, 1, 'product', 23, NULL, NULL, NULL, '2025-02-18 15:08:56', 31),
-(11, NULL, 35000.00, '2025-02-19 05:18:59', 'Visa Card', 'txn_3Qu4kUPx6HkKfodW0cHlF9pN', NULL, 1, 'product', 24, NULL, NULL, NULL, '2025-02-19 04:18:59', 31),
-(19, NULL, 65998.00, '2025-02-26 12:24:40', 'Visa Card', 'txn_3QwijGPx6HkKfodW23lQ2QMW', NULL, 1, 'product', 25, NULL, NULL, NULL, '2025-02-26 11:24:40', 36),
 (24, '6e37116788aa', 999.00, '2025-02-27 18:16:00', 'Visa Card', 'txn_3QxAgqPx6HkKfodW0cWTQUfw', 10, 1, 'membership', NULL, NULL, NULL, NULL, '2025-02-27 17:16:00', 31),
 (25, 'abb4a0a08f7d', 999.00, '2025-02-27 18:51:58', 'Visa Card', 'txn_3QxBFdPx6HkKfodW1m7CgEyB', 10, 1, 'membership', NULL, NULL, NULL, NULL, '2025-02-27 17:51:58', 39),
 (26, '0098472b9f9a', 2999.00, '2025-03-03 12:17:23', 'Visa Card', 'txn_3QyX01Px6HkKfodW23k6z21h', 13, 1, 'membership', NULL, NULL, NULL, NULL, '2025-03-03 11:17:23', 40),
@@ -492,8 +465,11 @@ INSERT INTO `payments` (`id`, `member_id`, `amount`, `payment_date`, `payment_me
 (36, NULL, 550.00, '2025-03-12 11:31:46', 'credit_card', 'txn_3R1mZmPx6HkKfodW1GgIfk4F', NULL, 1, 'appointment', NULL, 33, NULL, NULL, '2025-03-12 10:31:46', 44),
 (37, NULL, 550.00, '2025-03-13 04:48:28', 'credit_card', 'txn_3R22l3Px6HkKfodW2Qegcacp', NULL, 1, 'appointment', NULL, 35, NULL, NULL, '2025-03-13 03:48:28', 45),
 (38, NULL, 550.00, '2025-03-17 04:45:39', 'credit_card', 'txn_3R3UcSPx6HkKfodW02ucoFRD', NULL, 1, 'appointment', NULL, 37, NULL, NULL, '2025-03-17 03:45:39', 31),
-(39, NULL, 12999.00, '2025-03-17 04:56:26', 'Visa Card', 'txn_3R3UmtPx6HkKfodW0qqvf7pL', NULL, 1, 'product', 26, NULL, NULL, NULL, '2025-03-17 03:56:26', 31),
-(40, NULL, 800.00, '2025-03-25 19:34:57', 'credit_card', 'txn_3R6cJbPx6HkKfodW2LYg1i2P', NULL, 1, 'appointment', NULL, 45, NULL, NULL, '2025-03-25 18:34:57', 40);
+(40, NULL, 800.00, '2025-03-25 19:34:57', 'credit_card', 'txn_3R6cJbPx6HkKfodW2LYg1i2P', NULL, 1, 'appointment', NULL, 45, NULL, NULL, '2025-03-25 18:34:57', 40),
+(41, NULL, 76000.00, '2025-03-27 06:09:57', 'Visa Card', 'txn_3R78hUPx6HkKfodW2Ib0qFxg', NULL, 1, 'product', 27, NULL, NULL, NULL, '2025-03-27 05:09:57', 40),
+(43, NULL, 64000.00, '2025-03-27 06:42:26', 'Visa Card', 'txn_3R79CwPx6HkKfodW1yXOOImx', NULL, 1, 'product', 29, NULL, NULL, NULL, '2025-03-27 05:42:26', 40),
+(44, '45a4e7837d86', 2400.00, '2025-03-28 10:35:57', 'Visa Card', 'txn_3R7ZKUPx6HkKfodW0NverVmZ', 11, 1, 'membership', NULL, NULL, NULL, NULL, '2025-03-28 09:35:57', 45),
+(45, NULL, 500.00, '2025-03-28 10:58:40', 'credit_card', 'txn_3R7ZgTPx6HkKfodW2OnPocuX', NULL, 1, 'appointment', NULL, 46, NULL, NULL, '2025-03-28 09:58:40', 46);
 
 -- --------------------------------------------------------
 
@@ -636,7 +612,7 @@ INSERT INTO `schedule` (`schedule_id`, `schedule_day`, `schedule_name`, `trainer
 (79, 'Wednesday', 'Yoga', 3, '11:15:00', '13:00:00', '', '2025-03-06 10:01:55'),
 (80, 'Wednesday', 'Running', 6, '16:00:00', '18:30:00', '', '2025-03-06 10:02:33'),
 (81, 'Thursday', 'Muscular strength', 4, '13:30:00', '15:00:00', '', '2025-03-06 10:04:54'),
-(82, 'Thursday', 'Light heavyweight', 2, '16:10:00', '18:50:00', '', '2025-03-06 10:05:52'),
+(82, 'Thursday', 'Light heavyweight', 2, '16:10:00', '18:50:00', '280', '2025-03-06 10:05:52'),
 (83, 'Friday', 'Meditation', 5, '06:00:00', '07:30:00', '450', '2025-03-06 10:06:31'),
 (84, 'Friday', 'Vinyasa Yoga', 1, '07:45:00', '09:30:00', '400', '2025-03-06 10:07:11'),
 (85, 'Friday', 'Strength training for muscle power', 3, '09:45:00', '11:00:00', '500', '2025-03-06 10:07:52'),
@@ -737,7 +713,7 @@ INSERT INTO `trainers` (`id`, `name`, `email`, `phone`, `specialization`, `exper
 (3, 'Venisharja Shoriya V.', 'shoriya@gmail.com', '9764310258', 'Cardio', 5, 'male', '2025-02-28', '6-5', 'Personal-Fitness-Trainer-Certificate-Template-edit-online.png', 'person_3.jpg', 25000.00, 'active', '2025-02-28 16:27:01', '2025-02-28 16:27:01'),
 (4, 'Amiti Patil L.', 'amiti@gmail.com', '1398745620', 'Personal Instroctor', 5, 'female', '2025-02-28', '6-5', 'GGFI-Advanced-Personal-training-certificate-CC.jpg', 'trainer-2.jpg', 29500.00, 'active', '2025-02-28 16:29:34', '2025-02-28 16:34:53'),
 (5, 'Vinata Kadam K.', 'vinata@gmail.com', '96320147852', 'Meditation', 5, 'female', '2025-02-28', '6-12', 'vinayak-personal-trainer-level-3-uk-certified-andheri-west-mumbai-personal-gym-trainers-v06zaskg76.jpg', 'trainer-5.jpg', 21000.00, 'active', '2025-02-28 16:32:42', '2025-02-28 16:41:38'),
-(6, 'Anamika Varma A.', 'anamika@mail.com', '9874560123', 'Die Specialist ', 6, 'male', '2025-02-28', '6-2', 'QRW.jpg', 'test-2.jpg', 9000.00, 'active', '2025-02-28 16:37:14', '2025-02-28 16:37:46'),
+(6, 'Anamika Varma A.', 'anamika@mail.com', '9874560123', 'Die Specialist ', 6, 'female', '2025-02-28', '6-2', 'QRW.jpg', 'test-2.jpg', 9000.00, 'active', '2025-02-28 16:37:14', '2025-03-28 15:14:59'),
 (7, 'Neha Savaliya R.', 'neya@gmail.com', '9123578460', 'Zumba Instructor', 10, 'female', '2025-02-28', '6-4', 'CPT.jpg', 'test-3.jpg', 18500.00, 'active', '2025-02-28 16:40:06', '2025-02-28 16:40:06'),
 (8, 'Beka Deniyal J', 'wotor30234@arensus.com', '6589742789', 'Yoga', 5, 'female', '2025-02-28', '6-10', 'images.jpeg', 'trainer-1.jpg', 15000.00, 'active', '2025-02-28 16:43:45', '2025-02-28 16:47:41');
 
@@ -780,8 +756,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `member_id`, `full_name`, `name`, `email`, `mobile`, `password`, `gender`, `address`, `image`, `Height`, `Weight`, `Age`, `current_plan_id`, `occupation`, `trainer_id`, `batch`, `payment_status`, `plan_status`, `remainder`, `join_date`, `code`, `code_status`, `createtime`, `role`) VALUES
-(1, '0', 'Radadiya Avadh A.', 'avadh', 'temopo7514@wirelay.com', '9856321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'Male', '293 shivay society , surat , gujarat', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', '9371a4967fbe6218eb5118e6798a01b1', 0, '2025-02-24 14:22:58', 'normal_user'),
-(17, '0', '', 'hita', 'peyogog417@suggets.com', '', 'ffaefbcd0a902d22db7e03cf5b51c275', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', '9a5506d16a4397b5318c476ea89b1570', 1, '2025-02-24 14:23:03', 'normal_user'),
+(1, '0', 'Radadiya Avadh A.', 'avadh', 'temopo7514@wirelay.com', '9756321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'Male', '293 shivy society , surat , gujarat', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', '9371a4967fbe6218eb5118e6798a01b1', 0, '2025-03-28 14:29:32', 'normal_user'),
+(17, '0', 'erty', 'hita', 'peyogog417@suggets.com', '1234567890', 'ffaefbcd0a902d22db7e03cf5b51c275', 'Male', 'sdfgbnm', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', '9a5506d16a4397b5318c476ea89b1570', 1, '2025-03-28 14:28:26', 'normal_user'),
 (21, '0', 'Josy kalu', 'kalu', 'mofivo9318@halbov.com', '9856321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'male', '263 sivay society, puna', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-19', 'b2c986fc52369e1cf2ae4c1b8b0e03f3', 1, '2025-02-28 10:16:28', 'normal_user'),
 (22, '0', '', 'Keval', 'direya4166@halbov.com', '', '9445676904c4c57181bf262426988083', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-01-20', '058b1b59139ab772c42f24325a443aed', 1, '2025-02-24 14:23:05', 'normal_user'),
 (23, '0', 'ava joy', 'ava123', 'ava@gmail.com', '9856321470', '7ef605fc8dba5425d6965fbd4c8fbe1f', 'Female', '182 shivay society,surat,gujarat ', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-02-16', '', 0, '2025-02-24 14:23:08', 'normal_user'),
@@ -792,7 +768,8 @@ INSERT INTO `users` (`id`, `member_id`, `full_name`, `name`, `email`, `mobile`, 
 (42, NULL, '', 'het123', 'sutax8081@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-11', '1128374dbaf30868660701423267295a', 0, '2025-03-11 08:35:22', 'normal_user'),
 (43, NULL, '', 'ram123', 'avadhradadiya42@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-11', 'b5dfa3fde8728f4114e403890630530d', 0, '2025-03-11 15:56:14', 'normal_user'),
 (44, NULL, '', 'neha123', 'neha@gmail.com', '', 'f3de5e16d00fe7056839f6018f1f52ca', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-12', '2d98843925f250de97fa8ecf27b4e623', 0, '2025-03-12 10:05:41', 'normal_user'),
-(45, NULL, '', 'nihal', 'ukaninihal@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-13', '27c9a2684568fb76b69ac0dc405945c1', 0, '2025-03-13 03:33:34', 'normal_user');
+(45, '45a4e7837d86', 'Nihal Ukani K.', 'nihal', 'ukaninihal@gmail.com', '9856321401', '831ccd5839331a317a353476d688a2cb', 'Male', '123 Mahadev Society, Varachha, Surat, Gujarat', '1743154505_Screenshot 2025-03-28 150440.png', 0, 0, 0, 11, 'Web Developer', 0, '', 1, 1, 0, '2025-03-13', '27c9a2684568fb76b69ac0dc405945c1', 0, '2025-03-28 15:33:49', 'member_user'),
+(46, NULL, '', 'avadh_150', 'avadhradadiya895@gmail.com', '', '831ccd5839331a317a353476d688a2cb', '', '', '', 0, 0, 0, NULL, '', 0, '', 0, 0, 0, '2025-03-28', '05d0c1ed5d7b0baac607e29aed5a8fe0', 0, '2025-03-28 09:47:44', 'normal_user');
 
 --
 -- Indexes for dumped tables
@@ -962,7 +939,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `announcements`
@@ -974,7 +951,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -986,7 +963,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -1028,25 +1005,25 @@ ALTER TABLE `membership_plans`
 -- AUTO_INCREMENT for table `member_plans`
 --
 ALTER TABLE `member_plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1100,7 +1077,7 @@ ALTER TABLE `trainers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables

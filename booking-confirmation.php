@@ -343,7 +343,7 @@ unset($_SESSION['appointment_ref']);
                                                 <script src="https://checkout.stripe.com/checkout.js"
                                                     class="stripe-button"
                                                     data-key="<?= htmlspecialchars($Publishable_key) ?>"
-                                                    data-amount="<?php echo number_format($appointment['price'] ?? 550, 2) * 100; ?>"
+                                                    data-amount="<?php echo number_format($appointment['amount'] , 2) * 100; ?>"
                                                     data-name="Fitness Club"
                                                     data-description="Continue the Payment for Booking Session"
                                                     data-currency="inr"

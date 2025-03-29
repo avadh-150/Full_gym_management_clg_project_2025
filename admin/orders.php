@@ -113,7 +113,7 @@ include "dbcon.php";
                                LEFT JOIN order_items oi ON oi.order_id = o.id 
                                LEFT JOIN products p ON oi.product_id = p.id 
                                LEFT JOIN users u ON u.id = o.user_id 
-                               ORDER BY o.tracking_id DESC
+                               ORDER BY o.create_at DESC
                                LIMIT $records_per_page OFFSET $offset";
 
                             $result = $con->query($query);

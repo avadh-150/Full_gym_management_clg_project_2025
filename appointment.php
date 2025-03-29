@@ -912,7 +912,7 @@ if (!isset($_GET['id'])) {
                                     <div class="summary-total">
                                         <span class="total-label">Total Amount:</span>
                                         <span class="total-value" id="summary-price" name="price">₹<?php echo $row['price']?></span>
-                                        <input type="" class="total-value" id="price" name="price" value="<?php echo $row['price']?>"></in>
+                                        <input type="hidden" class="total-value" id="price" name="price" value="<?php echo $row['price']?>"></in>
                                     </div>
                                 </div>
 

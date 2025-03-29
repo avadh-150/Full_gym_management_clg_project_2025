@@ -69,7 +69,7 @@ if($_GET['bid']){
           <div class='widget-box'>
             <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
               <h5>Blog table</h5>
-              <a href="add-schedules.php" style="float: right; margin:5px 10px;"><button class="btn btn-primary">
+              <a href="blogs-entry.php" style="float: right; margin:5px 10px;"><button class="btn btn-primary">
         <b>
           <i class="fa-solid fa-plus"></i>
           

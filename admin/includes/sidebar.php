@@ -20,9 +20,9 @@
         <li class="<?php if ($page == 'appointments') {
                       echo 'active';
                     } ?>"><a href="appointments.php"><i class="fas fa-arrow-right"></i> Appointment List</a></li>
-        <li class="<?php if ($page == 'admins-entry') {
+        <!-- <li class="<?php if ($page == 'admins-entry') {
                       echo 'active';
-                    } ?>"><a href="admins-entry.php"><i class="fa-solid fa-user-plus"></i> Test </a></li>
+                    } ?>"><a href="admins-entry.php"><i class="fa-solid fa-user-plus"></i> Test </a></li> -->
        
       </ul>
     </li>

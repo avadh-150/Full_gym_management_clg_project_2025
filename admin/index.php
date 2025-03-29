@@ -265,7 +265,14 @@ $result5=mysqli_query($con,$qry);
           echo $row['total'] ?? 0;
 
          ?> </span>   Total Appointments </a> </li>
-       
+               <li class="bg_lb span2"> <a href="schedule.php" style="font-size: 16px;"> <i class="fa-solid fa-calendar-days"></i><span class="label label-important"><?php  
+                include "dbcon.php";
+                $sql = "SELECT count(*) as total FROM schedule";
+                $query = mysqli_query($con,$sql);
+                $row=mysqli_fetch_assoc($query);
+                echo $row['total'] ?? 0;
+               ?></span> Schedules </a> </li>
+
       </ul>
     </div>
 <!--End-Action boxes-->    
@@ -365,6 +372,39 @@ $result5=mysqli_query($con,$qry);
          
       </div>
       <div class="span6">
+      <div class="widget-box">
+          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
+            <h5>Queries</h5>
+          </div>
+          <div class="widget-content nopadding collapse in" id="collapseG2">
+            <ul class="recent-posts">
+              <li>
+
+              <?php
+
+                include "dbcon.php";
+                $qry="SELECT * FROM contact";
+                $result=mysqli_query($conn,$qry);
+                  
+                while($row=mysqli_fetch_array($result)){
+                  echo"<div class='article-post'>"; 
+                  echo"<span class='user-info'> Customer Name : ".$row['name']." / Date :".$row['created_at']." </span>";
+                  echo"<p><a href='#'> Email ID : ".$row['email']."</a> </p>";
+                 
+                }
+
+                echo"</div>";
+                echo"</li>";
+              ?>
+
+              <a href="contact_replay.php"><button class="btn btn-warning btn-mini">View All</button></a>
+              </li>
+            </ul>
+          </div>
+        </div><!-- Visit codeastro.com for more projects -->
+       
+         
+        </div>
        
      
 <div class="row-fluid">

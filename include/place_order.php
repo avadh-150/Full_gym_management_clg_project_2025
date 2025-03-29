@@ -24,6 +24,17 @@ include "../admin/dbcon.php";
 
 include "../configuration.php";
 // Check if Stripe token exists
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../vendor/autoload.php';
+
+
+
+
 if (isset($_SESSION['auth_user'])) {
 
     // Collect all details
@@ -101,15 +112,15 @@ if (isset($_SESSION['auth_user'])) {
 
 
                             // There is pending the qty update to decrease here write code of update qty of product
-                            //     $qty_update="select * from products where id='$pro_id' limit 1";
-                            //     $qty_update_query=mysqli_query($con, $qty_update);
+                                $qty_update="select * from products where id='$pro_id' limit 1";
+                                $qty_update_query=mysqli_query($con, $qty_update);
 
-                            //     $prodata=mysqli_fetch_assoc($qty_update_query);
-                            //     $currect_qty=$prodata['quantity'];
+                                $prodata=mysqli_fetch_assoc($qty_update_query);
+                                $currect_qty=$prodata['quantity'];
 
-                            //     $new_qty=$currect_qty- $prodata['quantity'];
-                            //     $update_qty="UPDATE products SET quantity='$new_qty' WHERE id='$pro_id'";
-                            //    $update_qty_query= mysqli_query($con, $update_qty);
+                                $new_qty=$currect_qty- $prodata['quantity'];
+                                $update_qty="UPDATE products SET quantity='$new_qty' WHERE id='$pro_id'";
+                               $update_qty_query= mysqli_query($con, $update_qty);
                         }
 
                         echo "<script>
@@ -132,11 +143,106 @@ if (isset($_SESSION['auth_user'])) {
                                 $payment_method = $pay_result['payment_method'];
                                 $update_order = "UPDATE orders SET payment_id='$payment_id',status='$pay_status',payment_method='$payment_method' WHERE id = '$order_id'";
                                 $update_pay_order = mysqli_query($con, $update_order);
-                                if ($update_pay_order) {
-                                    mysqli_query($con, "DELETE FROM carts WHERE user_id = '$user_id'");
 
-                                    $_SESSION['message'] = "Order placed successfully!";
-                                    header("Location: ../my_orders.php");
+                                $userNAME = $_SESSION['auth_user']['username'];
+
+                                if ($update_pay_order) {
+                                    if(mysqli_query($con, "DELETE FROM carts WHERE user_id = '$user_id'"))
+                                    {
+
+                                        echo "<div style='display: none;'>";
+                                        //Create an instance; passing `true` enables exceptions
+                                        // echo "<div id='loadingMsg'>Loading...</div>";
+                                
+                                        $mail = new PHPMailer(true);
+                                
+                                        try {
+                                            //Server settings
+                                            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                                            $mail->isSMTP();                                            //Send using SMTP
+                                            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                                            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                                            $mail->Username   = 'avadhradadiya293@gmail.com';                     //SMTP username
+                                            $mail->Password   = 'nxvv aqtu igeh cytg';                               //SMTP password
+                                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                                            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                                
+                                            //Recipients
+                                            $mail->setFrom('avadhradadiya293@gmail.com', $name);
+                                            $mail->addAddress($email);
+                                
+                                            //Content
+                                            $mail->isHTML(true);                                  //Set email format to HTML
+                                            $mail->Subject = 'Orders Details';
+                                            // Appointment details
+                                            $appointmentDetails = "
+                                <h2>Order Details</h2>
+                                <p>Dear User $userNAME,</p>
+                                <p>We are pleased to confirm your Orders details as follows:</p>
+                                
+                                <table style='width: 100%; border-collapse: collapse;'>
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Customer Name</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$name</td>
+                                </tr>
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Email</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$email</td>
+                                </tr>
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Contact</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$phone</td>
+                                </tr>
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Address</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$address ,$pin</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Product Id</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$pro_id</td>
+                                </tr>
+                               
+                                <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Order ID</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$order_id</td>
+                                </tr>
+                                 <tr>
+                                    <th style='border: 1px solid #ddd; padding: 10px;'>Amount</th>
+                                    <td style='border: 1px solid #ddd; padding: 10px;'>$grand_total</td>
+                                </tr>
+                              
+                                </table><br>
+                                        <a href='http://localhost/gymphp/my_orders.php'> View the All Information about Orders details</a>
+                                        <br>
+                                
+                                <p>Thank you for choosing our services. If you have any questions or need further assistance, please do not hesitate to contact us.</p>
+                                <p>Best regards,</p>
+                                <p>Your Team</p>
+                                ";
+                                
+                                            $mail->Subject = 'Order Confirmation';
+                                            $mail->Body    = $appointmentDetails;
+                                
+                                            $mail->send();
+                                            echo 'Message has been sent';
+                                            // echo "<script>document.getElementById('loadingMsg').innerHTML = 'Message has been sent';</script>";
+                                        } catch (Exception $e) {
+                                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                                        }
+                                        // Wait for a few seconds before redirecting
+                                        echo "</div>";
+                                
+                                        echo "<script>alert('Payment is successful! Your Orders successfully Place.');
+                                                          window.location.href='../my_orders.php';
+                                                          </script>";
+                                        // exit();
+                                        
+                                        
+                                        
+                                        $_SESSION['message'] = "Order placed successfully!";
+                                        // header("Location: ../my_orders.php");
+                                    }
                                 } else {
                                     $_SESSION['message'] = "Something went wrong!";
                                 }

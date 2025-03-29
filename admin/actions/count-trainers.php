@@ -11,7 +11,7 @@ if(!$conn){
     die("Connection Failed");
 }
 
-$sql = "SELECT * FROM staffs WHERE designation='Trainer'";
+$sql = "SELECT * FROM trainers WHERE status='active'";
                 $query = $conn->query($sql);
 
                 echo "$query->num_rows";
