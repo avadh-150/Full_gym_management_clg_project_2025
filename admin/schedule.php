@@ -90,7 +90,7 @@ $result = mysqli_query($con, $qry);
                 </td>
                 <td>
                 
-                  <div class='text-center'><a href='edit-schedule.php?id=<?php echo $row['schedule_id']?>' class="text-success"><i class='fas fa-edit'></i> </a> | <a href='schedules.php' style='color:#F66;'><i class='fas fa-trash'></i> </a></div>
+                  <div class='text-center'><a href='edit-schedule.php?id=<?php echo $row['schedule_id']?>' class="text-success"><i class='fas fa-edit'></i> </a> | <a href='actions/delete-schedule.php?id=<?php echo $row['schedule_id']?>' style='color:#F66;'><i class='fas fa-trash'></i> </a></div>
                       <!-- <div class='text-center '><a href='schedules.php' class="text-success"><i class='fas fa-edit'></i> </a></div> -->
 </td>
                
