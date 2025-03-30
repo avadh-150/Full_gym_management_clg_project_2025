@@ -158,8 +158,14 @@ if (isset($_GET['app_id'])) {
                                         <p><strong>Email:</strong> <?php echo $app['temail']; ?></p>
                                         <p><strong>Specialization:</strong> <?php echo $app['specialization']; ?></p>
                                         <p><strong>Join Date:</strong> <?php echo $app['joining_date']; ?></p>
-                                        <p><strong>Fitness Level:</strong> <?php echo $app['fitness_level']; ?></p>
-                                        <p><strong>Type of Service:</strong> <?php echo $app['service_type']; ?></p>
+                                        <p><strong>Contact Number:</strong> <?php echo $app['contact']; ?></p>
+                                        <p><strong>status:</strong> <b>
+
+                                            <p class="text-success">
+                                            <?php echo $app['status']; ?></p>
+                                            </p>
+                                        </b>
+                                        
                                     </div>
 
                                     <!-- Right Column -->

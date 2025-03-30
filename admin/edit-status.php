@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $appointment_status = $_POST['appointment_status'];
     $payment_status = $_POST['payment_status'];
 
-    echo "<script> alert('get all fields of updated'); 
-        </script>";
+    // echo "<script> alert('get all fields of updated'); 
+    //     </script>";
     // Update query
     $update_query = "UPDATE appointments SET status = ?, payment_status = ? WHERE id = ?";
     $stmt = mysqli_prepare($con, $update_query);
@@ -52,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_stmt_execute($stmt)) {
         
-                echo "<script> alert('enter in email section'); 
-                </script>";
+                // echo "<script> alert('enter in email section'); 
+                // </script>";
         // echo "<div style='display: none;'>";
 
         $mail = new PHPMailer(true);

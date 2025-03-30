@@ -368,7 +368,7 @@ unset($_SESSION['appointment_ref']);
         $app_email = $appointment['aemail'];
         $app_name = $appointment['fullname'];
         $app_id = $appointment['app_id'];
-        $price = $appointment['price'];
+        $price = $appointment['amount'];
         $app_service = $appointment['service_type'];
         $app_trainer = $appointment['trainer_name'];
         $app_status = $appointment['status'];
