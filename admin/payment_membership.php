@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class='widget-box'>
                         <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
                             <h5>Payment table</h5>
-                            <form id="custom-search-form" role="search" method="POST" action="search-result.php" class="form-search form-horizontal pull-right">
+                            <form id="custom-search-form" method="POST" action="" class="form-search form-horizontal pull-right">
                                 <div class="input-append span12">
                                     <input type="text" class="search-query" placeholder="Search" name="search" required>
                                     <button type="submit" class="btn"><i class="fas fa-search"></i></button>
@@ -52,25 +52,32 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                         <div class='widget-content nopadding'>
-
-
-
-
-
-
                             <?php
 
                             include "dbcon.php";
-                            $qry = "SELECT ps.*, p.*, s.name,s.* 
-                                   FROM payments p 
-                                   JOIN users s ON s.member_id = p.member_id 
-                                   JOIN membership_plans ps ON ps.id = s.current_plan_id 
-                                   WHERE p.payment_type = 'membership' 
-                                   AND s.role = 'member_user' 
-                                   AND p.payment_status='1'";
+                            $search = "";
+                            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['search'])) {
+                                $search = mysqli_real_escape_string($con, $_POST['search']);
+                                $qry = "SELECT ps.*, p.*, s.name, s.* 
+                                        FROM payments p 
+                                        JOIN users s ON s.member_id = p.member_id 
+                                        JOIN membership_plans ps ON ps.id = s.current_plan_id 
+                                        WHERE p.payment_type = 'membership' 
+                                        AND s.role = 'member_user' 
+                                        AND p.payment_status='1' 
+                                        AND (s.name LIKE '%$search%' OR s.member_id LIKE '%$search%' OR p.transaction_id LIKE '%$search%')";
+                            } else {
+                                $qry = "SELECT ps.*, p.*, s.name, s.* 
+                                        FROM payments p 
+                                        JOIN users s ON s.member_id = p.member_id 
+                                        JOIN membership_plans ps ON ps.id = s.current_plan_id 
+                                        WHERE p.payment_type = 'membership' 
+                                        AND s.role = 'member_user' 
+                                        AND p.payment_status='1'";
+                            }
+                            
                             $cnt = 1;
                             $result = mysqli_query($con, $qry);
-
 
                             echo "<table class='table table-bordered data-table table-hover'>
               <thead>

@@ -37,25 +37,32 @@ if (!isset($_SESSION['user_id'])) {
         <div class="container-fluid">
             <hr>
             <a href="product-entry.php"><button class="btn btn-primary">
-                                    <b> 
-                                        <i class="fa-solid fa-plus"></i>
-    
-                                    </b>
-                                </button></a>
+                    <b>
+                        <i class="fa-solid fa-plus"></i>
+                    </b>
+                </button></a>
             <div class="row-fluid">
                 <div class="span12">
                     <div class='widget-box'>
                         <div class='widget-title'>
                             <span class='icon'> <i class='fas fa-th'></i> </span>
                             <h5>Products Table</h5>
-                            
                         </div>
                         <div class='widget-content nopadding'>
                             <!-- Search Form -->
+                            <?php
+                            // Get the search term from POST or GET
+                            $search_term = '';
+                            if (isset($_POST['search_products'])) {
+                                $search_term = htmlspecialchars($_POST['search_products']);
+                            } elseif (isset($_GET['search'])) {
+                                $search_term = htmlspecialchars($_GET['search']);
+                            }
+                            ?>
                             <form action="" role="search" method="POST">
                                 <div id="search" class="p-3">
                                     <input type="text" placeholder="Search Here.." name="search_products"
-                                        value="<?php echo isset($_POST['search_products']) ? htmlspecialchars($_POST['search_products']) : ''; ?>" />
+                                        value="<?php echo $search_term; ?>" />
                                     <button type="submit" class="tip-bottom" name="search_submit" title="Search">
                                         <i class="fas fa-search fa-white"></i>
                                     </button>
@@ -72,20 +79,37 @@ if (!isset($_SESSION['user_id'])) {
                             $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
                             $offset = ($current_page - 1) * $records_per_page;
 
-                            // Check if a search has been submitted
+                            // Initialize variables
                             $search_query = '';
                             $where_clause = '';
-                            if (isset($_POST['search_submit'])) {
-                                $search_query = $con->real_escape_string($_POST['search_products']);
+
+                            // Check if a search has been submitted
+                            if (isset($_POST['search_submit']) && !empty($_POST['search_products'])) {
+                                // Sanitize the search input
+                                $search_query = $con->real_escape_string(trim($_POST['search_products']));
+                                // Store search in GET for pagination
+                                $search_param = "&search=" . urlencode($search_query);
+                            } elseif (isset($_GET['search']) && !empty($_GET['search'])) {
+                                // Get search from URL for pagination
+                                $search_query = $con->real_escape_string(trim($_GET['search']));
+                                $search_param = "&search=" . urlencode($search_query);
+                            } else {
+                                $search_param = "";
+                            }
+
+                            // Build the WHERE clause if the search query is not empty
+                            if (!empty($search_query)) {
                                 $where_clause = "WHERE p.name LIKE '%$search_query%' OR c.name LIKE '%$search_query%'";
                             }
 
                             // Count total records for pagination
                             $count_query = "SELECT COUNT(*) as total FROM products p 
-                                          JOIN product_categories c ON p.category_id = c.id 
-                                          $where_clause";
+                                JOIN product_categories c ON p.category_id = c.id 
+                                $where_clause";
+
                             $count_result = $con->query($count_query);
                             $total_records = $count_result->fetch_assoc()['total'];
+
                             $total_pages = ceil($total_records / $records_per_page);
 
                             // Main query with pagination
@@ -116,6 +140,19 @@ if (!isset($_SESSION['user_id'])) {
 
                                 $cnt = $offset + 1;
                                 while ($product = $result->fetch_assoc()) {
+                                    // Truncate product name only if it's longer than 70 characters
+                                    $product_name = $product['product_name'];
+                                    if (strlen($product_name) > 70) {
+                                        $product_name = substr($product_name, 0, 70) . '...';
+                                    }
+
+                                    // Set status badge with correct class
+                                    if ($product['status'] == 1) {
+                                        $status_badge = "<p class='badge badge-success text-center'>ACTIVE</p>";
+                                    } else {
+                                        $status_badge = "<p class='badge badge-warning text-center'>INACTIVE</p>";
+                                    }
+
                                     echo "<tr>
                                         <td><div class='text-center'> GMPX00" . $cnt . "</div></td>
                                         <td><div class='text-center'>";
@@ -124,23 +161,16 @@ if (!isset($_SESSION['user_id'])) {
                                     } else {
                                         echo "No Image";
                                     }
-                                    if($product['status'] == 1){
-                                        $dis="<p class='badge badge-success text-center'>ACTIVE</p>";
-                                    }
-                                    else if($product['status'] == 0){
-                                        $dis= "<p class='badge badge-warging text-center'>INACTIVE</p>";
-
-                                    }
                                     echo "</div></td>
-                                        <td><div class='text-center'>" . substr($product['product_name'], 0, 70) . '...' . "</div></td>
+                                        <td><div class='text-center'>" . $product_name . "</div></td>
                                         <td><div class='text-center'>Rs." . $product['price'] . "</div></td>
                                         <td><div class='text-center'>" . $product['category_name'] . "</div></td>
                                         <td><div class='text-center'>" . $product['quantity'] . "</div></td>
-                                        <td><div class='text-center'>" . $dis . "</div></td>
+                                        <td><div class='text-center'>" . $status_badge . "</div></td>
                                         <td><div class='text-center'>
                                         <a href='edit-product.php?id=" . $product['id'] . "' class='text-success'><i class='fas fa-edit'></i></a>
                                         |
-                                            <a href='actions/delete-member.php?pro_id=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> </a>
+                                            <a href='actions/delete-product.php?id=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> </a>
                                         </div></td>
                                     </tr>";
                                     $cnt++;
@@ -148,13 +178,13 @@ if (!isset($_SESSION['user_id'])) {
 
                                 echo "</tbody></table>";
 
-                                // Pagination links
+                                // Pagination links with search parameter
                                 echo "<div class='pagination pagination-centered'>
                                     <ul>";
 
                                 // Previous page link
                                 if ($current_page > 1) {
-                                    echo "<li><a href='?page=" . ($current_page - 1) . "'>Prev</a></li>";
+                                    echo "<li><a href='?page=" . ($current_page - 1) . $search_param . "'>Prev</a></li>";
                                 }
 
                                 // Page numbers
@@ -162,13 +192,13 @@ if (!isset($_SESSION['user_id'])) {
                                     if ($i == $current_page) {
                                         echo "<li class='active'><a href='#'>$i</a></li>";
                                     } else {
-                                        echo "<li><a href='?page=$i'>$i</a></li>";
+                                        echo "<li><a href='?page=$i" . $search_param . "'>$i</a></li>";
                                     }
                                 }
 
                                 // Next page link
                                 if ($current_page < $total_pages) {
-                                    echo "<li><a href='?page=" . ($current_page + 1) . "'>Next</a></li>";
+                                    echo "<li><a href='?page=" . ($current_page + 1) . $search_param . "'>Next</a></li>";
                                 }
 
                                 echo "</ul></div>";
