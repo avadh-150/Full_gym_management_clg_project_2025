@@ -292,13 +292,39 @@ $result5=mysqli_query($con,$qry);
               <ul class="site-stats">
 
                 <!-- Total products -->
-                <li class="bg_lh"><i class="fa-solid fa-dumbbell"></i><strong><?php include "dbcon.php";
-                $sql="select count(*) as count from products";
-                $query=mysqli_query($con,$sql);
-                $row=mysqli_fetch_assoc($query);
-                echo $row['count'];
-                
-                ?></strong> <small>Available Products</small></li>
+                <li class="bg_lh">
+    <i class="fa-solid fa-dumbbell"></i>
+    <strong>
+        <?php 
+        include "dbcon.php";
+
+        // Fetch total count of products
+        $sql = "SELECT COUNT(*) AS count FROM products";
+        $query = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($query);
+        echo $row['count']; 
+        ?>
+    </strong>
+    <small>Available Products</small>
+</li>
+
+<?php 
+// Fetch out-of-stock products
+$check_sql = "SELECT * FROM products WHERE quantity = 0";
+$check_query = mysqli_query($con, $check_sql);
+
+if (mysqli_num_rows($check_query) > 0): ?>
+    <div class="alert alert-danger mt-2" role="alert">
+        <strong>Warning:</strong> The following products are out of stock!
+        <ul>
+            <?php while ($product = mysqli_fetch_assoc($check_query)): ?>
+                <li><strong>ID:</strong> <?php echo $product['id']; ?></li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+
 
                 <!-- total Adminb users -->
                 <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong>

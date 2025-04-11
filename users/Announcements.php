@@ -291,14 +291,14 @@ include "../connection.php";
                     <input type="text" id="searchInput" placeholder="Search announcements...">
                     <i class="icon-search"></i>
                 </div>
-                <div class="filter-options">
+                <!-- <div class="filter-options">
                     <select id="filterSelect">
                         <option value="all">All Time</option>
                         <option value="today">Today</option>
                         <option value="week">This Week</option>
                         <option value="month">This Month</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             
             <!-- Announcements Grid -->

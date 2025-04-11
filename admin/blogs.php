@@ -90,7 +90,6 @@ echo "<table class='table table-bordered table-hover'>
     <th>#</th>
     <th>Image</th>
     <th>Title</th>
-    <th>Content</th>
     <th>Created At</th>
     <th>Action</th>
   </tr>
@@ -103,8 +102,7 @@ if (mysqli_num_rows($result) > 0) {
       <td><div class='text-center'>" . $cnt . "</div></td>
       <td><div class='text-center'><img src='" . $row['image_path'] . "' alt='Blog Image' width='50' height='50'></div></td>
       <td><div class='text-center'>" . htmlspecialchars($row['title']) . "</div></td>
-      <td><div class='text-center'>" . substr(htmlspecialchars($row['content']), 0, 50) . "...</div></td>
-      <td><div class='text-center'>" . $row['created_at'] . "</div></td>
+        <td><div class='text-center'>" . $row['created_at'] . "</div></td>
       <td>
           <div class='text-center'>
           <a href='edit-blogs.php?id=" . $row['id'] . "' class='text-success'>

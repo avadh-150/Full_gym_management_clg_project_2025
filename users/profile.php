@@ -243,7 +243,7 @@ $membership = $membership_result->fetch_assoc();
                 <a href="chatbot.php" class="btn"><i class="fa-solid fa-comment"></i> Chat Support</a>
 
                 <a href="membershipcard.php?id=<?php echo $user['member_id']; ?>" target="_blank" class="btn"><i class="fas fa-id-card"></i> Membership Card</a>
-                <a href="logout.php" class="btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="../logout.php" class="btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
     </div>

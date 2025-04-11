@@ -110,17 +110,10 @@ if (isset($_SESSION['auth_user'])) {
                                     VALUES ('$order_id', '$pro_id', '$qty', '$product_price')";
                             mysqli_query($con, $order_items);
 
-
-                            // There is pending the qty update to decrease here write code of update qty of product
-                                // $qty_update="select * from products where id='$pro_id' limit 1";
-                                // $qty_update_query=mysqli_query($con, $qty_update);
-
-                                // $prodata=mysqli_fetch_assoc($qty_update_query);
-                                // $currect_qty=$prodata['quantity'];
-
-                                // $new_qty=$currect_qty- $prodata['quantity'];
-                                // $update_qty="UPDATE products SET quantity='$new_qty' WHERE id='$pro_id'";
-                            //    $update_qty_query= mysqli_query($con, $update_qty);
+    // Decrease available quantity in products table
+    $update_qty = "UPDATE products SET quantity = quantity - '$qty' WHERE id = '$pro_id'";
+    mysqli_query($con, $update_qty);
+                            
                         }
 
                         echo "<script>

@@ -467,7 +467,7 @@ unset($_SESSION['appointment_ref']);
         // Wait for a few seconds before redirecting
         echo "</div>";
 
-        echo "<script>alert('Payment is successful! Your appointment successfully booked.');
+        echo "<script>alert('Your appointment successfully booked. You can Pay when you visit our gym club');
                           window.location.href='confim_msg_app.php';
                           </script>";
         // exit();

@@ -116,7 +116,7 @@ if (!isset($_SESSION['user_id'])) {
                             $query = "SELECT p.id, p.name AS product_name, p.price, c.name AS category_name, 
                                             p.status, p.quantity, p.description, p.image
                                      FROM products p
-                                     JOIN product_categories c ON p.category_id = c.id
+                                     JOIN product_categories c ON p.category_id = c.id 
                                      $where_clause
                                      LIMIT $offset, $records_per_page";
 
@@ -170,7 +170,7 @@ if (!isset($_SESSION['user_id'])) {
                                         <td><div class='text-center'>
                                         <a href='edit-product.php?id=" . $product['id'] . "' class='text-success'><i class='fas fa-edit'></i></a>
                                         |
-                                            <a href='actions/delete-product.php?id=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> </a>
+                                            <a href='actions/delete-member.php?pro_idproducts=" . $product['id'] . "' style='color:#F66;'><i class='fa fa-trash' aria-hidden='true'></i> </a>
                                         </div></td>
                                     </tr>";
                                     $cnt++;

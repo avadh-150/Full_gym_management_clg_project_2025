@@ -81,6 +81,7 @@
 
                 ?>
                   <a class="dropdown-item" href="http://localhost/gymphp/users/profile.php"><i class="fa-solid fa-user"></i>Member Profile</a>
+                  <a class="dropdown-item" href="http://localhost/gymphp/users/chatbot.php"><i class="fa-solid fa-comment"></i> ChatSupport</a>
 
                 <?php } ?>
 
@@ -88,7 +89,6 @@
                 <a class="dropdown-item" href="http://localhost/gymphp/my_membership.php"><i class="fa-solid fa-spa"></i> My Membership</a>
                 <a class="dropdown-item" href="http://localhost/gymphp/my_appointment.php"><i class="fa-solid fa-landmark"></i> My Appointments</a>
                 <a class="dropdown-item" href="http://localhost/gymphp/users/Announcements.php"><i class="fa-solid fa-bell"></i> Announcements</a>
-                <a class="dropdown-item" href="http://localhost/gymphp/users/chatbot.php"><i class="fa-solid fa-comment"></i> ChatSupport</a>
 
               </div>
             </li>

@@ -58,7 +58,7 @@
     <li class="submenu"> <a href="#"><i class="fas fa-user-check"></i><span>Manage Users</span> <span class="label label-important">
           <?php
           include "dbcon.php";
-          $sql = "SELECT * FROM users";
+          $sql = "SELECT * FROM users where role='normal_user' && plan_status='0'";
           $query = $con->query($sql);
           echo "$query->num_rows"; ?></span></a>
       <ul>

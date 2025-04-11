@@ -71,13 +71,13 @@ if ($user['current_plan_id']) {
 
     // Use prepared statement for payment query
     $pay_user = "SELECT p.member_id, p.amount as price, p.*, m.end_date as edate, 
-                 m.start_date as sdate, m.status 
+                 m.start_date as sdate, m.status as mstatus
                  FROM payments p 
                  JOIN member_plans m ON p.plan_id = m.plan_id 
-                 WHERE p.payment_type='membership' AND m.member_id = ?";
+                 WHERE p.payment_type='membership' AND payment_status='1' AND m.member_id = ?";
     
     $stmt = mysqli_prepare($con, $pay_user);
-    mysqli_stmt_bind_param($stmt, "i", $member_id);
+    mysqli_stmt_bind_param($stmt, "s", $member_id);
     mysqli_stmt_execute($stmt);
     $pay_result = mysqli_stmt_get_result($stmt);
     $pay_row = mysqli_fetch_assoc($pay_result);
@@ -189,11 +189,11 @@ if ($user['current_plan_id']) {
                     <label style="font-weight:bold;">Membership Status</label>
 <div class="border p-1 mb-3">
     <?php 
-        if ($pay_row['status'] == 0) {
+        if ($pay_row['mstatus'] == 0) {
             echo '<span class="badge bg-danger text-white" style="font-size:15px">Inactive</span>'; // Red for inactive
-        } else if ($pay_row['status'] == 1) {
+        } else if ($pay_row['mstatus'] == 1) {
             echo '<span class="badge bg-success text-white" style="font-size:15px">Active</span>'; // Green for active
-        } else if ($pay_row['status'] == 2) {
+        } else if ($pay_row['mstatus'] == 2) {
             echo '<span class="badge bg-secondary text-white" style="font-size:15px">Expired</span>'; // Gray for expired
         }
     ?>

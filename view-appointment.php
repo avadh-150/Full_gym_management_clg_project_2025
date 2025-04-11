@@ -190,12 +190,12 @@ exit();
                         </div>
                         <div class="col-md-12 mb-2">
                             <label class="fw-bold">Goal Of description:</label>
-                            <div class="border p-1"><?= htmlspecialchars($user['Age']); ?></div>
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <label class="fw-bold">Occupation:</label>
                             <div class="border p-1"><?= htmlspecialchars($user['description']); ?></div>
+
                         </div>
+                        <!-- <div class="col-md-12 mb-2">
+                            <label class="fw-bold">Occupation:</label>
+                        </div> -->
                         <div class="col-md-12 mb-2">
                             <label class="fw-bold">Booking Date:</label>
                             <div class="border p-1"><?= htmlspecialchars($user['created_at']); ?></div>

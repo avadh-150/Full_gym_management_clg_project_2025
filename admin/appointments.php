@@ -56,7 +56,7 @@ if (!isset($_SESSION['user_id'])) {
               <?php
 
               include "dbcon.php";
-              $qry = "select a.*,t.name as tname from appointments a,trainers t where a.trainer_id=t.id";
+              $qry = "select a.*,t.name as tname from appointments a,trainers t where a.trainer_id=t.id order by created_at";
               //   $cnt = 1;
               $result = mysqli_query($con, $qry);
 
